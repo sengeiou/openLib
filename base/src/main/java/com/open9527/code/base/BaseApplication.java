@@ -1,25 +1,22 @@
-package com.blankj.base;
+package com.open9527.code.base;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.multidex.MultiDex;
+
+import androidx.multidex.MultiDex;
 
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.CrashUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ProcessUtils;
-import com.didichuxing.doraemonkit.DoraemonKit;
-import com.squareup.leakcanary.LeakCanary;
 
 import java.util.ArrayList;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2018/11/16
- *     desc  : base about application
- * </pre>
+ * Created by     : open9527
+ * Created times  : on 2019/8/22 17:35.
+ * E-Mail Address ：open_9527@163.com.
+ * DESC :描述文件.
  */
 public class BaseApplication extends Application {
 
@@ -42,21 +39,13 @@ public class BaseApplication extends Application {
     public void onCreate() {
         super.onCreate();
         sInstance = this;
-        DoraemonKit.install(this);
         initLeakCanary();
         initLog();
         initCrash();
     }
 
     private void initLeakCanary() {// 内存泄露检查工具
-        if (isDebug()) {
-            if (LeakCanary.isInAnalyzerProcess(this)) {
-                // This process is dedicated to LeakCanary for heap analysis.
-                // You should not init your app in this process.
-                return;
-            }
-            LeakCanary.install(this);
-        }
+
     }
 
     // init it in ur application

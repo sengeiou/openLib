@@ -2,7 +2,6 @@ package com.open9527.code.network.repository;
 
 import androidx.lifecycle.LiveData;
 
-import com.open9527.code.network.livedata.SingleLiveEvent;
 import com.open9527.code.network.status.NetStatus;
 
 /**

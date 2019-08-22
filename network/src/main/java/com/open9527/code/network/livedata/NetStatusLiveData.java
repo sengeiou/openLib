@@ -14,7 +14,7 @@ import com.open9527.code.network.status.NetStatus;
  * DESC :请求状态.
  */
 public abstract class NetStatusLiveData extends MediatorLiveData<NetStatus> {
-    public void postError(String error,int code) {
+    public void postError(String error, int code) {
         postValue(NetStatus.error(error,code));
     }
 
@@ -22,7 +22,7 @@ public abstract class NetStatusLiveData extends MediatorLiveData<NetStatus> {
         postValue(NetStatus.loading());
     }
 
-    public void postSuccess(String msg,int code) {
+    public void postSuccess(String msg, int code) {
         postValue(NetStatus.success(msg,code));
     }
 

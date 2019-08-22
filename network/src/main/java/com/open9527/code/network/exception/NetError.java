@@ -1,7 +1,7 @@
 package com.open9527.code.network.exception;
 
 import com.google.gson.JsonParseException;
-import com.open9527.network.BuildConfig;
+import com.open9527.code.network.BuildConfig;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;

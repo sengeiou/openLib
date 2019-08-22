@@ -1,4 +1,4 @@
-package com.open9527.code.base.screen;
+package com.open9527.code.common;
 
 import android.content.res.Resources;
 

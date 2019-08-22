@@ -4,7 +4,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
-import com.open9527.network.BuildConfig;
+
+import com.open9527.code.network.BuildConfig;
 
 import java.io.IOException;
 import java.net.Proxy;

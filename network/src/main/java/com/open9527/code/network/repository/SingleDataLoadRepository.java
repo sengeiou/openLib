@@ -3,11 +3,10 @@ package com.open9527.code.network.repository;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.open9527.code.network.response.BaseResponse;
-import com.open9527.code.network.response.IResponse;
 import com.open9527.code.network.dataloader.SingleDataLoader;
 import com.open9527.code.network.exception.NetError;
 import com.open9527.code.network.livedata.NetStatusLiveData;
+import com.open9527.code.network.response.BaseResponse;
 import com.open9527.code.network.status.NetStatus;
 
 import io.reactivex.SingleObserver;

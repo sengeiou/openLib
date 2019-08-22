@@ -1,4 +1,4 @@
-package com.open9527.code.base.screen;
+package com.open9527.code.common;
 
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -15,11 +15,6 @@ import com.open9527.code.common.config.Config;
  */
 public abstract class ScreenBaseActivity extends BaseActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
 
     @Override
     public Resources getResources() {

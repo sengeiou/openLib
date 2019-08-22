@@ -7,4 +7,6 @@ package com.open9527.code.common.config;
  * DESC :描述文件.
  */
 public class Config {
+    //适配屏幕宽度
+    public static final int ADAPT_SCREEN_WIDTH = 1080;
 }

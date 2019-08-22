@@ -1,14 +1,12 @@
-package com.blankj.base;
+package com.open9527.code.base;
 
 import android.util.Log;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2018/03/23
- *     desc  : base about lazy fragment
- * </pre>
+ * Created by     : open9527
+ * Created times  : on 2019/8/22 17:35.
+ * E-Mail Address ：open_9527@163.com.
+ * DESC :描述文件.
  */
 public abstract class BaseLazyFragment extends BaseFragment {
 

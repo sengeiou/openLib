@@ -1,32 +1,30 @@
-package com.blankj.base;
+package com.open9527.code.base;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.IdRes;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.blankj.utilcode.util.ClickUtils;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2017/03/28
- *     desc  : base about v4-fragment
- * </pre>
+ * Created by     : open9527
+ * Created times  : on 2019/8/22 17:35.
+ * E-Mail Address ：open_9527@163.com.
+ * DESC :描述文件.
  */
-public abstract class BaseFragment extends Fragment
-        implements IBaseView {
+public abstract class BaseFragment extends Fragment implements IBaseView {
 
     private static final String TAG                  = "BaseFragment";
     private static final String STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN";
@@ -38,9 +36,9 @@ public abstract class BaseFragment extends Fragment
         }
     };
 
-    protected Activity       mActivity;
+    protected Activity mActivity;
     protected LayoutInflater mInflater;
-    protected View           mContentView;
+    protected View mContentView;
 
     @Override
     public void onAttach(Context context) {
