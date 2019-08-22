@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.open9527.code.common.ScreenBaseActivity;
+import com.open9527.code.common.screen.ScreenBaseActivity;
 import com.open9527.code.lib.R;
 
 /**

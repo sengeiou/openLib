@@ -27,7 +27,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         }
     };
 
-    protected View mContentView;
+    protected View     mContentView;
     protected Activity mActivity;
 
     @Override

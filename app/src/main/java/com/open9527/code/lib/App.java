@@ -8,7 +8,7 @@ import com.open9527.code.common.CommonApplication;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class App extends CommonApplication {
+public class Application extends CommonApplication {
 
     @Override
     public void onCreate() {
