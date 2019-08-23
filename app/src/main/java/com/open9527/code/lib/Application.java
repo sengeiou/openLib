@@ -1,5 +1,8 @@
 package com.open9527.code.lib;
 
+import android.app.Activity;
+
+import com.billy.android.swipe.SmartSwipeBack;
 import com.open9527.code.common.CommonApplication;
 
 /**
@@ -13,6 +16,13 @@ public class Application extends CommonApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        initSwipeBack();
+    }
 
+    /**
+     * 配置侧滑样式( 微信样式)
+     */
+    private void initSwipeBack() {
+        SmartSwipeBack.activitySlidingBack(this, activity -> !(activity instanceof MainActivity));
     }
 }

@@ -26,9 +26,4 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(path: ':base')
-    api project(path: ':network')
-    api project(path: ':image')
-    api project(path: ':customview')
-    api 'com.noober.background:core:1.5.5'
 }

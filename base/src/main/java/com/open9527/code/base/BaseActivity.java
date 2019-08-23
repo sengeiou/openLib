@@ -27,7 +27,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         }
     };
 
-    protected View     mContentView;
+    protected View mContentView;
     protected Activity mActivity;
 
     @Override
@@ -51,4 +51,5 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         ClickUtils.applyGlobalDebouncing(views, mClickListener);
         ClickUtils.applyScale(views);
     }
+
 }
