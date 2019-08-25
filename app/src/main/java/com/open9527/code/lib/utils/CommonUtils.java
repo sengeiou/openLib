@@ -1,5 +1,12 @@
 package com.open9527.code.lib.utils;
 
+import com.blankj.utilcode.util.GsonUtils;
+import com.blankj.utilcode.util.ResourceUtils;
+import com.google.gson.reflect.TypeToken;
+import com.open9527.code.lib.model.EntryBean;
+
+import java.util.List;
+
 /**
  * Created by     : open9527
  * Created times  : on 2019/8/23 16:47.
@@ -21,19 +28,14 @@ public class CommonUtils {
         return url;
     }
 
-
-    public static String getJson(String url) {
-//        https://github.com/hpu-spring87/ebooks/blob/master/update.json
-//        https://raw.githubusercontent.com/:owner/:repo/master/:path
-//        https://raw.githubusercontent.com/hpu-spring87/ebooks/master/update.json
-//
-//        https://github.com/open9527/Images/blob/master/json/entry.json
-        //https://raw.githubusercontent.com/open9527/Images/master/json/entry.json
-
-        if (url.contains("blob")) {
-            return url.replace("blob", "raw");
-        }
-        return url;
+    /**
+     * @param assetsFilePath "json/entry.json"
+     * @return
+     */
+    public static Object getObject(String assetsFilePath) {
+//        String string = ResourceUtils.readAssets2String(assetsFilePath);
+//        List<EntryBean> list = GsonUtils.fromJson(string, new TypeToken<List<EntryBean>>() {
+//        }.getType());
+        return null;
     }
-
 }

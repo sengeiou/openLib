@@ -9,10 +9,13 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.AdaptScreenUtils;
 import com.blankj.utilcode.util.ColorUtils;
 import com.blankj.utilcode.util.GsonUtils;
@@ -26,6 +29,8 @@ import com.open9527.code.image.ImageLoad.ImageLoadConfig;
 import com.open9527.code.image.ImageLoad.ImageLoadManger;
 import com.open9527.code.image.ImageLoad.ImageLoadProcessInterface;
 import com.open9527.code.lib.model.EntryBean;
+import com.open9527.code.lib.samples.SamolesViewModel;
+import com.open9527.code.lib.samples.SamplesActivity;
 import com.open9527.code.lib.utils.CommonUtils;
 
 import java.util.List;
@@ -39,9 +44,13 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
  * DESC :描述文件.
  */
 public class MainActivity extends CommonScreenActivity {
+
+    private MainViewModel mViewModel;
+
     @Override
     public void initData(@Nullable Bundle bundle) {
-
+        mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        mViewModel.getEntryInfo();
     }
 
     @Override
@@ -51,15 +60,18 @@ public class MainActivity extends CommonScreenActivity {
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
-        String string = ResourceUtils.readAssets2String("json/entry.json");
-        List<EntryBean> list = GsonUtils.fromJson(string, new TypeToken<List<EntryBean>>() {
-        }.getType());
+
         RecyclerView recyclerView = findViewById(R.id.rv_main);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 //        recyclerView.setLayoutManager(new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.BOTH_SET,
                 2, ColorUtils.getColor(R.color.color_eee), AdaptScreenUtils.pt2Px(30), AdaptScreenUtils.pt2Px(30)));
-        recyclerView.setAdapter(new MainAdapter(list));
+        mViewModel.mEntryInfoRepository.getData().observe(this, new Observer<List<EntryBean>>() {
+            @Override
+            public void onChanged(List<EntryBean> entryBeans) {
+                recyclerView.setAdapter(new MainAdapter(entryBeans));
+            }
+        });
     }
 
     @Override
@@ -110,6 +122,12 @@ public class MainActivity extends CommonScreenActivity {
                     new ImageLoadConfig(R.mipmap.ic_launcher, R.mipmap.ic_launcher_round));
             title.setText(bean.getTitle());
             desc.setText(bean.getDesc());
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ActivityUtils.startActivity(SamplesActivity.class);
+                }
+            });
         }
 
         @Override

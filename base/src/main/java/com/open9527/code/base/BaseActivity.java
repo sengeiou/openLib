@@ -20,6 +20,8 @@ import com.blankj.utilcode.util.ClickUtils;
  */
 public abstract class BaseActivity extends AppCompatActivity implements IBaseView {
 
+    protected final String TAG = getClass().getSimpleName();
+
     private View.OnClickListener mClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

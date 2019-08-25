@@ -100,7 +100,7 @@ public class GlideImageLoad implements ImageLoadInterface {
                 @Override
                 public void onLoadStarted(Drawable placeholder) {
                     super.onLoadStarted(placeholder);
-                    Log.i(TAG, " onLoadStarted");
+//                    Log.i(TAG, " onLoadStarted");
                     if (imageLoadProcessInterface != null) {
                         imageLoadProcessInterface.onLoadStarted();
                     }
@@ -109,7 +109,7 @@ public class GlideImageLoad implements ImageLoadInterface {
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                     super.onResourceReady(resource, transition);
-                    Log.i(TAG, " onResourceReady");
+//                    Log.i(TAG, " onResourceReady");
                     if (imageLoadProcessInterface != null) {
                         imageLoadProcessInterface.onResourceReady();
                     }
@@ -118,7 +118,7 @@ public class GlideImageLoad implements ImageLoadInterface {
                 @Override
                 public void onLoadFailed(@Nullable Drawable errorDrawable) {
                     super.onLoadFailed(errorDrawable);
-                    Log.i(TAG, " onLoadFailed");
+//                    Log.i(TAG, " onLoadFailed");
                     if (imageLoadProcessInterface != null) {
                         imageLoadProcessInterface.onLoadFailed();
                     }
@@ -127,7 +127,7 @@ public class GlideImageLoad implements ImageLoadInterface {
                 @Override
                 public void onLoadCleared(Drawable placeholder) {
                     super.onLoadCleared(placeholder);
-                    Log.i(TAG, " onLoadCleared");
+//                    Log.i(TAG, " onLoadCleared");
                     if (imageLoadProcessInterface != null) {
                         imageLoadProcessInterface.onLoadCleared();
                     }

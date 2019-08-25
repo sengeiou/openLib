@@ -9,22 +9,16 @@ import com.google.gson.annotations.SerializedName;
  * DESC :RmtResponse.
  */
 public class BaseResponse<T> implements IResponse<T> {
-    private static int SUCCESS_CODE = 0;//成功的code
-    private static int TOKEN_CODE = 401;//token的code
+    protected static int SUCCESS_CODE = 0;//成功的code
+    protected static int TOKEN_CODE = 401;//token的code
 
     @SerializedName("code")
-    private int code;
+    protected int code;
     @SerializedName("msg")
-    private String message;
+    protected String message;
     @SerializedName("data")
-    private T data;
+    protected T data;
 
-
-    public BaseResponse(int code, String message, T data) {
-        this.code = code;
-        this.message = message;
-        this.data = data;
-    }
 
     @Override
     public int code() {
