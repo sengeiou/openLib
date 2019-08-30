@@ -1,2 +1,4 @@
-include ':app',  ':base', ':common', ':network', ':image', ':customview'
-rootProject.name='openLib'
+include ':app', ':base', ':common', ':network', ':image', ':customview'
+rootProject.name = 'openLib'
+
+

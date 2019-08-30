@@ -1,7 +1,6 @@
 package com.open9527.code.lib.net.response;
 
 
-
 import io.reactivex.Single;
 
 /**
@@ -11,6 +10,5 @@ import io.reactivex.Single;
  * DESC :描述文件.
  */
 public interface GitHubSingleDataLoader<T> {
-
     Single<GitHubResponse<T>> getLoader();
 }

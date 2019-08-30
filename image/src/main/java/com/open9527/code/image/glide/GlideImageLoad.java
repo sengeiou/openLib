@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.MultiTransformation;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
@@ -21,9 +22,9 @@ import com.bumptech.glide.request.target.ImageViewTarget;
 import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.bumptech.glide.request.transition.Transition;
 import com.open9527.code.image.GlideApp;
-import com.open9527.code.image.ImageLoad.ImageLoadConfig;
-import com.open9527.code.image.ImageLoad.ImageLoadInterface;
-import com.open9527.code.image.ImageLoad.ImageLoadProcessInterface;
+import com.open9527.code.image.imageload.ImageLoadConfig;
+import com.open9527.code.image.imageload.ImageLoadInterface;
+import com.open9527.code.image.imageload.ImageLoadProcessInterface;
 
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
@@ -93,7 +94,6 @@ public class GlideImageLoad implements ImageLoadInterface {
                 }
                 if (config.radius > 0) {
                     requestOptions.apply(bitmapTransform(new MultiTransformation<>(new CenterCrop(), new RoundedCornersTransformation(config.radius, 0, config.cornerType))));
-//                    requestOptions.transform(new RoundedCorners(config.radius));
                 }
             }
             ImageViewTarget simpleTarget = new BitmapImageViewTarget(imageView) {
@@ -118,7 +118,7 @@ public class GlideImageLoad implements ImageLoadInterface {
                 @Override
                 public void onLoadFailed(@Nullable Drawable errorDrawable) {
                     super.onLoadFailed(errorDrawable);
-//                    Log.i(TAG, " onLoadFailed");
+                    Log.i(TAG, " onLoadFailed");
                     if (imageLoadProcessInterface != null) {
                         imageLoadProcessInterface.onLoadFailed();
                     }
@@ -134,30 +134,31 @@ public class GlideImageLoad implements ImageLoadInterface {
                 }
 
                 @Override
-                public void getSize(@NonNull SizeReadyCallback cb) {
+                public void getSize(@NonNull SizeReadyCallback sizeReadyCallback) {
                     if (config != null && config.width >= 0 && config.height >= 0)
-                        cb.onSizeReady(config.width, config.height);
+                        sizeReadyCallback.onSizeReady(config.width, config.height);
                     else {
-                        super.getSize(cb);
+                        super.getSize(sizeReadyCallback);
                     }
                 }
             };
-
-
-            GlideApp.with(context)
-                    .asBitmap()
-                    .load(url)
-                    .apply(requestOptions)
-                    .into(simpleTarget);
-//            if (simpleTarget != null) {
-//                Glide.with(context).asBitmap().load(url).apply(requestOptions).into(simpleTarget);
-//            } else {
-//                Glide.with(context).asBitmap().load(url).apply(requestOptions).into(imageView);
-//            }
+            loadByUrl(context, url, simpleTarget, requestOptions);
         } catch (Exception e) {
             e.printStackTrace();
+            Log.i(TAG, "Exception-->" + e.getMessage());
         }
+
     }
+
+    public void loadByUrl(Context context, String url, ImageViewTarget simpleTarget, RequestOptions requestOptions) {
+        GlideApp.with(context)
+                .asBitmap()
+                .load(url)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .apply(requestOptions)
+                .into(simpleTarget);
+    }
+
 
     /**
      * 恢复加载图片

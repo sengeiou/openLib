@@ -71,18 +71,17 @@ public class GitHubSingleDataLoadRepository<T> implements DataLoadRepository<T> 
             @Override
             public void onSuccess(GitHubResponse<T> tResponse) {
                 if (tResponse.timeOut()) {//超时
-
                 } else if (tResponse.success()) {
-                    netStatusLiveData.postSuccess(tResponse.message(),tResponse.code());
+                    netStatusLiveData.postSuccess(tResponse.message(), tResponse.code());
                     tLiveData.postValue(tResponse.data());
                 } else {
-                    netStatusLiveData.postError(tResponse.message(),tResponse.code());
+                    netStatusLiveData.postError(tResponse.message(), tResponse.code());
                 }
             }
 
             @Override
             public void onError(Throwable e) {
-                netStatusLiveData.postError(NetError.getErrorMessage(e),0);
+                netStatusLiveData.postError(NetError.getErrorMessage(e), 0);
             }
         });
 

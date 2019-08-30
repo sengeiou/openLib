@@ -3,6 +3,7 @@ package com.open9527.code.common.activity;
 import android.content.res.Resources;
 
 import com.blankj.utilcode.util.AdaptScreenUtils;
+import com.open9527.code.base.BaseActivity;
 import com.open9527.code.common.config.Config;
 
 /**
@@ -11,7 +12,7 @@ import com.open9527.code.common.config.Config;
  * E-Mail Address ：open_9527@163.com.
  * DESC :屏幕适配 ( pt).
  */
-public abstract class CommonScreenActivity extends CommonBackActivity {
+public abstract class CommonScreenActivity extends BaseActivity {
 
     @Override
     public Resources getResources() {

@@ -5,30 +5,29 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.open9527.code.common.activity.CommonScreenActivity;
-import com.open9527.code.common.recycleview.BaseItem;
+import com.open9527.code.common.activity.CommonTitleActivity;
 import com.open9527.code.common.recycleview.BaseItemAdapter;
 import com.open9527.code.common.recycleview.ItemViewHolder;
-import com.open9527.code.image.ImageLoad.ImageLoadConfig;
-import com.open9527.code.image.ImageLoad.ImageLoadManger;
+import com.open9527.code.image.imageload.ImageLoadConfig;
+import com.open9527.code.image.imageload.ImageLoadManger;
+import com.open9527.code.lib.BuildConfig;
 import com.open9527.code.lib.R;
-import com.open9527.code.lib.model.EntryBean;
 import com.open9527.code.lib.model.PhotoBean;
+import com.open9527.code.lib.samples.adapter.cell.PhotoCell;
 import com.open9527.code.lib.utils.CommonUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,15 +36,10 @@ import java.util.List;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class SamplesActivity extends CommonScreenActivity {
+public class SamplesActivity extends CommonTitleActivity {
 
     private SamolesViewModel mViewModel;
     private BaseItemAdapter photoAdapter;
-
-    @Override
-    public boolean isSwipeBack() {
-        return false;
-    }
 
     @Override
     public void initData(@Nullable Bundle bundle) {
@@ -61,13 +55,28 @@ public class SamplesActivity extends CommonScreenActivity {
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
         RecyclerView recyclerView = findViewById(R.id.rv_samples);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS));
+        recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
+
+        BaseItemAdapter mPhotoAdapter = new BaseItemAdapter<PhotoCell>();
+        mPhotoAdapter.setHasStableIds(true);
+
         mViewModel.mPhotoInfoRepository.getData().observe(this, new Observer<List<PhotoBean>>() {
             @Override
             public void onChanged(List<PhotoBean> photoBeans) {
                 LogUtils.i(TAG, GsonUtils.toJson(photoBeans));
-                recyclerView.setAdapter(new PhotoAdapter(photoBeans));
+                List<PhotoCell> photoCells = new ArrayList<>();
+                for (int i = 0; i < photoBeans.size(); i++) {
+                    final PhotoBean bean = photoBeans.get(i);
+//                    if (i % 2 == 0) {
+//                        photoCells.add(new PhotoCell(R.layout.item_desc, bean.getDesc()));
+//                    } else {
+                    photoCells.add(new PhotoCell(R.layout.item_photo, bean));
+//                    }
+                }
+                mPhotoAdapter.setItems(photoCells);
+//                mPhotoAdapter.setItems(descCells);
+                recyclerView.setAdapter(mPhotoAdapter);
+//                recyclerView.setAdapter(new PhotoAdapter(photoBeans));
             }
         });
     }
@@ -82,16 +91,9 @@ public class SamplesActivity extends CommonScreenActivity {
 
     }
 
-    private class PhotoCell extends BaseItem<PhotoCell> {
-
-        public PhotoCell() {
-            super(R.layout.item_photo);
-        }
-
-        @Override
-        public void bind(@NonNull ItemViewHolder holder, int position) {
-
-        }
+    @Override
+    public CharSequence bindTitle() {
+        return "SamplesActivity";
     }
 
     private class PhotoAdapter extends RecyclerView.Adapter<ItemViewHolder> {

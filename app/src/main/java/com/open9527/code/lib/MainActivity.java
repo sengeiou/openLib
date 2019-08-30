@@ -11,31 +11,31 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.billy.android.swipe.SmartSwipeRefresh;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.AdaptScreenUtils;
 import com.blankj.utilcode.util.ColorUtils;
-import com.blankj.utilcode.util.GsonUtils;
-import com.blankj.utilcode.util.ResourceUtils;
-import com.blankj.utilcode.util.ScreenUtils;
-import com.google.gson.reflect.TypeToken;
+import com.blankj.utilcode.util.ImageUtils;
+import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.ThreadUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.open9527.code.common.activity.CommonScreenActivity;
 import com.open9527.code.common.recycleview.DividerItemDecoration;
 import com.open9527.code.common.recycleview.ItemViewHolder;
-import com.open9527.code.image.ImageLoad.ImageLoadConfig;
-import com.open9527.code.image.ImageLoad.ImageLoadManger;
-import com.open9527.code.image.ImageLoad.ImageLoadProcessInterface;
+import com.open9527.code.image.imageload.ImageLoadConfig;
+import com.open9527.code.image.imageload.ImageLoadManger;
 import com.open9527.code.lib.model.EntryBean;
-import com.open9527.code.lib.samples.SamolesViewModel;
 import com.open9527.code.lib.samples.SamplesActivity;
+import com.open9527.code.lib.samples.module.im.room.user.UserBean;
+import com.open9527.code.lib.samples.module.im.room.user.UserBeanDao;
+import com.open9527.code.lib.samples.module.im.room.user.UserBeanDatabase;
 import com.open9527.code.lib.utils.CommonUtils;
+import com.open9527.code.network.status.NetStatus;
 
 import java.util.List;
-
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 /**
  * Created by     : open9527
@@ -51,6 +51,7 @@ public class MainActivity extends CommonScreenActivity {
     public void initData(@Nullable Bundle bundle) {
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mViewModel.getEntryInfo();
+        mViewModel.getUserList();
     }
 
     @Override
@@ -63,30 +64,69 @@ public class MainActivity extends CommonScreenActivity {
 
         RecyclerView recyclerView = findViewById(R.id.rv_main);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//        recyclerView.setLayoutManager(new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false));
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.BOTH_SET,
                 2, ColorUtils.getColor(R.color.color_eee), AdaptScreenUtils.pt2Px(30), AdaptScreenUtils.pt2Px(30)));
+
+        mViewModel.mEntryInfoRepository.getStatus().observe(this, new Observer<NetStatus>() {
+            @Override
+            public void onChanged(NetStatus netStatus) {
+                LogUtils.i(TAG, netStatus.getMessage());
+            }
+        });
         mViewModel.mEntryInfoRepository.getData().observe(this, new Observer<List<EntryBean>>() {
             @Override
             public void onChanged(List<EntryBean> entryBeans) {
                 recyclerView.setAdapter(new MainAdapter(entryBeans));
             }
         });
+
+        mViewModel.mUserListRepository.getData().observe(this, new Observer<List<UserBean>>() {
+            @Override
+            public void onChanged(List<UserBean> userBeanList) {
+                UserBeanDao userBeanDao = UserBeanDatabase.getDatabse().userBeanDao();
+                ThreadUtils.executeByIo(new ThreadUtils.SimpleTask<List<Long>>() {
+                    @Nullable
+                    @Override
+                    public List<Long> doInBackground() throws Throwable {
+                        return userBeanDao.insertAll(userBeanList);
+                    }
+
+                    @Override
+                    public void onSuccess(@Nullable List<Long> result) {
+                        LogUtils.i(TAG, result);
+                    }
+                });
+            }
+        });
+
+        SmartSwipeRefresh.SmartSwipeRefreshDataLoader loader = new SmartSwipeRefresh.SmartSwipeRefreshDataLoader() {
+            @Override
+            public void onRefresh(final SmartSwipeRefresh swipeRefresh) {
+                mViewModel.getEntryInfo();
+                swipeRefresh.finished(true);
+            }
+
+            @Override
+            public void onLoadMore(final SmartSwipeRefresh swipeRefresh) {
+                //加载下一页数据
+                mViewModel.getEntryInfo();
+                swipeRefresh.finished(true);
+            }
+        };
+        SmartSwipeRefresh.translateMode(mContentView, false)
+                .setDataLoader(loader);
     }
 
     @Override
     public void doBusiness() {
+//        Bitmap bitmap = ImageUtils.getBitmap(R.drawable.cat);
+//        LogUtils.i(TAG,"bitmap-->"+bitmap.toString());
 
     }
 
     @Override
     public void onDebouncingClick(@NonNull View view) {
 
-    }
-
-    @Override
-    public boolean isSwipeBack() {
-        return false;
     }
 
     private class MainAdapter extends RecyclerView.Adapter<ItemViewHolder> {
@@ -125,7 +165,11 @@ public class MainActivity extends CommonScreenActivity {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    ActivityUtils.startActivity(SamplesActivity.class);
+                    if (position == 0) {
+                        ActivityUtils.startActivity(SamplesActivity.class);
+                    } else {
+                        ToastUtils.showShort(bean.getDesc());
+                    }
                 }
             });
         }

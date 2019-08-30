@@ -20,8 +20,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:label="samples"
-            android:name=".samples.SamplesActivity" />
+            android:name=".samples.SamplesActivity"
+            android:label="samples" />
+        <activity
+            android:name=".samples.androidtojs.AndroidToJsActivity"
+            android:label="android js 互相调用" />
+        <activity android:name=".samples.module.im.ChatActivity" />
+        <activity android:name=".samples.module.im.ChatListActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

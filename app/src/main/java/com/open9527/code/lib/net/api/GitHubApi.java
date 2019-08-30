@@ -3,12 +3,17 @@ package com.open9527.code.lib.net.api;
 import com.open9527.code.lib.model.EntryBean;
 import com.open9527.code.lib.model.PhotoBean;
 import com.open9527.code.lib.net.response.GitHubResponse;
+import com.open9527.code.lib.samples.module.im.room.user.UserBean;
 import com.open9527.code.network.response.BaseResponse;
 
 import java.util.List;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;
+import retrofit2.http.HEAD;
+import retrofit2.http.Header;
+import retrofit2.http.HeaderMap;
+import retrofit2.http.Url;
 
 /**
  * Created by     : open9527
@@ -33,4 +38,15 @@ public interface GitHubApi {
      */
     @GET("json/photo.json")
     Single<GitHubResponse<List<PhotoBean>>> getPhoto();
+
+
+    /**
+     * 获取user
+     *
+     * @param url
+     * @param header
+     * @return
+     */
+    @GET()
+    Single<GitHubResponse<List<UserBean>>> getUsers(@Url String url, @Header("HC-ACCESS-TOKEN") String header);
 }

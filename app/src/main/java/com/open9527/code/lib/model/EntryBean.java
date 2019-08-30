@@ -12,6 +12,7 @@ public class EntryBean {
     private String desc;
     private String avatars;
 
+
     public String getIcon() {
         return icon;
     }
@@ -43,4 +44,5 @@ public class EntryBean {
     public void setAvatars(String avatars) {
         this.avatars = avatars;
     }
+
 }

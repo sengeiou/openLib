@@ -1,11 +1,15 @@
 package com.open9527.code.lib.utils;
 
+import android.content.Context;
+import android.widget.ImageView;
+
 import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.ResourceUtils;
 import com.google.gson.reflect.TypeToken;
-import com.open9527.code.lib.model.EntryBean;
+import com.open9527.code.image.imageload.ImageLoadConfig;
+import com.open9527.code.image.imageload.ImageLoadManger;
+import com.open9527.code.lib.R;
 
-import java.util.List;
 
 /**
  * Created by     : open9527
@@ -38,4 +42,16 @@ public class CommonUtils {
 //        }.getType());
         return null;
     }
+
+    /**
+     * 图片加载
+     *
+     * @param context
+     * @param imageView
+     * @param url
+     */
+    public static void imageLoad(Context context, ImageView imageView, String url) {
+        ImageLoadManger.display(context, imageView, CommonUtils.getUrl(url), new ImageLoadConfig(R.mipmap.ic_launcher, R.mipmap.ic_launcher_round));
+    }
+
 }

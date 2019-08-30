@@ -10,6 +10,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField('String', 'HOST_USER', privacy_url)
+        buildConfigField('String', 'TOKEN', privacy_token)
     }
     buildTypes {
         release {
@@ -29,4 +31,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':common')
+    //js bridge
+    implementation 'com.github.lzyzsd:jsbridge:1.0.4'
+    //room
+    annotationProcessor 'androidx.room:room-compiler:2.1.0'
+    implementation 'androidx.room:room-runtime:2.1.0'
 }

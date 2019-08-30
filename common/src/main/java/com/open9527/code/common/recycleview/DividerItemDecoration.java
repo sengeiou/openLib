@@ -24,7 +24,7 @@ public class DividerItemDecoration extends RecyclerView.ItemDecoration {
     //取名mDivider似乎更恰当
     private Drawable mDrawable;
     //分割线高度，默认为1px
-    private int mDividerHeight = 2;
+    private int mDividerHeight = 1;
     //列表的方向
     private int mOrientation;
     //系统自带的参数

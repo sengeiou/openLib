@@ -8,8 +8,10 @@ import com.open9527.code.lib.net.client.GitHubApiClient;
 import com.open9527.code.lib.net.response.GitHubResponse;
 import com.open9527.code.lib.net.response.GitHubSingleDataLoadRepository;
 import com.open9527.code.lib.net.response.GitHubSingleDataLoader;
+import com.open9527.code.lib.samples.module.im.room.user.UserBean;
 import com.open9527.code.network.repository.DataLoadRepository;
 
+import java.sql.BatchUpdateException;
 import java.util.List;
 
 import io.reactivex.Single;
@@ -21,14 +23,25 @@ import io.reactivex.Single;
  * DESC :描述文件.
  */
 public class MainViewModel extends ViewModel {
-    public DataLoadRepository<List<EntryBean>> mEntryInfoRepository = new GitHubSingleDataLoadRepository<>(new GitHubSingleDataLoader<List<EntryBean>>() {
+
+
+    DataLoadRepository<List<EntryBean>> mEntryInfoRepository = new GitHubSingleDataLoadRepository<>(new GitHubSingleDataLoader<List<EntryBean>>() {
         @Override
         public Single<GitHubResponse<List<EntryBean>>> getLoader() {
+
             return GitHubApiClient.getApiService(GitHubApi.class).getEntry();
         }
     });
-    public void getEntryInfo() {
+
+    void getEntryInfo() {
         mEntryInfoRepository.loadData(true);
+    }
+
+
+    DataLoadRepository<List<UserBean>> mUserListRepository = new GitHubSingleDataLoadRepository<>(() -> GitHubApiClient.getApiService(GitHubApi.class).getUsers(BuildConfig.HOST_USER, BuildConfig.TOKEN));
+
+    void getUserList() {
+        mUserListRepository.loadData(true);
     }
 
 }
