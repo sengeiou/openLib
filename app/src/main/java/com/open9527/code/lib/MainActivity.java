@@ -28,6 +28,7 @@ import com.open9527.code.common.recycleview.ItemViewHolder;
 import com.open9527.code.image.imageload.ImageLoadConfig;
 import com.open9527.code.image.imageload.ImageLoadManger;
 import com.open9527.code.lib.model.EntryBean;
+import com.open9527.code.lib.samples.ExpandTextViewActivity;
 import com.open9527.code.lib.samples.SamplesActivity;
 import com.open9527.code.lib.samples.module.im.room.user.UserBean;
 import com.open9527.code.lib.samples.module.im.room.user.UserBeanDao;
@@ -51,7 +52,7 @@ public class MainActivity extends CommonScreenActivity {
     public void initData(@Nullable Bundle bundle) {
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mViewModel.getEntryInfo();
-        mViewModel.getUserList();
+//        mViewModel.getUserList();
     }
 
     @Override
@@ -167,6 +168,8 @@ public class MainActivity extends CommonScreenActivity {
                 public void onClick(View view) {
                     if (position == 0) {
                         ActivityUtils.startActivity(SamplesActivity.class);
+                    } else if (position == 1) {
+                        ActivityUtils.startActivity(ExpandTextViewActivity.class);
                     } else {
                         ToastUtils.showShort(bean.getDesc());
                     }

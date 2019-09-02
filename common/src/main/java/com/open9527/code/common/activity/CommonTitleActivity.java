@@ -63,13 +63,13 @@ public abstract class CommonTitleActivity extends CommonScreenActivity {
         LayoutInflater.from(this).inflate(layoutId, mContentView);
         //title text
         setTitleBar();
-        //bar color
-//        BarUtils.isStatusBarLightMode(this);
-//        BarUtils.setStatusBarColor(this, Color.WHITE);
-//                .setBackgroundResource(R.drawable.common_bar_bg);
+        //TODO(需要自己配置app主题) bar color
+        mToolbar.setBackgroundResource(R.drawable.common_bar_bg);
+        BarUtils.setStatusBarLightMode(this, true);
+        BarUtils.setStatusBarColor(this, Color.WHITE)
+                .setBackgroundResource(R.drawable.common_bar_bg);
+        BarUtils.addMarginTopEqualStatusBarHeight(mAppBarLayout);
 
-//        BarUtils.setNavBarColor(this, getResources().getColor(R.color.color_333));
-//        BarUtils.addMarginTopEqualStatusBarHeight(mAppBarLayout);
     }
 
     private void setTitleBar() {
