@@ -18,7 +18,6 @@ import com.billy.android.swipe.SmartSwipeRefresh;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.AdaptScreenUtils;
 import com.blankj.utilcode.util.ColorUtils;
-import com.blankj.utilcode.util.ImageUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ThreadUtils;
 import com.blankj.utilcode.util.ToastUtils;
@@ -29,10 +28,13 @@ import com.open9527.code.image.imageload.ImageLoadConfig;
 import com.open9527.code.image.imageload.ImageLoadManger;
 import com.open9527.code.lib.model.EntryBean;
 import com.open9527.code.lib.samples.ExpandTextViewActivity;
+import com.open9527.code.lib.samples.shareelement.NinePicActivity;
+import com.open9527.code.lib.samples.shareelement.PreviewActivity;
 import com.open9527.code.lib.samples.SamplesActivity;
 import com.open9527.code.lib.samples.module.im.room.user.UserBean;
 import com.open9527.code.lib.samples.module.im.room.user.UserBeanDao;
 import com.open9527.code.lib.samples.module.im.room.user.UserBeanDatabase;
+import com.open9527.code.lib.samples.shareelement.ShareElementActivity;
 import com.open9527.code.lib.utils.CommonUtils;
 import com.open9527.code.network.status.NetStatus;
 
@@ -116,6 +118,8 @@ public class MainActivity extends CommonScreenActivity {
         };
         SmartSwipeRefresh.translateMode(mContentView, false)
                 .setDataLoader(loader);
+
+        ActivityUtils.startActivity(NinePicActivity.class);
     }
 
     @Override
@@ -170,6 +174,12 @@ public class MainActivity extends CommonScreenActivity {
                         ActivityUtils.startActivity(SamplesActivity.class);
                     } else if (position == 1) {
                         ActivityUtils.startActivity(ExpandTextViewActivity.class);
+                    } else if (position == 2) {
+                        ActivityUtils.startActivity(NinePicActivity.class);
+                    } else if (position == 3) {
+                        ActivityUtils.startActivity(PreviewActivity.class);
+                    } else if (position == 4) {
+                        ActivityUtils.startActivity(ShareElementActivity.class);
                     } else {
                         ToastUtils.showShort(bean.getDesc());
                     }

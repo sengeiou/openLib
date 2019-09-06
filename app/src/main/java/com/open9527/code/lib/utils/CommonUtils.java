@@ -54,4 +54,8 @@ public class CommonUtils {
         ImageLoadManger.display(context, imageView, CommonUtils.getUrl(url), new ImageLoadConfig(R.mipmap.ic_launcher, R.mipmap.ic_launcher_round));
     }
 
+    public static void imageLoad(Context context, ImageView imageView, String url,ImageView.ScaleType type) {
+        ImageLoadManger.display(context, imageView, CommonUtils.getUrl(url), new ImageLoadConfig(R.mipmap.ic_launcher, R.mipmap.ic_launcher_round,type));
+    }
+
 }

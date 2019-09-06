@@ -30,6 +30,9 @@
         <activity
             android:name=".samples.ExpandTextViewActivity"
             android:label="ExpandTextView" />
+        <activity android:name=".samples.shareelement.PreviewActivity" />
+        <activity android:name=".samples.shareelement.NinePicActivity" />
+        <activity android:name=".samples.shareelement.ShareElementActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

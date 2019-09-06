@@ -4,6 +4,7 @@ import android.util.SparseArray;
 import android.view.View;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -29,6 +30,9 @@ public class ItemViewHolder extends RecyclerView.ViewHolder {
         }
         return (T) view;
     }
+
+
+
 
     public void setOnClickListener(@IdRes final int viewId, View.OnClickListener listener) {
         findViewById(viewId).setOnClickListener(listener);

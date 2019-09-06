@@ -16,7 +16,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.blankj.utilcode.util.BarUtils;
-import com.blankj.utilcode.util.ColorUtils;
 import com.google.android.material.appbar.AppBarLayout;
 import com.open9527.code.common.R;
 

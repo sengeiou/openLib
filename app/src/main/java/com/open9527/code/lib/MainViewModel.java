@@ -11,7 +11,6 @@ import com.open9527.code.lib.net.response.GitHubSingleDataLoader;
 import com.open9527.code.lib.samples.module.im.room.user.UserBean;
 import com.open9527.code.network.repository.DataLoadRepository;
 
-import java.sql.BatchUpdateException;
 import java.util.List;
 
 import io.reactivex.Single;

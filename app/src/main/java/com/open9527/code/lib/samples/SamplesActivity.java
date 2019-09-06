@@ -13,8 +13,10 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import com.blankj.utilcode.util.EncryptUtils;
 import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.SPUtils;
 import com.open9527.code.common.activity.CommonScreenActivity;
 import com.open9527.code.common.activity.CommonTitleActivity;
 import com.open9527.code.common.recycleview.BaseItemAdapter;

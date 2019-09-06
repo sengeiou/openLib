@@ -57,6 +57,12 @@ public class ImageLoadConfig {
         this(defaultRes, failRes, 0, RoundedCornersTransformation.CornerType.ALL);
     }
 
+    public ImageLoadConfig(int defaultRes, int failRes, ImageView.ScaleType scaleType) {
+        this.defaultRes = defaultRes;
+        this.failRes = failRes;
+        this.scaleType = scaleType;
+    }
+
     public ImageLoadConfig(int defaultRes) {
         this(defaultRes, -1);
     }
