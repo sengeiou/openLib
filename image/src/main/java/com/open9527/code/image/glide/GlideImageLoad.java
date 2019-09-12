@@ -6,15 +6,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.MultiTransformation;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
@@ -25,6 +22,7 @@ import com.open9527.code.image.GlideApp;
 import com.open9527.code.image.imageload.ImageLoadConfig;
 import com.open9527.code.image.imageload.ImageLoadInterface;
 import com.open9527.code.image.imageload.ImageLoadProcessInterface;
+import com.open9527.code.image.utils.CommonImageUtils;
 
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
@@ -40,7 +38,7 @@ public class GlideImageLoad implements ImageLoadInterface {
     private static final String TAG = "GlideImageLoad";
 
     /**
-     * glide加载图片
+     * glide加载 url图片
      *
      * @param mContext
      * @param imageView
@@ -51,11 +49,11 @@ public class GlideImageLoad implements ImageLoadInterface {
     @SuppressLint("CheckResult")
     public void display(Context mContext, final ImageView imageView, final String url, final ImageLoadConfig config, final ImageLoadProcessInterface imageLoadProcessInterface) {
         if (mContext == null) {
-            Log.i(TAG, " mContext is null");
+            CommonImageUtils.showLogInfo(TAG, " mContext is null");
             return;
         }
         if (imageView == null) {
-            Log.i(TAG, " imageView is null");
+            CommonImageUtils.showLogInfo(TAG, " imageView is null");
             return;
         }
         Context context = imageView.getContext();
@@ -66,7 +64,7 @@ public class GlideImageLoad implements ImageLoadInterface {
         }
         try {
             if ((config == null || config.defaultRes <= 0) && TextUtils.isEmpty(url)) {
-                Log.i(TAG, " url is null and config is null");
+                CommonImageUtils.showLogInfo(TAG, " url is null and config is null");
                 return;
             }
             RequestOptions requestOptions = new RequestOptions();
@@ -78,16 +76,10 @@ public class GlideImageLoad implements ImageLoadInterface {
                     requestOptions.error(config.failRes);
                 }
                 if (config.scaleType != null) {
-                    switch (config.scaleType) {
-                        case CENTER_CROP:
-                            requestOptions.centerCrop();
-                            break;
-                        case FIT_CENTER:
-                            requestOptions.fitCenter();
-                            break;
-                        default:
-                            requestOptions.fitCenter();
-                            break;
+                    if (ImageView.ScaleType.CENTER_CROP == config.scaleType) {
+                        requestOptions.centerCrop();
+                    } else {
+                        requestOptions.fitCenter();
                     }
                 } else {
                     requestOptions.fitCenter();
@@ -95,6 +87,13 @@ public class GlideImageLoad implements ImageLoadInterface {
                 if (config.radius > 0) {
                     requestOptions.apply(bitmapTransform(new MultiTransformation<>(new CenterCrop(), new RoundedCornersTransformation(config.radius, 0, config.cornerType))));
                 }
+                //配置缓存模式
+                requestOptions.diskCacheStrategy(config.diskCacheStrategy);
+                //是否跳过缓存
+                requestOptions.skipMemoryCache(config.skipMemoryCache);
+                //仅从缓存加载图片
+                requestOptions.onlyRetrieveFromCache(config.onlyRetrieveFromCache);
+
             }
             ImageViewTarget simpleTarget = new BitmapImageViewTarget(imageView) {
                 @Override
@@ -118,7 +117,7 @@ public class GlideImageLoad implements ImageLoadInterface {
                 @Override
                 public void onLoadFailed(@Nullable Drawable errorDrawable) {
                     super.onLoadFailed(errorDrawable);
-                    Log.i(TAG, " onLoadFailed");
+                    CommonImageUtils.showLogInfo(TAG, " onLoadFailed");
                     if (imageLoadProcessInterface != null) {
                         imageLoadProcessInterface.onLoadFailed();
                     }
@@ -145,16 +144,137 @@ public class GlideImageLoad implements ImageLoadInterface {
             loadByUrl(context, url, simpleTarget, requestOptions);
         } catch (Exception e) {
             e.printStackTrace();
-            Log.i(TAG, "Exception-->" + e.getMessage());
+            CommonImageUtils.showLogInfo(TAG, "Exception-->" + e.getMessage());
         }
 
     }
 
-    public void loadByUrl(Context context, String url, ImageViewTarget simpleTarget, RequestOptions requestOptions) {
+    private void loadByUrl(Context context, String url, ImageViewTarget simpleTarget, RequestOptions requestOptions) {
         GlideApp.with(context)
                 .asBitmap()
                 .load(url)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .apply(requestOptions)
+                .into(simpleTarget);
+    }
+
+
+    /**
+     * glide加载 bitmap图片
+     *
+     * @param mContext
+     * @param imageView
+     * @param bitmap
+     * @param config
+     * @param imageLoadProcessInterface
+     */
+    @SuppressLint("CheckResult")
+    @Override
+    public void display(Context mContext, ImageView imageView, Bitmap bitmap, ImageLoadConfig config, ImageLoadProcessInterface imageLoadProcessInterface) {
+        if (mContext == null) {
+            CommonImageUtils.showLogInfo(TAG, " mContext is null");
+            return;
+        }
+        if (imageView == null) {
+            CommonImageUtils.showLogInfo(TAG, " imageView is null");
+            return;
+        }
+        Context context = imageView.getContext();
+        if (context instanceof Activity) {
+            if (((Activity) context).isFinishing()) {//activity是否结束
+                return;
+            }
+        }
+        try {
+            if ((config == null || config.defaultRes <= 0) && bitmap == null) {
+                CommonImageUtils.showLogInfo(TAG, " url is null and config is null");
+                return;
+            }
+            RequestOptions requestOptions = new RequestOptions();
+            if (config != null) {
+                if (config.defaultRes > 0) {
+                    //new BitmapDrawable(imageView.getResources(), bitmap)
+                    requestOptions.placeholder(config.defaultRes);
+                }
+                if (config.failRes > 0) {
+                    requestOptions.error(config.failRes);
+                }
+                if (config.scaleType != null) {
+                    if (ImageView.ScaleType.CENTER_CROP == config.scaleType) {
+                        requestOptions.centerCrop();
+                    } else {
+                        requestOptions.fitCenter();
+                    }
+                } else {
+                    requestOptions.fitCenter();
+                }
+                if (config.radius > 0) {
+                    requestOptions.apply(bitmapTransform(new MultiTransformation<>(new CenterCrop(), new RoundedCornersTransformation(config.radius, 0, config.cornerType))));
+                }
+                //配置缓存模式
+                requestOptions.diskCacheStrategy(config.diskCacheStrategy);
+                //是否跳过缓存
+                requestOptions.skipMemoryCache(config.skipMemoryCache);
+                //仅从缓存加载图片
+                requestOptions.onlyRetrieveFromCache(config.onlyRetrieveFromCache);
+
+            }
+            ImageViewTarget simpleTarget = new BitmapImageViewTarget(imageView) {
+                @Override
+                public void onLoadStarted(Drawable placeholder) {
+                    super.onLoadStarted(placeholder);
+//                    Log.i(TAG, " onLoadStarted");
+                    if (imageLoadProcessInterface != null) {
+                        imageLoadProcessInterface.onLoadStarted();
+                    }
+                }
+
+                @Override
+                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+                    super.onResourceReady(resource, transition);
+//                    Log.i(TAG, " onResourceReady");
+                    if (imageLoadProcessInterface != null) {
+                        imageLoadProcessInterface.onResourceReady();
+                    }
+                }
+
+                @Override
+                public void onLoadFailed(@Nullable Drawable errorDrawable) {
+                    super.onLoadFailed(errorDrawable);
+                    CommonImageUtils.showLogInfo(TAG, " onLoadFailed");
+                    if (imageLoadProcessInterface != null) {
+                        imageLoadProcessInterface.onLoadFailed();
+                    }
+                }
+
+                @Override
+                public void onLoadCleared(Drawable placeholder) {
+                    super.onLoadCleared(placeholder);
+//                    Log.i(TAG, " onLoadCleared");
+                    if (imageLoadProcessInterface != null) {
+                        imageLoadProcessInterface.onLoadCleared();
+                    }
+                }
+
+                @Override
+                public void getSize(@NonNull SizeReadyCallback sizeReadyCallback) {
+                    if (config != null && config.width >= 0 && config.height >= 0)
+                        sizeReadyCallback.onSizeReady(config.width, config.height);
+                    else {
+                        super.getSize(sizeReadyCallback);
+                    }
+                }
+            };
+            loadByBitmap(context, bitmap, simpleTarget, requestOptions);
+        } catch (Exception e) {
+            e.printStackTrace();
+            CommonImageUtils.showLogInfo(TAG, "Exception-->" + e.getMessage());
+        }
+    }
+
+    private void loadByBitmap(Context context, Bitmap bitmap, ImageViewTarget simpleTarget, RequestOptions requestOptions) {
+        GlideApp.with(context)
+                .asBitmap()
+                .load(bitmap)
                 .apply(requestOptions)
                 .into(simpleTarget);
     }
@@ -169,7 +289,7 @@ public class GlideImageLoad implements ImageLoadInterface {
 
     public void resumeLoad(Context context, String url) {
         if (context != null)
-            Glide.with(context).resumeRequests();
+            GlideApp.with(context).resumeRequests();
     }
 
     /**
@@ -182,7 +302,7 @@ public class GlideImageLoad implements ImageLoadInterface {
 
     public void clearImageView(Context context, ImageView imageView, String url) {
         if (context != null && imageView != null)
-            Glide.with(context).clear(imageView);
+            GlideApp.with(context).clear(imageView);
     }
 
     /**
@@ -194,6 +314,6 @@ public class GlideImageLoad implements ImageLoadInterface {
 
     public void pauseLoad(Context context, String url) {
         if (context != null)
-            Glide.with(context).pauseRequests();
+            GlideApp.with(context).pauseRequests();
     }
 }

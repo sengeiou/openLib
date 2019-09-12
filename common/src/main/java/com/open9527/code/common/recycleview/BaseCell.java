@@ -10,16 +10,18 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.open9527.code.common.recycleview.holder.ItemViewHolder;
+
 /**
  * Created by     : open9527
  * Created times  : on 2019/8/22 17:55.
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public abstract class BaseItem<T extends BaseItem> {
-
+public abstract class BaseCell<T extends BaseCell> {
+    protected final String TAG = getClass().getSimpleName();
     private static final SparseIntArray LAYOUT_SPARSE_ARRAY = new SparseIntArray();
-    private static final SparseArray<View> VIEW_SPARSE_ARRAY   = new SparseArray<>();
+    private static final SparseArray<View> VIEW_SPARSE_ARRAY = new SparseArray<>();
 
     static ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         int layoutByType = LAYOUT_SPARSE_ARRAY.get(viewType, -1);
@@ -42,14 +44,14 @@ public abstract class BaseItem<T extends BaseItem> {
     }
 
     private int viewType;
-    BaseItemAdapter<T> mAdapter;
+    BaseCellAdapter<T> mAdapter;
 
-    public BaseItem(@LayoutRes int layoutId) {
+    public BaseCell(@LayoutRes int layoutId) {
         viewType = getViewTypeByLayoutId(layoutId);
         LAYOUT_SPARSE_ARRAY.put(viewType, layoutId);
     }
 
-    public BaseItem(@NonNull View view) {
+    public BaseCell(@NonNull View view) {
         viewType = getViewTypeByView(view);
         VIEW_SPARSE_ARRAY.put(viewType, view);
     }
@@ -58,7 +60,7 @@ public abstract class BaseItem<T extends BaseItem> {
         return viewType;
     }
 
-    public BaseItemAdapter<T> getAdapter() {
+    public BaseCellAdapter<T> getAdapter() {
         return mAdapter;
     }
 

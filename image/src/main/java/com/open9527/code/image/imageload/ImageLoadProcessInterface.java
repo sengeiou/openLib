@@ -13,7 +13,6 @@ public interface ImageLoadProcessInterface {
     default void onLoadStarted() {
     }
 
-
     /**
      * 资源准备妥当
      */

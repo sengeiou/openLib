@@ -4,7 +4,7 @@ import android.content.res.Resources;
 
 import com.blankj.utilcode.util.AdaptScreenUtils;
 import com.open9527.code.base.BaseActivity;
-import com.open9527.code.common.config.Config;
+import com.open9527.code.common.config.CommonConfig;
 
 /**
  * Created by     : open9527
@@ -16,6 +16,6 @@ public abstract class CommonScreenActivity extends BaseActivity {
 
     @Override
     public Resources getResources() {
-        return AdaptScreenUtils.adaptWidth(super.getResources(), Config.ADAPT_SCREEN_WIDTH);
+        return AdaptScreenUtils.adaptWidth(super.getResources(), CommonConfig.ADAPT_SCREEN_WIDTH);
     }
 }

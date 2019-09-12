@@ -1,10 +1,12 @@
 package com.open9527.code.lib.utils;
 
 import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
 import android.widget.ImageView;
 
 import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.ResourceUtils;
+import com.blankj.utilcode.util.StringUtils;
 import com.google.gson.reflect.TypeToken;
 import com.open9527.code.image.imageload.ImageLoadConfig;
 import com.open9527.code.image.imageload.ImageLoadManger;
@@ -26,6 +28,7 @@ public class CommonUtils {
      * @return
      */
     public static String getUrl(String url) {
+        if (StringUtils.isEmpty(url)) return "";
         if (url.contains("blob")) {
             return url.replace("blob", "raw");
         }
@@ -54,8 +57,8 @@ public class CommonUtils {
         ImageLoadManger.display(context, imageView, CommonUtils.getUrl(url), new ImageLoadConfig(R.mipmap.ic_launcher, R.mipmap.ic_launcher_round));
     }
 
-    public static void imageLoad(Context context, ImageView imageView, String url,ImageView.ScaleType type) {
-        ImageLoadManger.display(context, imageView, CommonUtils.getUrl(url), new ImageLoadConfig(R.mipmap.ic_launcher, R.mipmap.ic_launcher_round,type));
+    public static void imageLoad(Context context, ImageView imageView, String url, ImageView.ScaleType type) {
+        ImageLoadManger.display(context, imageView, CommonUtils.getUrl(url), new ImageLoadConfig(R.mipmap.ic_launcher, R.mipmap.ic_launcher_round, type));
     }
 
 }

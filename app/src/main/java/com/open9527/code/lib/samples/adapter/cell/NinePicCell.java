@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
 import com.blankj.utilcode.util.ActivityUtils;
-import com.open9527.code.common.recycleview.BaseItem;
-import com.open9527.code.common.recycleview.ItemViewHolder;
+import com.open9527.code.common.recycleview.BaseCell;
+import com.open9527.code.common.recycleview.holder.ItemViewHolder;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.samples.shareelement.PreviewActivity;
 import com.open9527.code.lib.utils.CommonUtils;
@@ -27,7 +27,7 @@ import static com.blankj.utilcode.util.ActivityUtils.startActivity;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class NinePicCell extends BaseItem<NinePicCell> {
+public class NinePicCell extends BaseCell<NinePicCell> {
 
     public String url;
 

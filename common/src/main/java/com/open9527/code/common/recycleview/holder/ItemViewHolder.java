@@ -1,11 +1,12 @@
-package com.open9527.code.common.recycleview;
+package com.open9527.code.common.recycleview.holder;
 
 import android.util.SparseArray;
 import android.view.View;
 
 import androidx.annotation.IdRes;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.open9527.code.common.R;
 
 /**
  * Created by     : open9527
@@ -19,6 +20,8 @@ public class ItemViewHolder extends RecyclerView.ViewHolder {
 
     public ItemViewHolder(View itemView) {
         super(itemView);
+        // fix databinding tag问题
+        itemView.setTag(R.id.rv_holder_item_id, this);
     }
 
     @SuppressWarnings("unchecked")

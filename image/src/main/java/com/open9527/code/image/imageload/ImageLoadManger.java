@@ -1,13 +1,10 @@
 package com.open9527.code.image.imageload;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.widget.ImageView;
 
-import androidx.annotation.DrawableRes;
-
 import com.open9527.code.image.glide.GlideImageLoad;
-
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
 
 
 /**
@@ -17,76 +14,32 @@ import jp.wasabeef.glide.transformations.RoundedCornersTransformation;
  * DESC :图片加载管理.
  */
 public class ImageLoadManger {
-
     private static final String TAG = "ImageLoadManger";
     private static ImageLoadInterface imageLoad = null;
 
     static {
-        //TODO:调用图片加载,glide,picasso
+        //TODO:调用图片加载, glide / picasso
         imageLoad = new GlideImageLoad();
     }
 
-    /**
-     * imageView中加载项目内资源
-     *
-     * @param mContext
-     * @param view
-     * @param resId
-     */
-    public static void display(Context mContext, final ImageView view, @DrawableRes int resId) {
-        display(mContext, view, null, resId);
-    }
+    //load SD卡资源：load("file://"+ Environment.getExternalStorageDirectory().getPath()+"/test.jpg")
+    //load assets资源：load("file:///android_asset/f003.gif")
+    //load raw资源：load("android.resource://com.frank.glide/raw/raw_1")或load("android.resource://com.frank.glide/raw/"+R.raw.raw_1)
+    //load drawable资源：load("android.resource://com.frank.glide/drawable/news")或load("android.resource://com.frank.glide/drawable/"+R.drawable.news)
+    //load ContentProvider资源：load("content://media/external/images/media/139469")
+    //load http资源：load("https://img-my.csdn.net/uploads/201508/05/1438760757_3588.jpg")
+    //load https资源：load("https://img.alicdn.com/tps/TB1uyhoMpXXXXcLXVXXXXXXXXXX-476-538.jpg_240x5000q50.jpg_.webp")
+    //load(Uri uri)，load(File file)，load(Integer resourceId)，load(URL url)，load(byte[] model)，load(T model)，loadFromMediaStore(Uri uri)。
 
     /**
-     * 加载网络图片/本地图片
-     *
-     * @param mContext
-     * @param view
-     * @param url
-     */
-    public static void display(Context mContext, ImageView view, String url) {
-        display(mContext, view, url, -1);
-    }
-
-    /**
-     * 加载图片
-     *
-     * @param mContext     上下文
-     * @param view         imageview
-     * @param url          图片地址
-     * @param defaultImage 默认显示内容
-     */
-    public static void display(Context mContext, ImageView view, String url, int defaultImage) {
-        display(mContext, view, url, defaultImage, null);
-    }
-
-    /**
-     * 加载图片
+     * 加载网络/本地/图片
      *
      * @param mContext
      * @param view
      * @param url
+     * @param config
      * @param imageLoadProcessInterface
      */
-    public static void display(Context mContext, ImageView view, String url, ImageLoadProcessInterface imageLoadProcessInterface) {
-        display(mContext, view, url, -1, imageLoadProcessInterface);
-    }
-
-    /**
-     * @param mContext                  上下文
-     * @param view                      imageview
-     * @param url                       地址
-     * @param defaultImage              默认图片
-     * @param imageLoadProcessInterface 监听
-     */
-    public static void display(Context mContext, ImageView view, String url, int defaultImage, ImageLoadProcessInterface imageLoadProcessInterface) {
-        display(mContext, view, url, defaultImage, -1, imageLoadProcessInterface);
-    }
-
-    public static void display(Context mContext, ImageView view, String url, int defaultImage, int failImage, ImageLoadProcessInterface imageLoadProcessInterface) {
-        display(mContext, view, url, new ImageLoadConfig(defaultImage, failImage, 0, RoundedCornersTransformation.CornerType.ALL), imageLoadProcessInterface);
-    }
-
     public static void display(Context mContext, ImageView view, String url, ImageLoadConfig config, ImageLoadProcessInterface imageLoadProcessInterface) {
         displayUrl(mContext, view, url, config, imageLoadProcessInterface);
     }
@@ -95,9 +48,8 @@ public class ImageLoadManger {
         displayUrl(mContext, view, url, config, null);
     }
 
-
     /**
-     * 加载图片
+     * 加载网络/本地/图片
      *
      * @param imageView view
      * @param url       url
@@ -110,10 +62,46 @@ public class ImageLoadManger {
         }
     }
 
+
+    /**
+     * 加载网络bitmap图片
+     *
+     * @param mContext
+     * @param view
+     * @param bitmap
+     * @param config
+     * @param imageLoadProcessInterface
+     */
+    public static void display(Context mContext, ImageView view, Bitmap bitmap, ImageLoadConfig config, ImageLoadProcessInterface imageLoadProcessInterface) {
+        displayBitmap(mContext, view, bitmap, config, imageLoadProcessInterface);
+    }
+
+    public static void display(Context mContext, ImageView view, Bitmap bitmap, ImageLoadConfig config) {
+        displayBitmap(mContext, view, bitmap, config, null);
+    }
+
+    /**
+     * 加载网络bitmap图片
+     *
+     * @param mContext
+     * @param imageView
+     * @param bitmap
+     * @param config
+     * @param imageLoadProcessInterface
+     */
+    private static void displayBitmap(Context mContext, final ImageView imageView, final Bitmap bitmap, final ImageLoadConfig config, final ImageLoadProcessInterface imageLoadProcessInterface) {
+        try {
+            imageLoad.display(mContext, imageView, bitmap, config, imageLoadProcessInterface);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * 恢复加载图片
      *
      * @param context
+     * @param url
      */
     public static void resumeLoad(Context context, String url) {
         if (imageLoad != null) {
@@ -125,6 +113,8 @@ public class ImageLoadManger {
      * 清除一个资源的加载
      *
      * @param context
+     * @param imageView
+     * @param url
      */
     public static void clearImageView(Context context, ImageView imageView, String url) {
         if (imageLoad != null) {
@@ -136,6 +126,7 @@ public class ImageLoadManger {
      * 暂停加载图片
      *
      * @param context
+     * @param url
      */
     public static void pauseLoad(Context context, String url) {
         if (imageLoad != null) {

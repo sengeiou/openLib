@@ -1,13 +1,7 @@
 package com.open9527.code.lib.samples.shareelement;
 
-import android.app.ActivityOptions;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Matrix;
-import android.graphics.RectF;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,25 +10,14 @@ import android.widget.ImageView;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.SharedElementCallback;
-import androidx.core.view.ViewCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.blankj.utilcode.util.ActivityUtils;
 import com.open9527.code.common.activity.CommonTitleActivity;
-import com.open9527.code.common.recycleview.BaseItemAdapter;
-import com.open9527.code.common.recycleview.ItemViewHolder;
+import com.open9527.code.common.recycleview.holder.ItemViewHolder;
 import com.open9527.code.image.imageload.ImageLoadConfig;
 import com.open9527.code.image.imageload.ImageLoadManger;
 import com.open9527.code.lib.R;
-import com.open9527.code.lib.model.PhotoBean;
-import com.open9527.code.lib.samples.adapter.cell.NinePicCell;
-import com.open9527.code.lib.samples.adapter.cell.PreviewCell;
 import com.open9527.code.lib.utils.CommonUtils;
 import com.open9527.code.shareelement.ShareElementHelper;
 import com.open9527.code.shareelement.transition.IShareElementSelector;
@@ -42,8 +25,6 @@ import com.open9527.code.shareelement.transition.ShareElementInfo;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 
 import static com.blankj.utilcode.util.ActivityUtils.startActivity;
 

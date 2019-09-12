@@ -6,6 +6,8 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.open9527.code.common.recycleview.holder.ItemViewHolder;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -16,15 +18,15 @@ import java.util.List;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class BaseItemAdapter<Item extends BaseItem> extends RecyclerView.Adapter<ItemViewHolder> {
+public class BaseCellAdapter<Item extends BaseCell> extends RecyclerView.Adapter<ItemViewHolder> {
 
     public List<Item> mItems;
 
-    public BaseItemAdapter() {
+    public BaseCellAdapter() {
         this(false);
     }
 
-    public BaseItemAdapter(boolean hasStableIds) {
+    public BaseCellAdapter(boolean hasStableIds) {
         setHasStableIds(hasStableIds);
     }
 

@@ -6,8 +6,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.open9527.code.common.recycleview.BaseItem;
-import com.open9527.code.common.recycleview.ItemViewHolder;
+import com.open9527.code.common.recycleview.BaseCell;
+import com.open9527.code.common.recycleview.holder.ItemViewHolder;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.model.PhotoBean;
 import com.open9527.code.lib.utils.CommonUtils;
@@ -18,25 +18,15 @@ import com.open9527.code.lib.utils.CommonUtils;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class PhotoCell extends BaseItem<PhotoCell> {
+public class PhotoCell extends BaseCell<PhotoCell> {
 
     private PhotoBean photoBean;
     private String string;
-
-    public PhotoCell(PhotoBean photoBean) {
-        super(R.layout.item_photo);
-        this.photoBean = photoBean;
-    }
-
     public PhotoCell(int layout, PhotoBean photoBean) {
         super(layout);
         this.photoBean = photoBean;
     }
 
-    public PhotoCell(int layout, String string) {
-        super(layout);
-        this.string = string;
-    }
 
     @Override
     public void bind(@NonNull ItemViewHolder holder, int position) {

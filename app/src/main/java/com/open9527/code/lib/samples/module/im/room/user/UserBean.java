@@ -15,65 +15,17 @@ import com.google.gson.annotations.SerializedName;
 @Entity(tableName = "user_table", indices = {@Index(value = {"uid"}, unique = true)})
 public class UserBean {
     @PrimaryKey(autoGenerate = true)
-    public Long _id;
+    Long _id;
     @SerializedName("uid")
-    public int uid;
+    int uid;
     @SerializedName("full_name")
-    public String name;
+    String name;
     @SerializedName("mobile")
-    public String mobile;
+    String mobile;
     @SerializedName("avatar")
-    public String avatar;
+    String avatar;
     @SerializedName("label_name")
-    public String label;
+    String label;
     @SerializedName("sex")
-    public int sex;
-
-    public int getUid() {
-        return uid;
-    }
-
-    public void setUid(int uid) {
-        this.uid = uid;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
-    public int getSex() {
-        return sex;
-    }
-
-    public void setSex(int sex) {
-        this.sex = sex;
-    }
+    int sex;
 }

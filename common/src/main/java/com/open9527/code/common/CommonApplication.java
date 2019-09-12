@@ -1,8 +1,6 @@
 package com.open9527.code.common;
 
-import android.app.Activity;
 
-import com.billy.android.swipe.SmartSwipeBack;
 import com.open9527.code.base.BaseApplication;
 
 /**

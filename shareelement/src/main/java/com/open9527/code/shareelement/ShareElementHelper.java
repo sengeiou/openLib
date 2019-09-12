@@ -347,7 +347,7 @@ public class ShareElementHelper {
             application.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
                 @Override
                 public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-                    TransitionHelper.enableTransition(activity);
+//                    TransitionHelper.enableTransition(activity);
                 }
 
                 @Override

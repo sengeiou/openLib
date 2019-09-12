@@ -1,4 +1,4 @@
-package com.open9527.code.common.recycleview;
+package com.open9527.code.common.recycleview.decoration;
 
 import android.content.Context;
 import android.content.res.TypedArray;

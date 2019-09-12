@@ -27,4 +27,34 @@
         <!--是否可折叠-->
         <attr name="expandEnable" format="boolean" />
     </declare-styleable>
+
+    <!--CustomTabView-->
+    <declare-styleable name="CustomTabView">
+        <!--文本-->
+        <attr name="ctvText" format="string" />
+        <!--字体大小-->
+        <attr name="ctvTextSize" format="dimension" />
+        <!--未选中字体颜色-->
+        <attr name="ctvTextOriginColor" format="color" />
+        <!--选中字体颜色-->
+        <attr name="ctvTextChangeColor" format="color" />
+        <!--字体渐变-->
+        <attr name="ctvProgress" format="float" />
+        <!--字体渐变方向-->
+        <attr name="ctvDirection" format="integer" />
+    </declare-styleable>
+
+    <!--跑马灯效果文本控件-->
+    <declare-styleable name="MarqueeViewStyle">
+        <attr name="mvInterval" format="integer|reference" />
+        <attr name="mvAnimDuration" format="integer|reference" />
+        <attr name="mvTextSize" format="dimension|reference" />
+        <attr name="mvTextColor" format="color|reference" />
+        <attr name="mvSingleLine" format="boolean" />
+        <attr name="mvGravity">
+            <enum name="left" value="0" />
+            <enum name="center" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+    </declare-styleable>
 </resources>

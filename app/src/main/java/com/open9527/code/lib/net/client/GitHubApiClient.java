@@ -50,7 +50,7 @@ public class GitHubApiClient {
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 14);//google建议放到这里
         mClient = new OkHttpClient.Builder()
                 //断网重连
-//                .retryOnConnectionFailure(true)
+                .retryOnConnectionFailure(true)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .connectTimeout(30, TimeUnit.SECONDS)
@@ -83,7 +83,6 @@ public class GitHubApiClient {
             String url = request.url().toString();
 //            requestBuilder
 //                    .addHeader(GitHubApiConfig.VERSION_NAME, BuildConfig.VERSION_NAME)
-//                    .addHeader(GitHubApiConfig.TOKEN, "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI2YWJmZmU3OWRlMTA0MDYzYjQwZWM2ZDdiNTE5NjIwZDsyNyIsImlhdCI6MTU2Mzg4MjQwMSwiZXhwIjoxODIzMDgyNDAxfQ.8wBL0_gPZgE0isgrYb2JVqW1Z_X74ilz1qZ6XNw1aXk4DHvHwW5jVFhja3tSq6gci4y4of66K_LmhdkPQApVQw");
             request = requestBuilder.url(url).build();
             LogUtils.i(TAG, "url--->" + chain.request().url().toString());
             return chain.proceed(request);

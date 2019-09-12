@@ -76,7 +76,7 @@ public  class BaseApplication extends Application {
                     }
                 })
                 .setFileWriter(null);
-        LogUtils.i(config.toString());
+//        LogUtils.i(config.toString());
     }
 
     private void initCrash() {

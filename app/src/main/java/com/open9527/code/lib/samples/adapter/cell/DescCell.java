@@ -4,8 +4,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
-import com.open9527.code.common.recycleview.BaseItem;
-import com.open9527.code.common.recycleview.ItemViewHolder;
+import com.open9527.code.common.recycleview.BaseCell;
+import com.open9527.code.common.recycleview.holder.ItemViewHolder;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.model.PhotoBean;
 
@@ -15,7 +15,7 @@ import com.open9527.code.lib.model.PhotoBean;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class DescCell extends BaseItem<DescCell> {
+public class DescCell extends BaseCell<DescCell> {
 
     private PhotoBean photoBean;
 

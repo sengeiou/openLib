@@ -22,39 +22,6 @@ public class ShareElementBean implements Parcelable {
         this.height = height;
     }
 
-
-    public static final Creator<ShareElementBean> CREATOR = new Creator<ShareElementBean>() {
-        @Override
-        public ShareElementBean createFromParcel(Parcel in) {
-            return new ShareElementBean(in);
-        }
-
-        @Override
-        public ShareElementBean[] newArray(int size) {
-            return new ShareElementBean[size];
-        }
-    };
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
-        ShareElementBean baseData = (ShareElementBean) o;
-        return width == baseData.width &&
-                height == baseData.height &&
-                Objects.equals(url, baseData.url);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(url, width, height);
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -67,10 +34,24 @@ public class ShareElementBean implements Parcelable {
         dest.writeInt(this.height);
     }
 
+    public ShareElementBean() {
+    }
+
     protected ShareElementBean(Parcel in) {
         this.url = in.readString();
         this.width = in.readInt();
         this.height = in.readInt();
     }
 
+    public static final Parcelable.Creator<ShareElementBean> CREATOR = new Parcelable.Creator<ShareElementBean>() {
+        @Override
+        public ShareElementBean createFromParcel(Parcel source) {
+            return new ShareElementBean(source);
+        }
+
+        @Override
+        public ShareElementBean[] newArray(int size) {
+            return new ShareElementBean[size];
+        }
+    };
 }

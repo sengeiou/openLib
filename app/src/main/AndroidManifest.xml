@@ -33,6 +33,8 @@
         <activity android:name=".samples.shareelement.PreviewActivity" />
         <activity android:name=".samples.shareelement.NinePicActivity" />
         <activity android:name=".samples.shareelement.ShareElementActivity" />
+        <activity android:name=".samples.tablayout.TabLayoutActivity" />
+        <activity android:name=".samples.recycleview.multiple.MultipleRecycleViewActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

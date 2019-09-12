@@ -22,12 +22,13 @@ import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ThreadUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.open9527.code.common.activity.CommonScreenActivity;
-import com.open9527.code.common.recycleview.DividerItemDecoration;
-import com.open9527.code.common.recycleview.ItemViewHolder;
+import com.open9527.code.common.recycleview.decoration.DividerItemDecoration;
+import com.open9527.code.common.recycleview.holder.ItemViewHolder;
 import com.open9527.code.image.imageload.ImageLoadConfig;
 import com.open9527.code.image.imageload.ImageLoadManger;
 import com.open9527.code.lib.model.EntryBean;
 import com.open9527.code.lib.samples.ExpandTextViewActivity;
+import com.open9527.code.lib.samples.recycleview.multiple.MultipleRecycleViewActivity;
 import com.open9527.code.lib.samples.shareelement.NinePicActivity;
 import com.open9527.code.lib.samples.shareelement.PreviewActivity;
 import com.open9527.code.lib.samples.SamplesActivity;
@@ -35,6 +36,7 @@ import com.open9527.code.lib.samples.module.im.room.user.UserBean;
 import com.open9527.code.lib.samples.module.im.room.user.UserBeanDao;
 import com.open9527.code.lib.samples.module.im.room.user.UserBeanDatabase;
 import com.open9527.code.lib.samples.shareelement.ShareElementActivity;
+import com.open9527.code.lib.samples.tablayout.TabLayoutActivity;
 import com.open9527.code.lib.utils.CommonUtils;
 import com.open9527.code.network.status.NetStatus;
 
@@ -119,7 +121,10 @@ public class MainActivity extends CommonScreenActivity {
         SmartSwipeRefresh.translateMode(mContentView, false)
                 .setDataLoader(loader);
 
-        ActivityUtils.startActivity(NinePicActivity.class);
+//        ActivityUtils.startActivity(NinePicActivity.class);
+//        ActivityUtils.startActivity(ShareElementActivity.class);
+//        ActivityUtils.startActivity(TabLayoutActivity.class);
+        ActivityUtils.startActivity(MultipleRecycleViewActivity.class);
     }
 
     @Override
@@ -180,11 +185,18 @@ public class MainActivity extends CommonScreenActivity {
                         ActivityUtils.startActivity(PreviewActivity.class);
                     } else if (position == 4) {
                         ActivityUtils.startActivity(ShareElementActivity.class);
+                    } else if (position == 5) {
+                        ActivityUtils.startActivity(TabLayoutActivity.class);
                     } else {
                         ToastUtils.showShort(bean.getDesc());
                     }
                 }
             });
+        }
+
+        @Override
+        public int getItemViewType(int position) {
+            return super.getItemViewType(position);
         }
 
         @Override

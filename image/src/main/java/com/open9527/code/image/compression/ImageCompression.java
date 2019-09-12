@@ -1,4 +1,4 @@
-package com.open9527.code.image.imagecompression;
+package com.open9527.code.image.compression;
 
 /**
  * Created by     : open9527

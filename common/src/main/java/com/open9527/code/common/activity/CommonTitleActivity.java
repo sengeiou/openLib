@@ -30,8 +30,8 @@ public abstract class CommonTitleActivity extends CommonScreenActivity {
 
     public abstract CharSequence bindTitle();
 
-    //    public abstract boolean isContentScroll();
-//    public abstract boolean isCentre();
+    //public abstract boolean isContentScroll();
+    //public abstract boolean isCentre();
     protected boolean isContentScroll = false;
 
     protected boolean isCentre = true;
@@ -62,13 +62,12 @@ public abstract class CommonTitleActivity extends CommonScreenActivity {
         LayoutInflater.from(this).inflate(layoutId, mContentView);
         //title text
         setTitleBar();
-        //TODO(需要自己配置app主题) bar color
+        //TODO(需要根据UI配置app主题) bar color
         mToolbar.setBackgroundResource(R.drawable.common_bar_bg);
         BarUtils.setStatusBarLightMode(this, true);
         BarUtils.setStatusBarColor(this, Color.WHITE)
                 .setBackgroundResource(R.drawable.common_bar_bg);
         BarUtils.addMarginTopEqualStatusBarHeight(mAppBarLayout);
-
     }
 
     private void setTitleBar() {

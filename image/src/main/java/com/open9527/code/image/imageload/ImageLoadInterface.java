@@ -1,6 +1,7 @@
 package com.open9527.code.image.imageload;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.widget.ImageView;
 
 /**
@@ -20,6 +21,20 @@ public interface ImageLoadInterface {
      * @param imageLoadProcessInterface 加载过程监听
      */
     default void display(Context mContext, final ImageView view, String url, ImageLoadConfig config, ImageLoadProcessInterface imageLoadProcessInterface) {
+
+    }
+
+    /**
+     * 加载bitmap
+     *
+     * @param mContext
+     * @param view
+     * @param bitmap
+     * @param config
+     * @param imageLoadProcessInterface
+     */
+    default void display(Context mContext, final ImageView view, Bitmap bitmap, ImageLoadConfig config, ImageLoadProcessInterface imageLoadProcessInterface) {
+
     }
 
     /**
