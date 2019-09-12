@@ -26,7 +26,7 @@ import com.blankj.utilcode.util.ClickUtils;
  */
 public abstract class BaseFragment extends Fragment implements IBaseView {
 
-    private static final String TAG                  = "BaseFragment";
+    protected final String TAG = getClass().getSimpleName();
     private static final String STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN";
 
     private View.OnClickListener mClickListener = new View.OnClickListener() {

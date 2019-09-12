@@ -26,8 +26,10 @@ import com.open9527.code.common.recycleview.decoration.DividerItemDecoration;
 import com.open9527.code.common.recycleview.holder.ItemViewHolder;
 import com.open9527.code.image.imageload.ImageLoadConfig;
 import com.open9527.code.image.imageload.ImageLoadManger;
+import com.open9527.code.lib.databinding.DataBindingActivity;
 import com.open9527.code.lib.model.EntryBean;
 import com.open9527.code.lib.samples.ExpandTextViewActivity;
+import com.open9527.code.lib.samples.fragment.FragmentActivity;
 import com.open9527.code.lib.samples.recycleview.multiple.MultipleRecycleViewActivity;
 import com.open9527.code.lib.samples.shareelement.NinePicActivity;
 import com.open9527.code.lib.samples.shareelement.PreviewActivity;
@@ -124,7 +126,9 @@ public class MainActivity extends CommonScreenActivity {
 //        ActivityUtils.startActivity(NinePicActivity.class);
 //        ActivityUtils.startActivity(ShareElementActivity.class);
 //        ActivityUtils.startActivity(TabLayoutActivity.class);
-        ActivityUtils.startActivity(MultipleRecycleViewActivity.class);
+//        ActivityUtils.startActivity(MultipleRecycleViewActivity.class);
+//        ActivityUtils.startActivity(DataBindingActivity.class);
+        ActivityUtils.startActivity(FragmentActivity.class);
     }
 
     @Override

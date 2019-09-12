@@ -10,7 +10,6 @@ import android.util.Log;
  */
 public abstract class BaseLazyFragment extends BaseFragment {
 
-    private static final String TAG = "BaseLazyFragment";
 
     private boolean isDataLoaded;
 
