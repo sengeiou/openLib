@@ -5,6 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/common_title_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="view_status,common_cl_title" />
+
     <View
         android:id="@+id/view_status"
         android:layout_width="match_parent"
@@ -30,6 +36,13 @@
             android:layout_height="match_parent"
             android:layout="@layout/common_sub_toolbar"
             app:layout_scrollFlags="scroll|enterAlways" />
+
+        <View
+            android:id="@+id/common_view_line"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pt_1"
+            android:background="@color/color_eee"
+            app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout

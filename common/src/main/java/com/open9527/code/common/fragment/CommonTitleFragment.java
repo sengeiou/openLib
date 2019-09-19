@@ -1,6 +1,5 @@
 package com.open9527.code.common.fragment;
 
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
@@ -11,11 +10,10 @@ import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.constraintlayout.widget.Group;
 
 import com.blankj.utilcode.util.BarUtils;
-import com.google.android.material.appbar.AppBarLayout;
+import com.blankj.utilcode.util.ColorUtils;
 import com.open9527.code.base.BaseLazyFragment;
 import com.open9527.code.common.R;
 
@@ -38,14 +36,15 @@ public abstract class CommonTitleFragment extends BaseLazyFragment {
     protected Toolbar mToolbar;
     protected TextView tvTitle;
     protected FrameLayout mContentView;
-    protected ViewStub mTitleViewStub;
-    protected ViewStub mContentViewStub;
+    protected ViewStub mTitleViewStub, mContentViewStub;
     protected View mViewStatus;
+    protected Group mTitleGroup;
 
     @Override
     public void setRootLayout(@LayoutRes int layoutId) {
         super.setRootLayout(R.layout.common_fragment_title);
         //title
+        mTitleGroup = findViewById(R.id.common_title_group);
         mViewStatus = findViewById(R.id.view_status);
         mTitleViewStub = findViewById(isCentre ? R.id.common_centre_toolbar : R.id.common_toolbar);
         mTitleViewStub.setVisibility(View.VISIBLE);
@@ -62,13 +61,16 @@ public abstract class CommonTitleFragment extends BaseLazyFragment {
         setStatusBar();
     }
 
+    /**
+     * 配置app主题UI样式
+     * 需要定制不同的可以自行重写该方法
+     */
     protected void setStatusBar() {
-        //TODO(需要根据UI配置app主题) bar color
-//        mToolbar.setBackgroundResource(R.drawable.common_bar_bg);
-//        BarUtils.setStatusBarLightMode(mActivity, true);
+        mToolbar.setBackgroundResource(R.drawable.common_bar_bg);
 //        BarUtils.setStatusBarColor(mActivity, Color.WHITE)
 //                .setBackgroundResource(R.drawable.common_bar_bg);
-//        BarUtils.addMarginTopEqualStatusBarHeight(mAppBarLayout);
+        BarUtils.setStatusBarColor(mViewStatus, ColorUtils.getColor(R.color.color_fff));
+
     }
 
     private void setTitleBar() {

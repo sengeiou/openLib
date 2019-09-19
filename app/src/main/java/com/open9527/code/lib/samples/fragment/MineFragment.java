@@ -1,13 +1,11 @@
 package com.open9527.code.lib.samples.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.open9527.code.common.fragment.CommonTitleFragment;
 import com.open9527.code.lib.R;
@@ -34,9 +32,7 @@ public class MineFragment extends CommonTitleFragment {
 
     @Override
     protected void setStatusBar() {
-//        super.setStatusBar();
-        mToolbar.setVisibility(View.GONE);
-        BarUtils.setStatusBarColor(mViewStatus, Color.argb(0, 0, 0, 0));
+        mTitleGroup.setVisibility(View.GONE);
     }
 
     @Override

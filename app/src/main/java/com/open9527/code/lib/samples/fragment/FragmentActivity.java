@@ -33,7 +33,6 @@ public class FragmentActivity extends CommonScreenActivity {
     @Override
     public void initData(@Nullable Bundle bundle) {
         BarUtils.setStatusBarLightMode(this, true);
-
     }
 
     @Override

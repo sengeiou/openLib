@@ -39,7 +39,11 @@ public class OtherFragment extends CommonTitleFragment {
 
     @Override
     public void initData(@Nullable Bundle bundle) {
-        BarUtils.setStatusBarColor(mViewStatus, Color.WHITE);
+    }
+
+    @Override
+    protected void setStatusBar() {
+        mTitleGroup.setVisibility(View.GONE);
     }
 
     @Override

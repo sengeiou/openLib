@@ -1,6 +1,5 @@
 package com.open9527.code.lib.samples;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -12,10 +11,8 @@ import androidx.annotation.Nullable;
 import com.blankj.utilcode.util.ToastUtils;
 import com.open9527.code.common.activity.CommonTitleActivity;
 import com.open9527.code.customview.textview.ExpandTextView;
-import com.open9527.code.lib.MainActivity;
 import com.open9527.code.lib.R;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -27,7 +24,7 @@ import org.json.JSONObject;
 public class ExpandTextViewActivity extends CommonTitleActivity {
     @Override
     public CharSequence bindTitle() {
-        return null;
+        return "折叠TextView";
     }
 
     @Override

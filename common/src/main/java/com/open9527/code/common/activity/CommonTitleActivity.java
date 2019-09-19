@@ -16,6 +16,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.blankj.utilcode.util.BarUtils;
+import com.blankj.utilcode.util.ColorUtils;
 import com.google.android.material.appbar.AppBarLayout;
 import com.open9527.code.common.R;
 
@@ -62,13 +63,22 @@ public abstract class CommonTitleActivity extends CommonScreenActivity {
         LayoutInflater.from(this).inflate(layoutId, mContentView);
         //title text
         setTitleBar();
-        //TODO(需要根据UI配置app主题) bar color
+        //StatusBar
+        setStatusBar();
+    }
+
+    /**
+     * 配置app主题UI样式
+     * 需要定制不同的可以自行重写该方法
+     */
+    protected void setStatusBar() {
         mToolbar.setBackgroundResource(R.drawable.common_bar_bg);
         BarUtils.setStatusBarLightMode(this, true);
-        BarUtils.setStatusBarColor(this, Color.WHITE)
+        BarUtils.setStatusBarColor(mActivity, ColorUtils.getColor(R.color.color_fff))
                 .setBackgroundResource(R.drawable.common_bar_bg);
         BarUtils.addMarginTopEqualStatusBarHeight(mAppBarLayout);
     }
+
 
     private void setTitleBar() {
         if (isCentre) {

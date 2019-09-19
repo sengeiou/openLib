@@ -1,13 +1,11 @@
 package com.open9527.code.lib.samples.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.open9527.code.common.fragment.CommonTitleFragment;
 import com.open9527.code.lib.R;
@@ -37,10 +35,11 @@ public class HomeFragment extends CommonTitleFragment {
         LogUtils.i(TAG, "doLazyBusiness");
     }
 
-    @Override
-    protected void setStatusBar() {
-        BarUtils.setStatusBarColor(mViewStatus, Color.WHITE);
-    }
+//    @Override
+//    protected void setStatusBar() {
+//        BarUtils.setStatusBarColor(mViewStatus, ColorUtils.getColor(R.color.color_fff));
+//        mToolbar.setBackgroundColor(ColorUtils.getColor(R.color.color_fff));
+//    }
 
     @Override
     public void initData(@Nullable Bundle bundle) {

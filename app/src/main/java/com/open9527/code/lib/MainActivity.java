@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.billy.android.swipe.SmartSwipeRefresh;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.AdaptScreenUtils;
+import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ColorUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ThreadUtils;
@@ -56,9 +57,9 @@ public class MainActivity extends CommonScreenActivity {
 
     @Override
     public void initData(@Nullable Bundle bundle) {
+        BarUtils.setStatusBarLightMode(this, true);
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mViewModel.getEntryInfo();
-//        mViewModel.getUserList();
     }
 
     @Override

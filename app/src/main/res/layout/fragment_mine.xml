@@ -8,7 +8,7 @@
         android:id="@+id/iv_head"
         android:layout_width="match_parent"
         android:layout_height="@dimen/pt_300"
-        android:src="@color/colorAccent"
+        android:src="@color/color_00aaae"
         app:layout_constraintTop_toTopOf="parent" />
 
 
