@@ -1,4 +1,4 @@
-package com.open9527.code.lib.samples.recycleview.multiple;
+package com.open9527.code.lib.samples.recycleview;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +12,11 @@ import com.open9527.code.common.activity.CommonTitleActivity;
 import com.open9527.code.common.recycleview.BaseCell;
 import com.open9527.code.common.recycleview.BaseCellAdapter;
 import com.open9527.code.lib.R;
+import com.open9527.code.lib.samples.recycleview.multiple.BannerCell;
+import com.open9527.code.lib.samples.recycleview.multiple.LandscapeCell;
+import com.open9527.code.lib.samples.recycleview.multiple.MarqueeCell;
+import com.open9527.code.lib.samples.recycleview.multiple.TabCell;
+import com.open9527.code.lib.samples.recycleview.multiple.TextCell;
 
 import java.util.ArrayList;
 import java.util.Arrays;

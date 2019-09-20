@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.open9527.code.common.activity.CommonBindingActivity;
+import com.open9527.code.common.databinding.CommonBindingActivity;
 import com.open9527.code.lib.R;
 
 /**
@@ -17,7 +17,7 @@ import com.open9527.code.lib.R;
  */
 public class DataBindingActivity extends CommonBindingActivity<ActivityDatabindingBinding> {
     @Override
-    protected CharSequence bindTitle() {
+    public CharSequence bindTitle() {
         return "DataBindingActivity";
     }
 
@@ -33,7 +33,7 @@ public class DataBindingActivity extends CommonBindingActivity<ActivityDatabindi
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
-        mBinding.tvMsg.setText("DataBindingActivity");
+        mBinding.tvMsg.setText("CommonBindingActivity");
     }
 
     @Override

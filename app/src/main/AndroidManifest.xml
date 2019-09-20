@@ -34,9 +34,11 @@
         <activity android:name=".samples.shareelement.NinePicActivity" />
         <activity android:name=".samples.shareelement.ShareElementActivity" />
         <activity android:name=".samples.tablayout.TabLayoutActivity" />
-        <activity android:name=".samples.recycleview.multiple.MultipleRecycleViewActivity" />
+        <activity android:name=".samples.recycleview.MultipleRecycleViewActivity" />
         <activity android:name=".databinding.DataBindingActivity" />
         <activity android:name=".samples.fragment.FragmentActivity" />
+        <activity android:name=".samples.coordinatorlayout.CoordinatorLayoutActivity" />
+        <activity android:name=".samples.coordinatorlayout.CoordinatorActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

@@ -1,16 +1,16 @@
 package com.open9527.code.lib.samples.fragment;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.blankj.utilcode.util.BarUtils;
+import com.blankj.utilcode.util.ColorUtils;
 import com.blankj.utilcode.util.LogUtils;
-import com.open9527.code.common.fragment.CommonTitleFragment;
+import com.open9527.code.common.databinding.CommonBindingFragment;
 import com.open9527.code.lib.R;
+import com.open9527.code.lib.databinding.FragmentOtherBinding;
 
 /**
  * Created by     : open9527
@@ -18,7 +18,7 @@ import com.open9527.code.lib.R;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class OtherFragment extends CommonTitleFragment {
+public class OtherFragment extends CommonBindingFragment<FragmentOtherBinding> {
 
     public static OtherFragment newInstance() {
         Bundle args = new Bundle();
@@ -53,6 +53,8 @@ public class OtherFragment extends CommonTitleFragment {
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
+        mBinding.ivHead.setBackgroundColor(ColorUtils.getColor(R.color.color_00aaae));
+        mBinding.tvMsg.setText("CommonBindingFragment");
 
     }
 

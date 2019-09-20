@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.Group;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.blankj.utilcode.util.BarUtils;
@@ -45,7 +46,6 @@ public abstract class CommonTitleActivity extends CommonScreenActivity {
     protected FrameLayout mContentView;
     protected ViewStub mTitleViewStub;
     protected ViewStub mContentViewStub;
-
     @Override
     public void setRootLayout(@LayoutRes int layoutId) {
         super.setRootLayout(R.layout.common_activity_title);

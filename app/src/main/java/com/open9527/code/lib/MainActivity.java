@@ -30,8 +30,9 @@ import com.open9527.code.image.imageload.ImageLoadManger;
 import com.open9527.code.lib.databinding.DataBindingActivity;
 import com.open9527.code.lib.model.EntryBean;
 import com.open9527.code.lib.samples.ExpandTextViewActivity;
+import com.open9527.code.lib.samples.coordinatorlayout.CoordinatorActivity;
+import com.open9527.code.lib.samples.coordinatorlayout.CoordinatorLayoutActivity;
 import com.open9527.code.lib.samples.fragment.FragmentActivity;
-import com.open9527.code.lib.samples.recycleview.multiple.MultipleRecycleViewActivity;
 import com.open9527.code.lib.samples.shareelement.NinePicActivity;
 import com.open9527.code.lib.samples.shareelement.PreviewActivity;
 import com.open9527.code.lib.samples.SamplesActivity;
@@ -64,7 +65,7 @@ public class MainActivity extends CommonScreenActivity {
 
     @Override
     public int bindLayout() {
-        return R.layout.actiivty_main;
+        return R.layout.activity_main;
     }
 
     @Override
@@ -128,8 +129,9 @@ public class MainActivity extends CommonScreenActivity {
 //        ActivityUtils.startActivity(ShareElementActivity.class);
 //        ActivityUtils.startActivity(TabLayoutActivity.class);
 //        ActivityUtils.startActivity(MultipleRecycleViewActivity.class);
-//        ActivityUtils.startActivity(DataBindingActivity.class);
-        ActivityUtils.startActivity(FragmentActivity.class);
+        ActivityUtils.startActivity(CoordinatorLayoutActivity.class);
+        ActivityUtils.startActivity(CoordinatorActivity.class);
+//        ActivityUtils.startActivity(FragmentActivity.class);
     }
 
     @Override
