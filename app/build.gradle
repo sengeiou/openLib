@@ -12,6 +12,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField('String', 'HOST_USER', privacy_url)
         buildConfigField('String', 'TOKEN', privacy_token)
+        buildConfigField('String', 'GITHUB_URL', github_url)
+        buildConfigField('String', 'GITHUB_UPLOAD', github_upload)
     }
     buildTypes {
         release {
@@ -25,6 +27,10 @@ android {
     }
     dataBinding {
         enabled true
+    }
+    sourceSets {
+        //数据库概要、记录存放位置
+        androidTest.assets.srcDirs += files("$projectDir/schemas".toString())
     }
 }
 

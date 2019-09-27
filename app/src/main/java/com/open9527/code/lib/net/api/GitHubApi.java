@@ -2,17 +2,19 @@ package com.open9527.code.lib.net.api;
 
 import com.open9527.code.lib.model.EntryBean;
 import com.open9527.code.lib.model.PhotoBean;
+import com.open9527.code.lib.model.RequestGitHubBean;
 import com.open9527.code.lib.net.response.GitHubResponse;
-import com.open9527.code.lib.samples.module.im.room.user.UserBean;
-import com.open9527.code.network.response.BaseResponse;
 
 import java.util.List;
 
+import io.reactivex.Observable;
 import io.reactivex.Single;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.HEAD;
-import retrofit2.http.Header;
-import retrofit2.http.HeaderMap;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
 import retrofit2.http.Url;
 
 /**
@@ -39,6 +41,14 @@ public interface GitHubApi {
     @GET("json/photo.json")
     Single<GitHubResponse<List<PhotoBean>>> getPhoto();
 
+    //传输方法：PUT
+    //访问路径：https://api.github.com/repos/用户名/仓库名/contents/文件路径
+    //JSON格式：
+
+    @POST()
+    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    Single<GitHubResponse<Object>> uploadFile(@Url String url, @Body RequestGitHubBean requestGitHubBean);
+
 
     /**
      * 获取user
@@ -47,6 +57,6 @@ public interface GitHubApi {
      * @param header
      * @return
      */
-    @GET()
-    Single<GitHubResponse<List<UserBean>>> getUsers(@Url String url, @Header("HC-ACCESS-TOKEN") String header);
+//    @GET()
+//    Single<GitHubResponse<List<UserBean>>> getUsers(@Url String url, @Header("HC-ACCESS-TOKEN") String header);
 }

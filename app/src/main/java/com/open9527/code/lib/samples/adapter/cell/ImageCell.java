@@ -36,12 +36,14 @@ public class ImageCell extends BaseCell<ImageCell> {
         this.holder = holder;
         ImageView icon = holder.findViewById(R.id.iv_photo);
         CommonUtils.imageLoad(holder.itemView.getContext(), icon, imageBean.url);
-        holder.setOnClickListener(R.id.iv_photo, view -> {
-            if (mOnCellClickListener != null) {
-                mOnCellClickListener.onCellClick(ImageCell.this, position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mOnCellClickListener != null) {
+                    mOnCellClickListener.onCellClick(ImageCell.this, position);
+                }
             }
         });
-
     }
 
     public ImageBean getData() {

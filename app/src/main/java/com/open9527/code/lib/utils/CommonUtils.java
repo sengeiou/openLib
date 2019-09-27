@@ -2,6 +2,7 @@ package com.open9527.code.lib.utils;
 
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
+import android.util.Base64;
 import android.widget.ImageView;
 
 import com.blankj.utilcode.util.GsonUtils;
@@ -11,6 +12,10 @@ import com.google.gson.reflect.TypeToken;
 import com.open9527.code.image.imageload.ImageLoadConfig;
 import com.open9527.code.image.imageload.ImageLoadManger;
 import com.open9527.code.lib.R;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 
 
 /**
@@ -59,6 +64,27 @@ public class CommonUtils {
 
     public static void imageLoad(Context context, ImageView imageView, String url, ImageView.ScaleType type) {
         ImageLoadManger.display(context, imageView, CommonUtils.getUrl(url), new ImageLoadConfig(R.mipmap.ic_launcher, R.mipmap.ic_launcher_round, type));
+    }
+
+    /**
+     * 文件转base64
+     *
+     * @param file
+     * @return
+     */
+    public static String File2Base64(File file) {
+        String string = null;
+        byte[] data = null;
+        try {
+            InputStream is = new FileInputStream(file);
+            data = new byte[is.available()];
+            is.read(data);
+            is.close();
+            string = Base64.encodeToString(data, Base64.DEFAULT);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return string;
     }
 
 }

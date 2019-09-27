@@ -1,3 +1,4 @@
+/*
 package com.open9527.code.lib.samples.module.im.room.user;
 
 import androidx.room.Dao;
@@ -9,12 +10,14 @@ import androidx.room.Update;
 
 import java.util.List;
 
+*/
 /**
  * Created by     : open9527
  * Created times  : on 2019/8/29 17:34.
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
- */
+ *//*
+
 @Dao
 public interface UserBeanDao {
 
@@ -33,10 +36,13 @@ public interface UserBeanDao {
     @Delete
     int deleteAll(List<UserBean> userBeanList);
 
-    /**********************************************查询*******************************************************/
+    */
+/**********************************************查询*******************************************************//*
+
     @Query("SELECT * FROM user_table ")
     List<UserBean> getAll();
 
     @Query("DELETE  FROM user_table ")
     void deleteAll();
 }
+*/

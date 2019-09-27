@@ -14,7 +14,7 @@ import com.open9527.code.common.R;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class ItemViewHolder extends RecyclerView.ViewHolder {
+public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
     private SparseArray<View> viewArray = new SparseArray<>();
 
@@ -22,6 +22,56 @@ public class ItemViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         // fix databinding tag问题
         itemView.setTag(R.id.rv_holder_item_id, this);
+    }
+
+    /**
+     * 配置是否添加点击事件
+     *
+     * @param itemView
+     * @param isClick     点击
+     * @param isLongClick 长按
+     */
+    public ItemViewHolder(View itemView, boolean isClick, boolean isLongClick) {
+        super(itemView);
+        // fix databinding tag问题
+        itemView.setTag(R.id.rv_holder_item_id, this);
+        if (isClick) {
+            itemView.setOnClickListener(this);
+        }
+        if (isLongClick) {
+            itemView.setOnLongClickListener(this);
+        }
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        if (onItemClickListener != null) {
+            onItemClickListener.onItemClick(view, getAdapterPosition());
+        }
+
+    }
+
+    protected OnItemClickListener onItemClickListener;
+
+    @Override
+    public boolean onLongClick(View view) {
+        if (onItemClickListener != null) {
+            onItemClickListener.onItemLongClick(view, getAdapterPosition());
+        }
+        return false;
+    }
+
+    public interface OnItemClickListener {
+        default void onItemClick(View view, int position) {
+        }
+
+        default void onItemLongClick(View view, int position) {
+        }
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
     @SuppressWarnings("unchecked")
@@ -32,16 +82,5 @@ public class ItemViewHolder extends RecyclerView.ViewHolder {
             viewArray.put(viewId, view);
         }
         return (T) view;
-    }
-
-
-
-
-    public void setOnClickListener(@IdRes final int viewId, View.OnClickListener listener) {
-        findViewById(viewId).setOnClickListener(listener);
-    }
-
-    public void setOnLongClickListener(@IdRes final int viewId, View.OnLongClickListener listener) {
-        findViewById(viewId).setOnLongClickListener(listener);
     }
 }

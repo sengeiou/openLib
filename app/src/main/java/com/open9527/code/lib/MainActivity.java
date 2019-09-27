@@ -19,7 +19,9 @@ import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.AdaptScreenUtils;
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ColorUtils;
+import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.ResourceUtils;
 import com.blankj.utilcode.util.ThreadUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.open9527.code.common.activity.CommonScreenActivity;
@@ -30,20 +32,18 @@ import com.open9527.code.image.imageload.ImageLoadManger;
 import com.open9527.code.lib.databinding.DataBindingActivity;
 import com.open9527.code.lib.model.EntryBean;
 import com.open9527.code.lib.samples.ExpandTextViewActivity;
+import com.open9527.code.lib.samples.androidtojs.WebViewActivity;
 import com.open9527.code.lib.samples.coordinatorlayout.CoordinatorActivity;
 import com.open9527.code.lib.samples.coordinatorlayout.CoordinatorLayoutActivity;
-import com.open9527.code.lib.samples.fragment.FragmentActivity;
 import com.open9527.code.lib.samples.shareelement.NinePicActivity;
 import com.open9527.code.lib.samples.shareelement.PreviewActivity;
 import com.open9527.code.lib.samples.SamplesActivity;
-import com.open9527.code.lib.samples.module.im.room.user.UserBean;
-import com.open9527.code.lib.samples.module.im.room.user.UserBeanDao;
-import com.open9527.code.lib.samples.module.im.room.user.UserBeanDatabase;
 import com.open9527.code.lib.samples.shareelement.ShareElementActivity;
 import com.open9527.code.lib.samples.tablayout.TabLayoutActivity;
 import com.open9527.code.lib.utils.CommonUtils;
 import com.open9527.code.network.status.NetStatus;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -61,6 +61,7 @@ public class MainActivity extends CommonScreenActivity {
         BarUtils.setStatusBarLightMode(this, true);
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mViewModel.getEntryInfo();
+
     }
 
     @Override
@@ -70,12 +71,12 @@ public class MainActivity extends CommonScreenActivity {
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
-
         RecyclerView recyclerView = findViewById(R.id.rv_main);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.BOTH_SET,
-                2, ColorUtils.getColor(R.color.color_eee), AdaptScreenUtils.pt2Px(30), AdaptScreenUtils.pt2Px(30)));
-
+        if (recyclerView.getItemDecorationCount() == 0) {
+            recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.BOTH_SET,
+                    2, ColorUtils.getColor(R.color.color_eee), AdaptScreenUtils.pt2Px(30), AdaptScreenUtils.pt2Px(30)));
+        }
         mViewModel.mEntryInfoRepository.getStatus().observe(this, new Observer<NetStatus>() {
             @Override
             public void onChanged(NetStatus netStatus) {
@@ -89,24 +90,24 @@ public class MainActivity extends CommonScreenActivity {
             }
         });
 
-        mViewModel.mUserListRepository.getData().observe(this, new Observer<List<UserBean>>() {
-            @Override
-            public void onChanged(List<UserBean> userBeanList) {
-                UserBeanDao userBeanDao = UserBeanDatabase.getDatabse().userBeanDao();
-                ThreadUtils.executeByIo(new ThreadUtils.SimpleTask<List<Long>>() {
-                    @Nullable
-                    @Override
-                    public List<Long> doInBackground() throws Throwable {
-                        return userBeanDao.insertAll(userBeanList);
-                    }
-
-                    @Override
-                    public void onSuccess(@Nullable List<Long> result) {
-                        LogUtils.i(TAG, result);
-                    }
-                });
-            }
-        });
+//        mViewModel.mUserListRepository.getData().observe(this, new Observer<List<UserBean>>() {
+//            @Override
+//            public void onChanged(List<UserBean> userBeanList) {
+//                UserBeanDao userBeanDao = UserBeanDatabase.getDatabse().userBeanDao();
+//                ThreadUtils.executeByIo(new ThreadUtils.SimpleTask<List<Long>>() {
+//                    @Nullable
+//                    @Override
+//                    public List<Long> doInBackground() throws Throwable {
+//                        return userBeanDao.insertAll(userBeanList);
+//                    }
+//
+//                    @Override
+//                    public void onSuccess(@Nullable List<Long> result) {
+//                        LogUtils.i(TAG, result);
+//                    }
+//                });
+//            }
+//        });
 
         SmartSwipeRefresh.SmartSwipeRefreshDataLoader loader = new SmartSwipeRefresh.SmartSwipeRefreshDataLoader() {
             @Override
@@ -132,6 +133,10 @@ public class MainActivity extends CommonScreenActivity {
         ActivityUtils.startActivity(CoordinatorLayoutActivity.class);
         ActivityUtils.startActivity(CoordinatorActivity.class);
 //        ActivityUtils.startActivity(FragmentActivity.class);
+        ActivityUtils.startActivity(DataBindingActivity.class);
+        ActivityUtils.startActivity(WebViewActivity.class);
+
+//        mViewModel.uploadFile();
     }
 
     @Override

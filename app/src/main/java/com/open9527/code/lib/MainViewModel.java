@@ -1,14 +1,15 @@
 package com.open9527.code.lib;
 
+import androidx.databinding.ObservableField;
 import androidx.lifecycle.ViewModel;
 
 import com.open9527.code.lib.model.EntryBean;
+import com.open9527.code.lib.model.RequestGitHubBean;
 import com.open9527.code.lib.net.api.GitHubApi;
 import com.open9527.code.lib.net.client.GitHubApiClient;
 import com.open9527.code.lib.net.response.GitHubResponse;
 import com.open9527.code.lib.net.response.GitHubSingleDataLoadRepository;
 import com.open9527.code.lib.net.response.GitHubSingleDataLoader;
-import com.open9527.code.lib.samples.module.im.room.user.UserBean;
 import com.open9527.code.network.repository.DataLoadRepository;
 
 import java.util.List;
@@ -36,11 +37,24 @@ public class MainViewModel extends ViewModel {
         mEntryInfoRepository.loadData(true);
     }
 
+    private ObservableField<RequestGitHubBean> requestGitHubBeanObservableField = new ObservableField<>();
+    DataLoadRepository<Object> mUploadFileRepository = new GitHubSingleDataLoadRepository<>(new GitHubSingleDataLoader<Object>() {
+        @Override
+        public Single<GitHubResponse<Object>> getLoader() {
+            return GitHubApiClient.getApiService(GitHubApi.class).uploadFile(BuildConfig.GITHUB_UPLOAD + "upload/", requestGitHubBeanObservableField.get());
+        }
+    });
 
-    DataLoadRepository<List<UserBean>> mUserListRepository = new GitHubSingleDataLoadRepository<>(() -> GitHubApiClient.getApiService(GitHubApi.class).getUsers(BuildConfig.HOST_USER, BuildConfig.TOKEN));
-
-    void getUserList() {
-        mUserListRepository.loadData(true);
+    void uploadFile(RequestGitHubBean requestGitHubBean) {
+        requestGitHubBeanObservableField.set(requestGitHubBean);
+        mUploadFileRepository.loadData(true);
     }
+
+
+//    DataLoadRepository<List<UserBean>> mUserListRepository = new GitHubSingleDataLoadRepository<>(() -> GitHubApiClient.getApiService(GitHubApi.class).getUsers(BuildConfig.HOST_USER, BuildConfig.TOKEN));
+//
+//    void getUserList() {
+//        mUserListRepository.loadData(true);
+//    }
 
 }
