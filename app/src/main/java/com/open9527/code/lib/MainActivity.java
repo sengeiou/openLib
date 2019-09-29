@@ -35,6 +35,7 @@ import com.open9527.code.lib.samples.ExpandTextViewActivity;
 import com.open9527.code.lib.samples.androidtojs.WebViewActivity;
 import com.open9527.code.lib.samples.coordinatorlayout.CoordinatorActivity;
 import com.open9527.code.lib.samples.coordinatorlayout.CoordinatorLayoutActivity;
+import com.open9527.code.lib.samples.image.ImageActivity;
 import com.open9527.code.lib.samples.shareelement.NinePicActivity;
 import com.open9527.code.lib.samples.shareelement.PreviewActivity;
 import com.open9527.code.lib.samples.SamplesActivity;
@@ -130,13 +131,13 @@ public class MainActivity extends CommonScreenActivity {
 //        ActivityUtils.startActivity(ShareElementActivity.class);
 //        ActivityUtils.startActivity(TabLayoutActivity.class);
 //        ActivityUtils.startActivity(MultipleRecycleViewActivity.class);
-        ActivityUtils.startActivity(CoordinatorLayoutActivity.class);
-        ActivityUtils.startActivity(CoordinatorActivity.class);
+//        ActivityUtils.startActivity(CoordinatorLayoutActivity.class);
+//        ActivityUtils.startActivity(CoordinatorActivity.class);
 //        ActivityUtils.startActivity(FragmentActivity.class);
-        ActivityUtils.startActivity(DataBindingActivity.class);
-        ActivityUtils.startActivity(WebViewActivity.class);
+//        ActivityUtils.startActivity(DataBindingActivity.class);
+//        ActivityUtils.startActivity(WebViewActivity.class);
+        ActivityUtils.startActivity(ImageActivity.class);
 
-//        mViewModel.uploadFile();
     }
 
     @Override

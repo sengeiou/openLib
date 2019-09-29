@@ -40,6 +40,7 @@
         <activity android:name=".samples.coordinatorlayout.CoordinatorLayoutActivity" />
         <activity android:name=".samples.coordinatorlayout.CoordinatorActivity" />
         <activity android:name=".samples.androidtojs.WebViewActivity" />
+        <activity android:name=".samples.image.ImageActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

@@ -1,6 +1,7 @@
 package com.open9527.code.lib.net.api;
 
 import com.open9527.code.lib.model.EntryBean;
+import com.open9527.code.lib.model.GitHubFileBean;
 import com.open9527.code.lib.model.PhotoBean;
 import com.open9527.code.lib.model.RequestGitHubBean;
 import com.open9527.code.lib.net.response.GitHubResponse;
@@ -15,6 +16,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Url;
 
 /**
@@ -41,13 +43,19 @@ public interface GitHubApi {
     @GET("json/photo.json")
     Single<GitHubResponse<List<PhotoBean>>> getPhoto();
 
-    //传输方法：PUT
-    //访问路径：https://api.github.com/repos/用户名/仓库名/contents/文件路径
-    //JSON格式：
-
-    @POST()
-    @Headers({"Content-Type: application/json", "Accept: application/json"})
+    /**
+     * 上传文件
+     *
+     * @param url               https://api.github.com/repos/用户名/仓库名/contents/文件路径
+     * @param requestGitHubBean JSON格式
+     * @return
+     */
+    @PUT
     Single<GitHubResponse<Object>> uploadFile(@Url String url, @Body RequestGitHubBean requestGitHubBean);
+
+
+    @GET()
+    Single<GitHubResponse<List<GitHubFileBean>>> getFileList(@Url String url);
 
 
     /**

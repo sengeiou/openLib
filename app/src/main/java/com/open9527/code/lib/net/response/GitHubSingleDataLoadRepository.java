@@ -75,7 +75,13 @@ public class GitHubSingleDataLoadRepository<T> implements DataLoadRepository<T> 
                     netStatusLiveData.postSuccess(tResponse.message(), tResponse.code());
                     tLiveData.postValue(tResponse.data());
                 } else {
+                    //添加github请求
+//                    if (tResponse.data() != null) {
+//                        netStatusLiveData.postSuccess("github api", 200);
+//                        tLiveData.postValue(tResponse.data());
+//                    } else {
                     netStatusLiveData.postError(tResponse.message(), tResponse.code());
+//                    }
                 }
             }
 

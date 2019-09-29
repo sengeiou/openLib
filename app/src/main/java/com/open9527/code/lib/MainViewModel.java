@@ -37,18 +37,7 @@ public class MainViewModel extends ViewModel {
         mEntryInfoRepository.loadData(true);
     }
 
-    private ObservableField<RequestGitHubBean> requestGitHubBeanObservableField = new ObservableField<>();
-    DataLoadRepository<Object> mUploadFileRepository = new GitHubSingleDataLoadRepository<>(new GitHubSingleDataLoader<Object>() {
-        @Override
-        public Single<GitHubResponse<Object>> getLoader() {
-            return GitHubApiClient.getApiService(GitHubApi.class).uploadFile(BuildConfig.GITHUB_UPLOAD + "upload/", requestGitHubBeanObservableField.get());
-        }
-    });
 
-    void uploadFile(RequestGitHubBean requestGitHubBean) {
-        requestGitHubBeanObservableField.set(requestGitHubBean);
-        mUploadFileRepository.loadData(true);
-    }
 
 
 //    DataLoadRepository<List<UserBean>> mUserListRepository = new GitHubSingleDataLoadRepository<>(() -> GitHubApiClient.getApiService(GitHubApi.class).getUsers(BuildConfig.HOST_USER, BuildConfig.TOKEN));

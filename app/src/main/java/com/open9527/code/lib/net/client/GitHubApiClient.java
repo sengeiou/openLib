@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.NetworkUtils;
 import com.blankj.utilcode.util.Utils;
+import com.open9527.code.lib.BuildConfig;
 
 import java.io.File;
 import java.io.IOException;
@@ -81,8 +82,8 @@ public class GitHubApiClient {
             Request request = chain.request();
             Request.Builder requestBuilder = request.newBuilder();
             String url = request.url().toString();
-//            requestBuilder
-//                    .addHeader(GitHubApiConfig.VERSION_NAME, BuildConfig.VERSION_NAME)
+            requestBuilder
+                    .addHeader("Authorization", "token " + BuildConfig.GITHUB_UPLOAD_TOKEN);
             request = requestBuilder.url(url).build();
             LogUtils.i(TAG, "url--->" + chain.request().url().toString());
             return chain.proceed(request);

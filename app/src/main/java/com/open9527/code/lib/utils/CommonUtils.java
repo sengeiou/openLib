@@ -1,10 +1,15 @@
 package com.open9527.code.lib.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.widget.ImageView;
 
+import com.blankj.utilcode.util.EncryptUtils;
 import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.ResourceUtils;
 import com.blankj.utilcode.util.StringUtils;
@@ -85,6 +90,26 @@ public class CommonUtils {
             ex.printStackTrace();
         }
         return string;
+    }
+
+    public static String File2SHA1(File file) {
+        String string = null;
+        byte[] data = null;
+        try {
+            InputStream is = new FileInputStream(file);
+            data = new byte[is.available()];
+            is.read(data);
+            is.close();
+            string =  EncryptUtils.encryptSHA1ToString(data);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return string;
+    }
+
+
+    public void startOpenCamera() {
+
     }
 
 }

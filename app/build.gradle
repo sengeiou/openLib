@@ -14,6 +14,7 @@ android {
         buildConfigField('String', 'TOKEN', privacy_token)
         buildConfigField('String', 'GITHUB_URL', github_url)
         buildConfigField('String', 'GITHUB_UPLOAD', github_upload)
+        buildConfigField('String', 'GITHUB_UPLOAD_TOKEN', github_upload_token)
     }
     buildTypes {
         release {

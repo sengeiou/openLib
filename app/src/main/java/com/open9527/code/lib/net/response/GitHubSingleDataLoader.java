@@ -11,4 +11,5 @@ import io.reactivex.Single;
  */
 public interface GitHubSingleDataLoader<T> {
     Single<GitHubResponse<T>> getLoader();
+
 }
