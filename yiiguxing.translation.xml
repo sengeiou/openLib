@@ -1,6 +1,7 @@
 <application>
   <component name="AppStorage">
     <histories>
+      <item value="图片压缩失败" />
       <item value="当前设备没有相机" />
       <item value="压缩图片" />
       <item value="is Removable" />
@@ -50,7 +51,6 @@
       <item value="use Level" />
       <item value="折叠" />
       <item value="写" />
-      <item value="空数据" />
     </histories>
     <option name="languageScores">
       <map>
