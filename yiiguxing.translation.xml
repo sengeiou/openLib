@@ -1,0 +1,63 @@
+<application>
+  <component name="AppStorage">
+    <histories>
+      <item value="压缩图片" />
+      <item value="is Removable" />
+      <item value="suffix" />
+      <item value="upload/test.jpg does not match" />
+      <item value="encrypt" />
+      <item value="Blob" />
+      <item value="Required if you are updating a file. The blob SHA of the file being replaced." />
+      <item value="Invalid request.\n\n\&quot;sha\&quot; wasn't supplied." />
+      <item value="path cannot end with a slash" />
+      <item value="Monalisa Octocat" />
+      <item value="Problems parsing JSON" />
+      <item value="Parameters" />
+      <item value="repos" />
+      <item value="Required. The email of the author or committer of the commit. You'll receive a 422 status code if name is omitted." />
+      <item value="Required. The name of the author or committer of the commit. You'll receive a 422 status code if name is omitted." />
+      <item value="Both the author and committer parameters have the same keys:" />
+      <item value="Both the author and committer parameters have the same keys" />
+      <item value="The author of the file. Default: The committer or the authenticated user if you omit committer." />
+      <item value="The person that committed the file. Default: the authenticated user." />
+      <item value="Required. The commit message." />
+      <item value="The branch name. Default: the repository’s default branch (usually master)" />
+      <item value="contents" />
+      <item value="What’s this token for?" />
+      <item value="documentation url" />
+      <item value="Denied" />
+      <item value="Granted" />
+      <item value="权限" />
+      <item value="相机" />
+      <item value="相册" />
+      <item value="图片" />
+      <item value="上传" />
+      <item value="Draggable" />
+      <item value="拖拽" />
+      <item value="Omitted" />
+      <item value="create" />
+      <item value="创建" />
+      <item value="单" />
+      <item value="单独的" />
+      <item value="Compilation failed; see the compiler error output for details" />
+      <item value="in the gradle.properties file to run annotation processing in a separate task and make compilation incremental" />
+      <item value="Gradle may disable incremental compilation as the following annotation processors are not incremental: room-compiler-2.1.0.jar (androidx.room:room-compiler:2.1.0)" />
+      <item value="hether items in data set have unique identifiers or not" />
+      <item value="精选" />
+      <item value="records" />
+      <item value="引导" />
+      <item value="use Level" />
+      <item value="折叠" />
+      <item value="写" />
+      <item value="空数据" />
+      <item value="评论" />
+    </histories>
+    <option name="languageScores">
+      <map>
+        <entry key="CHINESE" value="92" />
+        <entry key="ENGLISH" value="93" />
+        <entry key="FRENCH" value="2" />
+      </map>
+    </option>
+  </component>
+</application>
