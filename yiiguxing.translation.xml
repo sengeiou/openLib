@@ -1,6 +1,7 @@
 <application>
   <component name="AppStorage">
     <histories>
+      <item value="当前设备没有相机" />
       <item value="压缩图片" />
       <item value="is Removable" />
       <item value="suffix" />
@@ -50,7 +51,6 @@
       <item value="折叠" />
       <item value="写" />
       <item value="空数据" />
-      <item value="评论" />
     </histories>
     <option name="languageScores">
       <map>
