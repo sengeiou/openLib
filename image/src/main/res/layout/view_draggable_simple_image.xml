@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
 
-    <com.open9527.code.image.picture.dragimageview.PhotoView
+    <com.open9527.code.image.dragimageview.photoview.PhotoView
         android:id="@+id/mDraggableImageViewPhotoView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

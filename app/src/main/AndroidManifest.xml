@@ -42,6 +42,7 @@
         <activity android:name=".samples.androidtojs.WebViewActivity" />
         <activity android:name=".samples.image.ImageActivity" />
         <activity android:name=".samples.image.ImageListActivity" />
+        <activity android:name=".samples.image.CompressPicturesActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

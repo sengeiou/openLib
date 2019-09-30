@@ -6,7 +6,7 @@
     android:background="#000000"
     tools:parentTag="FrameLayout">
 
-    <com.open9527.code.image.picture.dragimageview.view.FixViewPager
+    <com.open9527.code.image.dragimageview.view.FixViewPager
         android:id="@+id/vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
