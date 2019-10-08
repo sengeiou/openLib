@@ -1,4 +1,4 @@
-package com.open9527.code.lib.samples.image;
+package com.open9527.code.image.compression;
 
 import android.os.Environment;
 
@@ -24,7 +24,7 @@ public class CachePathUtils {
         return getCameraCacheDir(fileName);
     }
 
-    public static File getCompressCacheFile() {
+    public static File getCompressCacheFile(String... string) {
         String fileName = "compress_" + getBaseFileNme() + ".jpg";
         return getCameraCacheDir(fileName);
     }

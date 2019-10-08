@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 import com.open9527.code.common.databinding.CommonBindingActivity;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ActivityX5webviewBinding;
-import com.open9527.code.webview.X5WebView;
+//import com.open9527.code.webview.X5WebView;
 
 /**
  * Created by     : open9527
@@ -22,7 +22,7 @@ import com.open9527.code.webview.X5WebView;
  */
 public class WebViewActivity extends CommonBindingActivity<ActivityX5webviewBinding> {
 
-    private X5WebView x5WebView;
+//    private X5WebView x5WebView;
 
     @Override
     public CharSequence bindTitle() {
@@ -41,8 +41,8 @@ public class WebViewActivity extends CommonBindingActivity<ActivityX5webviewBind
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
-        x5WebView = mBinding.webView;
-        x5WebView.loadUrl("https://github.com/open9527");
+//        x5WebView = mBinding.webView;
+//        x5WebView.loadUrl("https://github.com/open9527");
     }
 
     @Override
@@ -57,15 +57,15 @@ public class WebViewActivity extends CommonBindingActivity<ActivityX5webviewBind
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (x5WebView.canGoBack()) {
-                x5WebView.goBack();
-                return true;
-                //退出网页
-            } else {
-                handleFinish();
-            }
-        }
+//        if (keyCode == KeyEvent.KEYCODE_BACK) {
+//            if (x5WebView.canGoBack()) {
+//                x5WebView.goBack();
+//                return true;
+//                //退出网页
+//            } else {
+//                handleFinish();
+//            }
+//        }
         return false;
     }
 
@@ -80,14 +80,14 @@ public class WebViewActivity extends CommonBindingActivity<ActivityX5webviewBind
 
     @Override
     protected void onDestroy() {
-        try {
-            if (x5WebView != null) {
-                x5WebView.destroy();
-                x5WebView = null;
-            }
-        } catch (Exception e) {
-            Log.e("X5WebViewActivity", e.getMessage());
-        }
+//        try {
+//            if (x5WebView != null) {
+//                x5WebView.destroy();
+//                x5WebView = null;
+//            }
+//        } catch (Exception e) {
+//            Log.e("X5WebViewActivity", e.getMessage());
+//        }
         super.onDestroy();
     }
 }

@@ -138,7 +138,7 @@ public class MainActivity extends CommonScreenActivity {
 //        ActivityUtils.startActivity(FragmentActivity.class);
 //        ActivityUtils.startActivity(DataBindingActivity.class);
 //        ActivityUtils.startActivity(WebViewActivity.class);
-//        ActivityUtils.startActivity(ImageActivity.class);
+        ActivityUtils.startActivity(ImageActivity.class);
 //        ActivityUtils.startActivity(ImageListActivity.class);
         ActivityUtils.startActivity(CompressPicturesActivity.class);
 

@@ -1,4 +1,4 @@
-package com.open9527.code.lib.samples.image;
+package com.open9527.code.image.compression;
 
 
 /**
@@ -10,5 +10,5 @@ package com.open9527.code.lib.samples.image;
 public interface CompressResultListener {
     void onCompressSuccess(String imagePath);
 
-    void onCompressFailed(String imagePath, String error);
+    void onCompressFailed(String imagePath, String... error);
 }

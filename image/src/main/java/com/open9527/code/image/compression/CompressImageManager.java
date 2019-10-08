@@ -1,4 +1,4 @@
-package com.open9527.code.lib.samples.image;
+package com.open9527.code.image.compression;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-class CompressImageManager implements CompressImage {
+ public class CompressImageManager implements CompressImage {
     private CompressImageUtil compressImageUtil;//图片压缩工具类
     private ArrayList<Photo> images;//需要压缩的图片集合
     private CompressImage.CompressListener listener;//压缩监听
@@ -72,7 +72,7 @@ class CompressImageManager implements CompressImage {
             }
 
             @Override
-            public void onCompressFailed(String imagePath, String error) {
+            public void onCompressFailed(String imagePath, String... error) {
                 continueCompress(image, false, error);
             }
         });

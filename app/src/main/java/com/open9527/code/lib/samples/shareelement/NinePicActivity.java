@@ -26,7 +26,6 @@ import com.open9527.code.shareelement.transition.ShareElementInfo;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.blankj.utilcode.util.ActivityUtils.startActivity;
 
 /**
  * Created by     : open9527

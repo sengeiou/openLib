@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.provider.MediaStore;
-import android.text.TextUtils;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -15,18 +13,20 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.blankj.utilcode.constant.PermissionConstants;
-import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.IntentUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.ScreenUtils;
+import com.blankj.utilcode.util.TimeUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.UriUtils;
 import com.open9527.code.common.databinding.CommonBindingActivity;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ActivityImageBinding;
+import com.open9527.code.lib.model.CommitterBean;
 import com.open9527.code.lib.model.GitHubFileBean;
+import com.open9527.code.lib.model.RequestGitHubBean;
 import com.open9527.code.lib.utils.CommonUtils;
 import com.open9527.code.network.status.NetStatus;
 
@@ -91,6 +91,8 @@ public class ImageActivity extends CommonBindingActivity<ActivityImageBinding> {
 
     @Override
     public void doBusiness() {
+        CommonUtils.imageLoad(this,mBinding.ivPhoto,"https://github.com/open9527/Images/blob/master/upload/1570526271514-TIM20191008170111.jpg");
+
 
     }
 
@@ -168,12 +170,12 @@ public class ImageActivity extends CommonBindingActivity<ActivityImageBinding> {
     private void getUri(Uri uri) {
         File file = UriUtils.uri2File(uri);
         //触发上传文件
-//        mViewModel.uploadFile(new RequestGitHubBean("Add 测试上传", CommonUtils.File2Base64(file),
-//                        "",
-//                        new CommitterBean("open_9527", "open_9527@163.com"),
-//                        new CommitterBean("open_9527", "open_9527@163.com")),
-//                TimeUtils.getNowMills() + file.getName()
-//        );
+        mViewModel.uploadFile(new RequestGitHubBean("Add 测试上传", CommonUtils.File2Base64(file),
+                        "",
+                        new CommitterBean("open_9527", "open_9527@163.com"),
+                        new CommitterBean("open_9527", "open_9527@163.com")),
+                TimeUtils.getNowMills() + "-" + file.getName()
+        );
         //LogUtils.i(TAG, CommonUtils.File2Base64(file));
     }
 

@@ -1,4 +1,5 @@
-package com.open9527.code.lib.samples.image;
+package com.open9527.code.image.compression;
+
 
 /**
  * Created by     : open9527
@@ -6,7 +7,7 @@ package com.open9527.code.lib.samples.image;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-class CompressConfig {
+public class CompressConfig {
     //最小像素不压缩
     private int unCompressMinPixel = 1000;
     //标准像素不压缩
@@ -103,6 +104,21 @@ class CompressConfig {
 
     public void setShowCompressDialog(boolean showCompressDialog) {
         this.showCompressDialog = showCompressDialog;
+    }
+
+    @Override
+    public String toString() {
+        return "CompressConfig{" +
+                "unCompressMinPixel=" + unCompressMinPixel +
+                ", unCompressNormalPixel=" + unCompressNormalPixel +
+                ", MaxPixel=" + MaxPixel +
+                ", MaxSize=" + MaxSize +
+                ", enableCompressPixel=" + enableCompressPixel +
+                ", enableQualityCompress=" + enableQualityCompress +
+                ", enableReserveRaw=" + enableReserveRaw +
+                ", cacheDir='" + cacheDir + '\'' +
+                ", showCompressDialog=" + showCompressDialog +
+                '}';
     }
 
     public static CompressConfig.Bulider builder() {

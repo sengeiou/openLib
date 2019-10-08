@@ -1,27 +1,37 @@
 package com.open9527.code.lib.samples.image;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.blankj.utilcode.util.ImageUtils;
+import com.blankj.utilcode.constant.PermissionConstants;
+import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.IntentUtils;
 import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.PermissionUtils;
+import com.blankj.utilcode.util.ScreenUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.UriUtils;
 import com.open9527.code.common.databinding.CommonBindingActivity;
+import com.open9527.code.image.compression.CachePathUtils;
+import com.open9527.code.image.compression.CompressConfig;
+import com.open9527.code.image.compression.CompressImage;
+import com.open9527.code.image.compression.CompressImageManager;
 import com.open9527.code.image.compression.Constants;
+import com.open9527.code.image.compression.Photo;
 import com.open9527.code.image.utils.CommonImageUtils;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ActivityCompressPicturesBinding;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by     : open9527
@@ -56,11 +66,11 @@ public class CompressPicturesActivity extends CommonBindingActivity<ActivityComp
                 .setUnCompressMinPixel(1000)
                 .setUnCompressNormalPixel(2000)
                 .setMaxPixel(1200)
-                .setMaxSize(200 * 1024)
+                .setMaxSize(200 * 1024)//200kb
                 .setEnableCompressPixel(true)
                 .setEnableQualityCompress(true)
                 .setEnableReserveRaw(true)
-                .setCacheDir("")
+                .setCacheDir("/CompressCache")
                 .setShowCompressDialog(true)
                 .create();
     }
@@ -75,6 +85,42 @@ public class CompressPicturesActivity extends CommonBindingActivity<ActivityComp
 
     }
 
+
+    private void requesPermission() {
+        PermissionUtils.permission(PermissionConstants.CAMERA, PermissionConstants.STORAGE, PermissionConstants.PHONE)//设置请求权限
+                .rationale(new PermissionUtils.OnRationaleListener() {
+                    @Override
+                    public void rationale(ShouldRequest shouldRequest) {
+//                        shouldRequest.again(true);
+                        //拒绝再次请求
+                        ToastUtils.showShort("拒绝再次请求");
+                    }
+                })
+                .callback(new PermissionUtils.FullCallback() {//设置回调
+                    @Override
+                    public void onGranted(List<String> permissionsGranted) {
+                        //权限确认
+                        ToastUtils.showShort("权限确认");
+                        CommonImageUtils.openAlbum(CompressPicturesActivity.this, Constants.ALBUM_CODE);
+                    }
+
+                    @Override
+                    public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied) {
+                        //权限拒绝
+                        ToastUtils.showShort("权限拒绝");
+                    }
+                })
+                .theme(new PermissionUtils.ThemeCallback() {//配置主题
+                    @Override
+                    public void onActivityCreate(Activity activity) {
+                        ScreenUtils.setFullScreen(activity);
+                    }
+                })
+                .request();//触发请求
+
+    }
+
+
     public void camera(View view) {
         Uri outputUri;
         File file = CachePathUtils.getCameraCacheFile();
@@ -84,7 +130,9 @@ public class CompressPicturesActivity extends CommonBindingActivity<ActivityComp
     }
 
     public void album(View view) {
-        CommonImageUtils.openAlbum(this, Constants.ALBUM_CODE);
+        requesPermission();
+
+
     }
 
     @Override
@@ -98,7 +146,7 @@ public class CompressPicturesActivity extends CommonBindingActivity<ActivityComp
             //相册
             if (data != null) {
                 Uri uri = data.getData();
-                String path = UriUtils.uri2File(uri).getPath();
+                String path = UriUtils.uri2File(uri).getAbsolutePath();
                 preCompress(path);
             }
 
@@ -123,7 +171,7 @@ public class CompressPicturesActivity extends CommonBindingActivity<ActivityComp
 
     @Override
     public void onCompressSuccess(ArrayList<Photo> images) {
-        LogUtils.i(TAG, "图片压缩成功!");
+        LogUtils.i(TAG, "图片压缩成功!" + GsonUtils.toJson(images));
         if (dialog != null && dialog.isShowing()) {
             dialog.dismiss();
         }

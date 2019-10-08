@@ -38,7 +38,7 @@ public class CommonImageUtils {
      * @param logInfo
      */
     public static void showLogInfo(String tag, String logInfo) {
-        Log.i(tag, logInfo);
+        Log.e(tag, logInfo);
     }
 
 
@@ -168,6 +168,5 @@ public class CommonImageUtils {
         progressDialog.show();
         return progressDialog;
     }
-
 
 }

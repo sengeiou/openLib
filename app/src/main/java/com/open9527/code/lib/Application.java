@@ -4,7 +4,7 @@ import android.app.Activity;
 
 import com.billy.android.swipe.SmartSwipeBack;
 import com.open9527.code.common.CommonApplication;
-import com.open9527.code.webview.X5WebUtils;
+//import com.open9527.code.webview.X5WebUtils;
 
 /**
  * Created by     : open9527
@@ -18,7 +18,7 @@ public class Application extends CommonApplication {
     public void onCreate() {
         super.onCreate();
         initSwipeBack();
-        X5WebUtils.init(this, BuildConfig.DEBUG);
+//        X5WebUtils.init(this, BuildConfig.DEBUG);
     }
 
     /**

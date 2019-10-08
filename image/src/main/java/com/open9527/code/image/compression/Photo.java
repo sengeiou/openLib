@@ -1,4 +1,4 @@
-package com.open9527.code.lib.samples.image;
+package com.open9527.code.image.compression;
 
 import java.io.Serializable;
 import java.util.Objects;

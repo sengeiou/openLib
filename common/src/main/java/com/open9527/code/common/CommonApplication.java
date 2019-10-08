@@ -14,6 +14,4 @@ public class CommonApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
     }
-
-
 }
