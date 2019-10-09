@@ -12,10 +12,13 @@ import androidx.annotation.Nullable;
 
 import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.GsonUtils;
+import com.blankj.utilcode.util.ImageUtils;
 import com.blankj.utilcode.util.IntentUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
+import com.blankj.utilcode.util.SDCardUtils;
 import com.blankj.utilcode.util.ScreenUtils;
+import com.blankj.utilcode.util.TimeUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.UriUtils;
 import com.open9527.code.common.databinding.CommonBindingActivity;
@@ -65,8 +68,8 @@ public class CompressPicturesActivity extends CommonBindingActivity<ActivityComp
         compressConfig = CompressConfig.builder()
                 .setUnCompressMinPixel(1000)
                 .setUnCompressNormalPixel(2000)
-                .setMaxPixel(1200)
-                .setMaxSize(200 * 1024)//200kb
+                .setMaxPixel(1000)
+                .setMaxSize(150 * 1024)//kb
                 .setEnableCompressPixel(true)
                 .setEnableQualityCompress(true)
                 .setEnableReserveRaw(true)
@@ -132,8 +135,17 @@ public class CompressPicturesActivity extends CommonBindingActivity<ActivityComp
     public void album(View view) {
         requesPermission();
 
+    }
+
+    public void compres(View view) {
+        ArrayList<Photo> photos = new ArrayList<>();
+        photos.add(new Photo("/storage/emulated/0/DCIM/Camera/IMG_20191008_170336.jpg"));
+        photos.add(new Photo("/storage/emulated/0/DCIM/Camera/IMG_20190903_162027.jpg"));
+        photos.add(new Photo("/storage/emulated/0/DCIM/Camera/IMG_20190903_162027.jpg"));
+        if (!photos.isEmpty()) compress(photos);
 
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -179,6 +191,7 @@ public class CompressPicturesActivity extends CommonBindingActivity<ActivityComp
 
     @Override
     public void onCompressFailed(ArrayList<Photo> images, String... error) {
+        LogUtils.i(TAG, "图片压缩失败!" + GsonUtils.toJson(images));
         if (error.length > 0) {
             LogUtils.i(TAG, error[0]);
         }

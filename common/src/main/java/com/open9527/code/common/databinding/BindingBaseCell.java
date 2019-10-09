@@ -9,14 +9,9 @@ import android.view.ViewGroup;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ObservableField;
 import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.blankj.utilcode.util.LogUtils;
-import com.open9527.code.common.databinding.adapter.DataBindRvAdapter;
-import com.open9527.code.common.recycleview.BaseCellAdapter;
-import com.open9527.code.common.recycleview.holder.ItemViewHolder;
 
 /**
  * Created by     : open9527
@@ -28,7 +23,6 @@ public abstract class BindingBaseCell<T extends BindingBaseCell> {
     protected final String TAG = getClass().getSimpleName();
     private static final SparseIntArray LAYOUT_SPARSE_ARRAY = new SparseIntArray();
     private static final SparseArray<View> VIEW_SPARSE_ARRAY = new SparseArray<>();
-
     static BindingItemViewHolder<ViewDataBinding> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         int layoutByType = LAYOUT_SPARSE_ARRAY.get(viewType, -1);
         if (layoutByType != -1) {
@@ -43,6 +37,7 @@ public abstract class BindingBaseCell<T extends BindingBaseCell> {
         }
         throw new RuntimeException("onCreateViewHolder: get holder from view type failed.");
     }
+
 
     public abstract void bind(@NonNull final BindingItemViewHolder holder, final int position);
 
@@ -65,6 +60,8 @@ public abstract class BindingBaseCell<T extends BindingBaseCell> {
         viewType = getViewTypeByView(view);
         VIEW_SPARSE_ARRAY.put(viewType, view);
     }
+
+
 
     public int getViewType() {
         return viewType;

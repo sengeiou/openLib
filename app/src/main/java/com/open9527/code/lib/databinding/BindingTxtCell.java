@@ -7,6 +7,7 @@ import androidx.databinding.ObservableField;
 
 import com.open9527.code.common.databinding.BindingBaseCell;
 import com.open9527.code.common.databinding.BindingItemViewHolder;
+import com.open9527.code.common.recycleview.holder.ItemViewHolder;
 import com.open9527.code.lib.R;
 
 /**
@@ -24,6 +25,7 @@ public class BindingTxtCell extends BindingBaseCell<BindingTxtCell> {
         this.string = string;
     }
 
+
     @Override
     public void bind(@NonNull BindingItemViewHolder holder, int position) {
         ItemBindTxtBinding itemBindTxtBinding = (ItemBindTxtBinding) holder.mBinding;
@@ -36,6 +38,12 @@ public class BindingTxtCell extends BindingBaseCell<BindingTxtCell> {
                 observableField.set("点击");
             }
         });
+//        holder.setOnItemClickListener(new ItemViewHolder.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(View view, int position) {
+//                observableField.set("点击");
+//            }
+//        });
 
     }
 }

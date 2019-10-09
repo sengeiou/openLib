@@ -47,7 +47,7 @@ public class DataBindingActivity extends CommonBindingActivity<ActivityDatabindi
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
         mBinding.rvList.setLayoutManager(new LinearLayoutManager(this));
-        BindingBaseCellAdapter bindingBaseCellAdapter = new BindingBaseCellAdapter<>(true);
+        BindingBaseCellAdapter bindingBaseCellAdapter = new BindingBaseCellAdapter<>();
         mBinding.rvList.setAdapter(bindingBaseCellAdapter);
         for (int i = 0; i < 10; i++) {
             BindingTxtCell bindingTxtCell = new BindingTxtCell(string + i);

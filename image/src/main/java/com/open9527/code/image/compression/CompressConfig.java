@@ -15,7 +15,7 @@ public class CompressConfig {
     //长宽不超过最大像素(单位px)
     private int MaxPixel = 1200;
     //压缩到的最大大小(单位B)
-    private int MaxSize = 2 * 1024;
+    private int MaxSize = 200 * 1024;
     //是否启用像素压缩
     private boolean enableCompressPixel = true;
     //是否启用质量压缩
@@ -25,7 +25,7 @@ public class CompressConfig {
     //压缩后缓存图片目录,非文件路径
     private String cacheDir;
     //是否显示压缩进度条
-    private boolean showCompressDialog;
+    private boolean showCompressDialog = true;
 
     public static CompressConfig getDefaultConfig() {
         return new CompressConfig();
@@ -146,7 +146,7 @@ public class CompressConfig {
         //长宽不超过最大像素(单位px)
         private int MaxPixel = 1200;
         //压缩到的最大大小(单位B)
-        private int MaxSize = 2 * 1024;
+        private int MaxSize = 200 * 1024;
         //是否启用像素压缩
         private boolean enableCompressPixel = true;
         //是否启用质量压缩

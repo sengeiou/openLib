@@ -23,7 +23,7 @@ import java.util.List;
  */
 public class BindingBaseCellAdapter<Item extends BindingBaseCell> extends RecyclerView.Adapter<BindingItemViewHolder> {
 
-    public List<Item> mItems =new ArrayList<>();
+    public List<Item> mItems = new ArrayList<>();
 
     public BindingBaseCellAdapter() {
         this(false);
@@ -32,6 +32,7 @@ public class BindingBaseCellAdapter<Item extends BindingBaseCell> extends Recycl
     public BindingBaseCellAdapter(boolean hasStableIds) {
         setHasStableIds(hasStableIds);
     }
+
 
     @Override
     public final int getItemViewType(int position) {

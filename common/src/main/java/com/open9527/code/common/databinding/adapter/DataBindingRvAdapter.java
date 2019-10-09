@@ -28,7 +28,7 @@ import java.util.List;
  * DESC :描述文件.
  */
 
-public class DataBindRvAdapter<T> extends RecyclerView.Adapter<DataBindRvAdapter.RVViewHolder> {
+public class DataBindingRvAdapter<T> extends RecyclerView.Adapter<DataBindingRvAdapter.RVViewHolder> {
     private int variableId;
     private int layoutId;
 
@@ -77,7 +77,7 @@ public class DataBindRvAdapter<T> extends RecyclerView.Adapter<DataBindRvAdapter
         this.bindCreate = bindCreate;
     }
 
-    public DataBindRvAdapter(Context context, @LayoutRes int layoutId, int variableId) {
+    public DataBindingRvAdapter(Context context, @LayoutRes int layoutId, int variableId) {
         this.context = context;
         this.list = new ArrayList<>();
         event = new SparseArray<>();
@@ -87,7 +87,7 @@ public class DataBindRvAdapter<T> extends RecyclerView.Adapter<DataBindRvAdapter
         this.variableId = variableId;
     }
 
-    public DataBindRvAdapter(Context context, int variableId, ViewMap<T> viewMap) {
+    public DataBindingRvAdapter(Context context, int variableId, ViewMap<T> viewMap) {
         this.context = context;
         this.list = new ArrayList<>();
         event = new SparseArray<>();
@@ -148,7 +148,7 @@ public class DataBindRvAdapter<T> extends RecyclerView.Adapter<DataBindRvAdapter
 
 
     @Override
-    public DataBindRvAdapter.RVViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public DataBindingRvAdapter.RVViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RVViewHolder hold = new RVViewHolder(DataBindingUtil.inflate(LayoutInflater.from(context), viewType, parent, false));
         if (bindCreate != null) {
             bindCreate.change(hold.binding);
@@ -156,7 +156,7 @@ public class DataBindRvAdapter<T> extends RecyclerView.Adapter<DataBindRvAdapter
         return hold;
     }
 
-    public void onBindViewHolder(@NonNull DataBindRvAdapter.RVViewHolder holder, int position, @NonNull List<Object> payloads) {
+    public void onBindViewHolder(@NonNull DataBindingRvAdapter.RVViewHolder holder, int position, @NonNull List<Object> payloads) {
         if (payloads.size() > 0) {
             holder.payloadsBindTo(list.get(position));
             if (payloadsbindTo != null) {
@@ -167,7 +167,7 @@ public class DataBindRvAdapter<T> extends RecyclerView.Adapter<DataBindRvAdapter
         }
     }
 
-    public void onBindViewHolder(@NonNull DataBindRvAdapter.RVViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull DataBindingRvAdapter.RVViewHolder holder, int position) {
         holder.bindTo(list.get(position));
         if (bindTo != null) {
             bindTo.bindTo(holder.binding, list.get(position));

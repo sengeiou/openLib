@@ -19,10 +19,7 @@ import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.AdaptScreenUtils;
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ColorUtils;
-import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.LogUtils;
-import com.blankj.utilcode.util.ResourceUtils;
-import com.blankj.utilcode.util.ThreadUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.open9527.code.common.activity.CommonScreenActivity;
 import com.open9527.code.common.recycleview.decoration.DividerItemDecoration;
@@ -32,9 +29,6 @@ import com.open9527.code.image.imageload.ImageLoadManger;
 import com.open9527.code.lib.databinding.DataBindingActivity;
 import com.open9527.code.lib.model.EntryBean;
 import com.open9527.code.lib.samples.ExpandTextViewActivity;
-import com.open9527.code.lib.samples.androidtojs.WebViewActivity;
-import com.open9527.code.lib.samples.coordinatorlayout.CoordinatorActivity;
-import com.open9527.code.lib.samples.coordinatorlayout.CoordinatorLayoutActivity;
 import com.open9527.code.lib.samples.image.CompressPicturesActivity;
 import com.open9527.code.lib.samples.image.ImageActivity;
 import com.open9527.code.lib.samples.image.ImageListActivity;
@@ -45,8 +39,6 @@ import com.open9527.code.lib.samples.shareelement.ShareElementActivity;
 import com.open9527.code.lib.samples.tablayout.TabLayoutActivity;
 import com.open9527.code.lib.utils.CommonUtils;
 import com.open9527.code.network.status.NetStatus;
-
-import java.io.File;
 import java.util.List;
 
 /**
@@ -136,10 +128,10 @@ public class MainActivity extends CommonScreenActivity {
 //        ActivityUtils.startActivity(CoordinatorLayoutActivity.class);
 //        ActivityUtils.startActivity(CoordinatorActivity.class);
 //        ActivityUtils.startActivity(FragmentActivity.class);
-//        ActivityUtils.startActivity(DataBindingActivity.class);
+        ActivityUtils.startActivity(DataBindingActivity.class);
 //        ActivityUtils.startActivity(WebViewActivity.class);
         ActivityUtils.startActivity(ImageActivity.class);
-//        ActivityUtils.startActivity(ImageListActivity.class);
+        ActivityUtils.startActivity(ImageListActivity.class);
         ActivityUtils.startActivity(CompressPicturesActivity.class);
 
     }
