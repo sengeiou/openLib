@@ -1,7 +1,5 @@
 package com.open9527.code.common.activity;
 
-import android.graphics.Color;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
@@ -9,11 +7,8 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import androidx.annotation.LayoutRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.Group;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
 import com.blankj.utilcode.util.BarUtils;
@@ -46,6 +41,7 @@ public abstract class CommonTitleActivity extends CommonScreenActivity {
     protected FrameLayout mContentView;
     protected ViewStub mTitleViewStub;
     protected ViewStub mContentViewStub;
+
     @Override
     public void setRootLayout(@LayoutRes int layoutId) {
         super.setRootLayout(R.layout.common_activity_title);
@@ -76,7 +72,7 @@ public abstract class CommonTitleActivity extends CommonScreenActivity {
         BarUtils.setStatusBarLightMode(this, true);
         BarUtils.setStatusBarColor(mActivity, ColorUtils.getColor(R.color.color_fff))
                 .setBackgroundResource(R.drawable.common_bar_bg);
-        BarUtils.addMarginTopEqualStatusBarHeight(mAppBarLayout);
+        BarUtils.addMarginTopEqualStatusBarHeight(mCoordinatorLayout);
     }
 
 

@@ -50,6 +50,10 @@ public class ImageLoadConfig {
         this.height = height;
     }
 
+    public ImageLoadConfig(int failRes) {
+        this(0, failRes, 0, RoundedCornersTransformation.CornerType.ALL, ImageView.ScaleType.FIT_CENTER, DiskCacheStrategy.AUTOMATIC, false, false, -1, -1);
+    }
+
     public ImageLoadConfig(int defaultRes, int failRes) {
         this(defaultRes, failRes, 0, RoundedCornersTransformation.CornerType.ALL, ImageView.ScaleType.FIT_CENTER, DiskCacheStrategy.AUTOMATIC, false, false, -1, -1);
     }

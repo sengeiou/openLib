@@ -13,13 +13,14 @@ import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+
 /**
  * Created by     : open9527
  * Created times  : on 2019/8/22 17:55.
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public abstract class BindingBaseCell<T extends BindingBaseCell> {
+public abstract class BindingBaseCell<T extends BindingBaseCell>  {
     protected final String TAG = getClass().getSimpleName();
     private static final SparseIntArray LAYOUT_SPARSE_ARRAY = new SparseIntArray();
     private static final SparseArray<View> VIEW_SPARSE_ARRAY = new SparseArray<>();

@@ -28,6 +28,20 @@ import java.io.File;
  * DESC :描述文件.
  */
 public class CommonImageUtils {
+
+
+
+
+    /**
+     * 方便看日志
+     *
+     * @param tag
+     * @param logInfo
+     */
+    public static void showLogInfo(String tag, String logInfo) {
+        Log.e(tag, logInfo);
+    }
+
     /**
      * 判断SD卡是否可用
      *
@@ -46,16 +60,6 @@ public class CommonImageUtils {
         return Build.VERSION.SDK_INT >= 29;
     }
 
-
-    /**
-     * 方便看日志
-     *
-     * @param tag
-     * @param logInfo
-     */
-    public static void showLogInfo(String tag, String logInfo) {
-        Log.e(tag, logInfo);
-    }
 
 
     /**

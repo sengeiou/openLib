@@ -26,12 +26,8 @@ import com.open9527.code.common.recycleview.decoration.DividerItemDecoration;
 import com.open9527.code.common.recycleview.holder.ItemViewHolder;
 import com.open9527.code.image.imageload.ImageLoadConfig;
 import com.open9527.code.image.imageload.ImageLoadManger;
-import com.open9527.code.lib.databinding.DataBindingActivity;
 import com.open9527.code.lib.model.EntryBean;
 import com.open9527.code.lib.samples.ExpandTextViewActivity;
-import com.open9527.code.lib.samples.image.CompressPicturesActivity;
-import com.open9527.code.lib.samples.image.ImageActivity;
-import com.open9527.code.lib.samples.image.ImageListActivity;
 import com.open9527.code.lib.samples.shareelement.NinePicActivity;
 import com.open9527.code.lib.samples.shareelement.PreviewActivity;
 import com.open9527.code.lib.samples.SamplesActivity;
@@ -56,7 +52,6 @@ public class MainActivity extends CommonScreenActivity {
         BarUtils.setStatusBarLightMode(this, true);
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mViewModel.getEntryInfo();
-
     }
 
     @Override
@@ -128,11 +123,12 @@ public class MainActivity extends CommonScreenActivity {
 //        ActivityUtils.startActivity(CoordinatorLayoutActivity.class);
 //        ActivityUtils.startActivity(CoordinatorActivity.class);
 //        ActivityUtils.startActivity(FragmentActivity.class);
-        ActivityUtils.startActivity(DataBindingActivity.class);
+//        ActivityUtils.startActivity(DataBindingActivity.class);
 //        ActivityUtils.startActivity(WebViewActivity.class);
-        ActivityUtils.startActivity(ImageActivity.class);
-        ActivityUtils.startActivity(ImageListActivity.class);
-        ActivityUtils.startActivity(CompressPicturesActivity.class);
+//        ActivityUtils.startActivity(ImageActivity.class);
+//        ActivityUtils.startActivity(ImageListActivity.class);
+//        ActivityUtils.startActivity(CompressPicturesActivity.class);
+        ActivityUtils.startActivity(LaunchActivity.class);
 
     }
 

@@ -9,4 +9,5 @@ package com.open9527.code.image.compression;
 public class Constants {
     public static final int CAMERA_CODE = 9527;
     public static final int ALBUM_CODE = 9528;
+    public static final int OTHERS_CODE = 9529;
 }

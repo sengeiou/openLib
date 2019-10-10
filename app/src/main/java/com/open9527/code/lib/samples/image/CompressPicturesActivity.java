@@ -134,7 +134,6 @@ public class CompressPicturesActivity extends CommonBindingActivity<ActivityComp
 
     public void album(View view) {
         requesPermission();
-
     }
 
     public void compres(View view) {
@@ -143,7 +142,6 @@ public class CompressPicturesActivity extends CommonBindingActivity<ActivityComp
         photos.add(new Photo("/storage/emulated/0/DCIM/Camera/IMG_20190903_162027.jpg"));
         photos.add(new Photo("/storage/emulated/0/DCIM/Camera/IMG_20190903_162027.jpg"));
         if (!photos.isEmpty()) compress(photos);
-
     }
 
 

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <com.open9527.code.customview.SquareConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/color_fff">
+
+        <ImageView
+            android:id="@+id/iv_images"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/common_image_placeholder" />
+
+
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="@dimen/pt_50"
+            android:layout_height="@dimen/pt_50"
+            android:indeterminateBehavior="repeat"
+            android:indeterminateDrawable="@drawable/image_anima_loading"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_images"
+            app:layout_constraintEnd_toEndOf="@+id/iv_images"
+            app:layout_constraintStart_toStartOf="@+id/iv_images"
+            app:layout_constraintTop_toTopOf="@+id/iv_images" />
+
+
+    </com.open9527.code.customview.SquareConstraintLayout>
+</layout>

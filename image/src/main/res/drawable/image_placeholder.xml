@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <size
+                android:width="300dp"
+                android:height="300dp">
+
+            </size>
+            <solid android:color="#999">
+
+            </solid>
+        </shape>
+    </item>
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@mipmap/image_icon_placeholder">
+
+        </bitmap>
+    </item>
+</layer-list>

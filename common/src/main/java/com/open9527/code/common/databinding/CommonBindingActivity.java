@@ -1,5 +1,6 @@
 package com.open9527.code.common.databinding;
 
+import android.annotation.SuppressLint;
 import android.view.View;
 
 import androidx.databinding.DataBindingUtil;
@@ -17,12 +18,15 @@ import com.open9527.code.common.activity.CommonTitleActivity;
 public abstract class CommonBindingActivity<D extends ViewDataBinding> extends CommonTitleActivity {
     protected D mBinding;
 
+    @SuppressLint("ResourceType")
     @Override
     public void setRootLayout(int layoutId) {
+        if (layoutId <= 0) return;
         super.setRootLayout(layoutId);
         //mBinding
         mBinding = DataBindingUtil.bind(getBindView());
     }
+
     /**
      * 获取 bindingView
      *

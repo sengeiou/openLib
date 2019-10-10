@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 
-import com.open9527.code.image.utils.CommonImageUtils;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -21,10 +20,6 @@ import java.io.OutputStream;
  */
 public class BitmapUtils {
     private static final String TAG = "BitmapUtils";
-
-    private BitmapUtils() {
-        throw new UnsupportedOperationException("u can't instantiate me...");
-    }
 
     /**
      * Return bitmap.
@@ -223,6 +218,7 @@ public class BitmapUtils {
             return (int) Math.ceil(longSide / (1280.0 / scale));
         }
     }
+
     /**
      * Return the size of bitmap.
      *
