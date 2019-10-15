@@ -2,6 +2,7 @@ package com.open9527.code.image.dragimageview;
 
 import android.content.Context;
 import android.graphics.Rect;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -30,18 +31,19 @@ public class DraggableImageViewerHelper {
      *
      * @param context
      * @param view
-     * @param info
+     * @param url
      * @param index
      */
-    public static void showImages(Context context, View view, ImageInfo info, int index) {
-        if (null == info) {
+    public static void showImages(Context context, View view, String url, int index) {
+        if (null == url || TextUtils.isEmpty(url)) {
             return;
         }
+        ImageInfo imageInfo = new ImageInfo(url);
         ArrayList<DraggableImageInfo> draggableImageInfos = new ArrayList<>();
         if (view != null) {
-            draggableImageInfos.add(createImageDraggableParamsWithWHRadio(view, info.getOriginUrl(), info.getThumbnailUrl(), info.getImgSize()));
+            draggableImageInfos.add(createImageDraggableParamsWithWHRadio(view, imageInfo.getOriginUrl(), imageInfo.getThumbnailUrl(), imageInfo.getImgSize()));
         } else {
-            draggableImageInfos.add(createImageDraggableParamsWithWHRadio(null, info.getOriginUrl(), info.getThumbnailUrl(), info.getImgSize()));
+            draggableImageInfos.add(createImageDraggableParamsWithWHRadio(null, imageInfo.getOriginUrl(), imageInfo.getThumbnailUrl(), imageInfo.getImgSize()));
         }
         ImagesViewerActivity.start(context, draggableImageInfos, index);
     }
@@ -52,16 +54,17 @@ public class DraggableImageViewerHelper {
      *
      * @param context
      * @param views
-     * @param imageInfos
+     * @param urlList
      * @param index
      */
-    public static void showImages(Context context, List<View> views, List<ImageInfo> imageInfos, int index) {
-        if (null == imageInfos || imageInfos.size() == 0) {
+    public static void showImages(Context context, List<View> views, List<String> urlList, int index) {
+        if (null == urlList || urlList.size() == 0) {
             return;
         }
+        List<ImageInfo> imageInfoList = getImageInfoList(urlList);
         ArrayList<DraggableImageInfo> draggableImageInfos = new ArrayList<>();
-        for (int i = 0; i < imageInfos.size(); i++) {
-            ImageInfo info = imageInfos.get(i);
+        for (int i = 0; i < imageInfoList.size(); i++) {
+            final ImageInfo info = imageInfoList.get(i);
             if (views != null && i < views.size()) {
                 draggableImageInfos.add(createImageDraggableParamsWithWHRadio(views.get(i), info.getOriginUrl(), info.getThumbnailUrl(), info.getImgSize()));
             } else {
@@ -76,12 +79,12 @@ public class DraggableImageViewerHelper {
      *
      * @param context
      * @param recycleView
-     * @param imageInfos
+     * @param urlList
      * @param index
      */
 
-    public static void showImages(Context context, RecyclerView recycleView, int ivIds, List<ImageInfo> imageInfos, int index) {
-        if (null == imageInfos || imageInfos.size() == 0) {
+    public static void showImages(Context context, RecyclerView recycleView, int ivIds, List<String> urlList, int index) {
+        if (null == urlList || urlList.size() == 0) {
             return;
         }
         List<View> views = new ArrayList<>();
@@ -90,7 +93,7 @@ public class DraggableImageViewerHelper {
             View view = recycleView.getChildAt(i).findViewById(ivIds);
             views.add(view);
         }
-        showImages(context, views, imageInfos, index);
+        showImages(context, views, urlList, index);
     }
 
 
@@ -119,5 +122,20 @@ public class DraggableImageViewerHelper {
         }
         draggableInfo.adjustImageUrl();
         return draggableInfo;
+    }
+
+    /**
+     * 创建 List<ImageInfo> 集合
+     *
+     * @param urlList
+     * @return
+     */
+    private static List<ImageInfo> getImageInfoList(List<String> urlList) {
+        List<ImageInfo> result = new ArrayList<>();
+        for (int i = 0; i < urlList.size(); i++) {
+            final String url = urlList.get(i);
+            result.add(new ImageInfo(url));
+        }
+        return result;
     }
 }

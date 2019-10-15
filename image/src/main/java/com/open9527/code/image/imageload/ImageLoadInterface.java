@@ -20,20 +20,7 @@ public interface ImageLoadInterface {
      * @param config                    配置参数
      * @param imageLoadProcessInterface 加载过程监听
      */
-    default void display(Context mContext, final ImageView view, String url, ImageLoadConfig config, ImageLoadProcessInterface imageLoadProcessInterface) {
-
-    }
-
-    /**
-     * 加载bitmap
-     *
-     * @param mContext
-     * @param view
-     * @param bitmap
-     * @param config
-     * @param imageLoadProcessInterface
-     */
-    default void display(Context mContext, final ImageView view, Bitmap bitmap, ImageLoadConfig config, ImageLoadProcessInterface imageLoadProcessInterface) {
+    default void display(Context mContext, final ImageView view, Object url, ImageLoadConfig config, ImageLoadProcessInterface imageLoadProcessInterface) {
 
     }
 

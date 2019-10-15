@@ -7,7 +7,12 @@ package com.open9527.code.common.interfaces;
  * DESC :描述文件.
  */
 public interface ILoadData<T> {
-    default void loadComplete(T t) {
 
+    /**
+     * 配置接口回调数据
+     * @param t
+     */
+
+    default void loadComplete(T t) {
     }
 }

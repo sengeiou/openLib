@@ -7,6 +7,7 @@ import androidx.annotation.IdRes;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.open9527.code.common.R;
+import com.open9527.code.common.recycleview.interfaces.ICellClickListener;
 
 /**
  * Created by     : open9527
@@ -14,7 +15,7 @@ import com.open9527.code.common.R;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+public class ItemViewHolder extends RecyclerView.ViewHolder {
 
     private SparseArray<View> viewArray = new SparseArray<>();
 
@@ -28,39 +29,14 @@ public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnCl
      * 配置是否添加点击事件
      *
      * @param itemView
-     * @param isClick     点击
-     * @param isLongClick 长按
      */
-    public ItemViewHolder(View itemView, boolean isClick, boolean isLongClick) {
+    public ItemViewHolder(View itemView, OnItemClickListener onItemClickListener) {
         super(itemView);
         // fix databinding tag问题
         itemView.setTag(R.id.rv_holder_item_id, this);
-        if (isClick) {
-            itemView.setOnClickListener(this);
-        }
-        if (isLongClick) {
-            itemView.setOnLongClickListener(this);
-        }
-    }
-
-
-    @Override
-    public void onClick(View view) {
-        if (onItemClickListener != null) {
-            onItemClickListener.onItemClick(view, getAdapterPosition());
-        }
-
     }
 
     protected OnItemClickListener onItemClickListener;
-
-    @Override
-    public boolean onLongClick(View view) {
-        if (onItemClickListener != null) {
-            onItemClickListener.onItemLongClick(view, getAdapterPosition());
-        }
-        return false;
-    }
 
     public interface OnItemClickListener {
         default void onItemClick(View view, int position) {

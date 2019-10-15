@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.widget.ImageView;
@@ -47,7 +49,7 @@ public class GlideImageLoad implements ImageLoadInterface {
      * @param imageLoadProcessInterface 加载过程监听
      */
     @SuppressLint("CheckResult")
-    public void display(Context mContext, final ImageView imageView, final String url, final ImageLoadConfig config, final ImageLoadProcessInterface imageLoadProcessInterface) {
+    public void display(Context mContext, final ImageView imageView, final Object url, final ImageLoadConfig config, final ImageLoadProcessInterface imageLoadProcessInterface) {
         if (mContext == null) {
             CommonImageUtils.showLogInfo(TAG, " mContext is null");
             return;
@@ -63,7 +65,7 @@ public class GlideImageLoad implements ImageLoadInterface {
             }
         }
         try {
-            if ((config == null || config.defaultRes <= 0) && TextUtils.isEmpty(url)) {
+            if ((config == null || config.defaultRes <= 0) && url == null) {
                 CommonImageUtils.showLogInfo(TAG, " url is null and config is null");
                 return;
             }
@@ -75,15 +77,18 @@ public class GlideImageLoad implements ImageLoadInterface {
                 if (config.failRes > 0) {
                     requestOptions.error(config.failRes);
                 }
-                if (config.scaleType != null) {
-                    if (ImageView.ScaleType.CENTER_CROP == config.scaleType) {
-                        requestOptions.centerCrop();
-                    } else {
-                        requestOptions.fitCenter();
-                    }
-                } else {
-                    requestOptions.fitCenter();
-                }
+                //
+                // requestOptions.fallback(new ColorDrawable(Color.GRAY));
+
+//                if (config.scaleType != null) {
+//                    if (ImageView.ScaleType.FIT_CENTER == config.scaleType) {
+//                        requestOptions.fitCenter();
+//                    } else {
+//                        requestOptions.centerCrop();
+//                    }
+//                } else {
+//                    requestOptions.centerCrop();
+//                }
                 if (config.radius > 0) {
                     requestOptions.apply(bitmapTransform(new MultiTransformation<>(new CenterCrop(), new RoundedCornersTransformation(config.radius, 0, config.cornerType))));
                 }
@@ -94,6 +99,10 @@ public class GlideImageLoad implements ImageLoadInterface {
                 //仅从缓存加载图片
                 requestOptions.onlyRetrieveFromCache(config.onlyRetrieveFromCache);
 
+
+            } else {
+                //fallback
+                requestOptions.fallback(new ColorDrawable(Color.GRAY));
             }
             ImageViewTarget simpleTarget = new BitmapImageViewTarget(imageView) {
                 @Override
@@ -141,144 +150,29 @@ public class GlideImageLoad implements ImageLoadInterface {
                     }
                 }
             };
-            loadByUrl(context, url, simpleTarget, requestOptions);
+            load(context, url, simpleTarget, requestOptions);
         } catch (Exception e) {
             e.printStackTrace();
             CommonImageUtils.showLogInfo(TAG, "Exception-->" + e.getMessage());
         }
 
     }
-
-    private void loadByUrl(Context context, String url, ImageViewTarget simpleTarget, RequestOptions requestOptions) {
-        GlideApp.with(context)
-                .asBitmap()
-                .load(url)
-                .apply(requestOptions)
-                .into(simpleTarget);
-    }
-
 
     /**
-     * glide加载 bitmap图片
+     * Glide 加载图片
      *
-     * @param mContext
-     * @param imageView
-     * @param bitmap
-     * @param config
-     * @param imageLoadProcessInterface
+     * @param context
+     * @param object
+     * @param simpleTarget
+     * @param requestOptions
      */
-    @SuppressLint("CheckResult")
-    @Override
-    public void display(Context mContext, ImageView imageView, Bitmap bitmap, ImageLoadConfig config, ImageLoadProcessInterface imageLoadProcessInterface) {
-        if (mContext == null) {
-            CommonImageUtils.showLogInfo(TAG, " mContext is null");
-            return;
-        }
-        if (imageView == null) {
-            CommonImageUtils.showLogInfo(TAG, " imageView is null");
-            return;
-        }
-        Context context = imageView.getContext();
-        if (context instanceof Activity) {
-            if (((Activity) context).isFinishing()) {//activity是否结束
-                return;
-            }
-        }
-        try {
-            if ((config == null || config.defaultRes <= 0) && bitmap == null) {
-                CommonImageUtils.showLogInfo(TAG, " url is null and config is null");
-                return;
-            }
-            RequestOptions requestOptions = new RequestOptions();
-            if (config != null) {
-                if (config.defaultRes > 0) {
-                    //new BitmapDrawable(imageView.getResources(), bitmap)
-                    requestOptions.placeholder(config.defaultRes);
-                }
-                if (config.failRes > 0) {
-                    requestOptions.error(config.failRes);
-                }
-                if (config.scaleType != null) {
-                    if (ImageView.ScaleType.CENTER_CROP == config.scaleType) {
-                        requestOptions.centerCrop();
-                    } else {
-                        requestOptions.fitCenter();
-                    }
-                } else {
-                    requestOptions.fitCenter();
-                }
-                if (config.radius > 0) {
-                    requestOptions.apply(bitmapTransform(new MultiTransformation<>(new CenterCrop(), new RoundedCornersTransformation(config.radius, 0, config.cornerType))));
-                }
-                //配置缓存模式
-                requestOptions.diskCacheStrategy(config.diskCacheStrategy);
-                //是否跳过缓存
-                requestOptions.skipMemoryCache(config.skipMemoryCache);
-                //仅从缓存加载图片
-                requestOptions.onlyRetrieveFromCache(config.onlyRetrieveFromCache);
-
-            }
-            ImageViewTarget simpleTarget = new BitmapImageViewTarget(imageView) {
-                @Override
-                public void onLoadStarted(Drawable placeholder) {
-                    super.onLoadStarted(placeholder);
-//                    Log.i(TAG, " onLoadStarted");
-                    if (imageLoadProcessInterface != null) {
-                        imageLoadProcessInterface.onLoadStarted();
-                    }
-                }
-
-                @Override
-                public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                    super.onResourceReady(resource, transition);
-//                    Log.i(TAG, " onResourceReady");
-                    if (imageLoadProcessInterface != null) {
-                        imageLoadProcessInterface.onResourceReady();
-                    }
-                }
-
-                @Override
-                public void onLoadFailed(@Nullable Drawable errorDrawable) {
-                    super.onLoadFailed(errorDrawable);
-                    CommonImageUtils.showLogInfo(TAG, " onLoadFailed");
-                    if (imageLoadProcessInterface != null) {
-                        imageLoadProcessInterface.onLoadFailed();
-                    }
-                }
-
-                @Override
-                public void onLoadCleared(Drawable placeholder) {
-                    super.onLoadCleared(placeholder);
-//                    Log.i(TAG, " onLoadCleared");
-                    if (imageLoadProcessInterface != null) {
-                        imageLoadProcessInterface.onLoadCleared();
-                    }
-                }
-
-                @Override
-                public void getSize(@NonNull SizeReadyCallback sizeReadyCallback) {
-                    if (config != null && config.width >= 0 && config.height >= 0)
-                        sizeReadyCallback.onSizeReady(config.width, config.height);
-                    else {
-                        super.getSize(sizeReadyCallback);
-                    }
-                }
-            };
-            loadByBitmap(context, bitmap, simpleTarget, requestOptions);
-        } catch (Exception e) {
-            e.printStackTrace();
-            CommonImageUtils.showLogInfo(TAG, "Exception-->" + e.getMessage());
-        }
-    }
-
-    private void loadByBitmap(Context context, Bitmap bitmap, ImageViewTarget simpleTarget, RequestOptions requestOptions) {
+    private void load(Context context, Object object, ImageViewTarget simpleTarget, RequestOptions requestOptions) {
         GlideApp.with(context)
                 .asBitmap()
-                .load(bitmap)
+                .load(object)
                 .apply(requestOptions)
                 .into(simpleTarget);
     }
-
 
     /**
      * 恢复加载图片

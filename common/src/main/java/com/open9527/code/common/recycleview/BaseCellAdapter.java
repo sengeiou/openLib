@@ -1,13 +1,17 @@
 package com.open9527.code.common.recycleview;
 
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.blankj.utilcode.util.ClickUtils;
 import com.open9527.code.common.recycleview.holder.ItemViewHolder;
+import com.open9527.code.common.recycleview.interfaces.ICellClickListener;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -20,14 +24,26 @@ import java.util.List;
  */
 public class BaseCellAdapter<Item extends BaseCell> extends RecyclerView.Adapter<ItemViewHolder> {
 
-    public List<Item> mItems;
+    public List<Item> mItems = new ArrayList<>();
+    ;
+
+    private boolean hasClick = true;
 
     public BaseCellAdapter() {
-        this(false);
+        this(false, true);
     }
 
-    public BaseCellAdapter(boolean hasStableIds) {
-        setHasStableIds(hasStableIds);
+    public BaseCellAdapter(boolean hasClick) {
+        this(false, hasClick);
+    }
+
+    public BaseCellAdapter(boolean... booleans) {
+        if (booleans.length > 0) {
+            setHasStableIds(booleans[0]);
+            if (booleans.length > 1) {
+                this.hasClick = booleans[1];
+            }
+        }
     }
 
     @Override
@@ -51,6 +67,16 @@ public class BaseCellAdapter<Item extends BaseCell> extends RecyclerView.Adapter
     @Override
     public final void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         mItems.get(position).bind(holder, position);
+        //配置点击事件
+        if (hasClick) {
+            ClickUtils.applyGlobalDebouncing(holder.itemView, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (iCellClickListener != null)
+                        iCellClickListener.onItemClick(view, position, mItems.get(position));
+                }
+            });
+        }
     }
 
     @Override
@@ -247,4 +273,13 @@ public class BaseCellAdapter<Item extends BaseCell> extends RecyclerView.Adapter
         Collections.sort(mItems, comparator);
         if (notifyDataSetChanged) notifyDataSetChanged();
     }
+
+    /*配置点击事件*/
+
+    private ICellClickListener iCellClickListener;
+
+    public void setOnCellClickListener(ICellClickListener iCellClickListener) {
+        this.iCellClickListener = iCellClickListener;
+    }
+
 }

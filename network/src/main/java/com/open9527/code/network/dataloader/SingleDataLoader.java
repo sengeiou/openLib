@@ -15,3 +15,4 @@ public interface SingleDataLoader<T> {
 
     Single<BaseResponse<T>> getLoader();
 }
+

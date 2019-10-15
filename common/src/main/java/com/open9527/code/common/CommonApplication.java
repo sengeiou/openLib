@@ -1,7 +1,9 @@
 package com.open9527.code.common;
 
 
+import com.blankj.utilcode.util.CrashUtils;
 import com.open9527.code.base.BaseApplication;
+import com.open9527.code.webview.X5WebUtils;
 
 /**
  * Created by     : open9527
@@ -13,5 +15,11 @@ public class CommonApplication extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        initSDK();
+    }
+
+    private void initSDK() {
+        CrashUtils.init();
+        X5WebUtils.init(this, BuildConfig.DEBUG);
     }
 }

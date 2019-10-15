@@ -17,9 +17,9 @@ import java.io.InputStreamReader;
  */
 public final class BridgeUtil {
 
-    public final static String YY_OVERRIDE_SCHEMA = "open9527://";
+    public final static String YY_OVERRIDE_SCHEMA = "yy://";
     /**
-     * 格式为   open9527://return/{function}/returncontent
+     * 格式为   yy://return/{function}/returncontent
      */
     public final static String YY_RETURN_DATA = YY_OVERRIDE_SCHEMA + "return/";
     public final static String YY_FETCH_QUEUE = YY_RETURN_DATA + "_fetchQueue/";
@@ -46,7 +46,7 @@ public final class BridgeUtil {
 
     /**
      * 获取到传递信息的body值
-     * url = open9527://return/_fetchQueue/[{"responseId":"JAVA_CB_2_3957",
+     * url = yy://return/_fetchQueue/[{"responseId":"JAVA_CB_2_3957",
      * "responseData":"Javascript Says Right back aka!"}]
      *
      * @param url url
@@ -74,7 +74,7 @@ public final class BridgeUtil {
     }
 
     // 获取到传递信息的方法
-    // url = open9527://return/_fetchQueue/[{"responseId":"JAVA_CB_1_360","responseData":"Javascript Says Right back aka!"}]
+    // url = yy://return/_fetchQueue/[{"responseId":"JAVA_CB_1_360","responseData":"Javascript Says Right back aka!"}]
     public static String getFunctionFromReturnUrl(String url) {
         // temp = _fetchQueue/[{"responseId":"JAVA_CB_1_360","responseData":"Javascript Says Right back aka!"}]
         String temp = url.replace(YY_RETURN_DATA, EMPTY_STR);

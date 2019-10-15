@@ -6,7 +6,6 @@ import androidx.databinding.ObservableField;
 
 import com.open9527.code.common.databinding.BindingBaseCell;
 import com.open9527.code.common.databinding.BindingItemViewHolder;
-import com.open9527.code.common.recycleview.interfaces.ICellClickListener;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ItemCellLaunchBinding;
 import com.open9527.code.lib.model.LaunchModel;
@@ -18,13 +17,11 @@ import com.open9527.code.lib.model.LaunchModel;
  * DESC :描述文件.
  */
 public class LaunchCell extends BindingBaseCell<LaunchCell> {
-    private ObservableField<LaunchModel> descObservableField = new ObservableField<>();
+    public ObservableField<LaunchModel> descObservableField = new ObservableField<>();
 
-    private ICellClickListener iCellClickListener;
 
-    public LaunchCell(LaunchModel launchModel, ICellClickListener iCellClickListener) {
+    public LaunchCell(LaunchModel launchModel) {
         super(R.layout.item_cell_launch);
-        this.iCellClickListener = iCellClickListener;
         descObservableField.set(launchModel);
 
     }
@@ -33,10 +30,11 @@ public class LaunchCell extends BindingBaseCell<LaunchCell> {
     public void bind(@NonNull BindingItemViewHolder holder, int position) {
         ItemCellLaunchBinding mBinding = (ItemCellLaunchBinding) holder.mBinding;
         mBinding.tvDesc.setText(descObservableField.get().getDesc());
-        holder.itemView.setOnClickListener(view -> {
-            if (iCellClickListener != null) {
-                iCellClickListener.onItemClick(view, position, descObservableField.get());
-            }
-        });
+//        holder.itemView.setOnClickListener(view -> {
+//            if (iCellClickListener != null) {
+//                iCellClickListener.onItemClick(view, position, descObservableField.get());
+//            }
+//        });
     }
+
 }

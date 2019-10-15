@@ -6,9 +6,7 @@
 
     </data>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -48,7 +46,6 @@
                 android:layout_marginStart="@dimen/pt_50"
                 android:layout_marginTop="@dimen/pt_150"
                 android:layout_marginEnd="@dimen/pt_50"
-                android:layout_marginBottom="@dimen/pt_150"
                 android:gravity="center"
                 android:text="desc"
                 android:textColor="@color/color_333"
@@ -58,9 +55,44 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_contacts" />
 
+
+
+            <TextView
+                android:id="@+id/tv_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/pt_500"
+                android:layout_marginStart="@dimen/pt_50"
+                android:layout_marginTop="@dimen/pt_150"
+                android:layout_marginEnd="@dimen/pt_50"
+                android:gravity="center"
+                android:text="bottom"
+                android:textColor="@color/color_333"
+                android:textSize="@dimen/pt_42"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
+
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/pt_500"
+                android:layout_marginStart="@dimen/pt_50"
+                android:layout_marginTop="@dimen/pt_150"
+                android:layout_marginEnd="@dimen/pt_50"
+                android:gravity="center"
+                android:text="last"
+                android:textColor="@color/color_333"
+                android:textSize="@dimen/pt_42"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_bottom" />
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.core.widget.NestedScrollView>
 
 
 </layout>

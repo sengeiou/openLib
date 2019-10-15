@@ -5,8 +5,12 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 
+import com.blankj.utilcode.util.AdaptScreenUtils;
+import com.blankj.utilcode.util.ClickUtils;
+import com.blankj.utilcode.util.LogUtils;
 import com.open9527.code.common.databinding.BindingBaseCell;
 import com.open9527.code.common.databinding.BindingItemViewHolder;
+import com.open9527.code.common.recycleview.interfaces.ICellClickListener;
 import com.open9527.code.image.imageload.ImageLoadProcessInterface;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ItemCellImageloadBinding;
@@ -19,7 +23,7 @@ import com.open9527.code.lib.utils.ImageLoadUtils;
  * DESC :描述文件.
  */
 public class ImageLoadCell extends BindingBaseCell<ImageLoadCell> {
-    private ObservableField<String> urlObservableField = new ObservableField<>();
+    public ObservableField<String> urlObservableField = new ObservableField<>();
 
     public ImageLoadCell(String url) {
         super(R.layout.item_cell_imageload);
@@ -29,7 +33,7 @@ public class ImageLoadCell extends BindingBaseCell<ImageLoadCell> {
     @Override
     public void bind(@NonNull BindingItemViewHolder holder, int position) {
         ItemCellImageloadBinding binding = (ItemCellImageloadBinding) holder.mBinding;
-        ImageLoadUtils.imageLoad(holder.itemView.getContext(), binding.ivImages, urlObservableField.get(), new ImageLoadProcessInterface() {
+        ImageLoadUtils.imageLoad(holder.itemView.getContext(), binding.ivImages, urlObservableField.get(), AdaptScreenUtils.pt2Px(10), new ImageLoadProcessInterface() {
             @Override
             public void onLoadStarted() {
                 binding.pbLoading.setVisibility(View.VISIBLE);
@@ -45,6 +49,7 @@ public class ImageLoadCell extends BindingBaseCell<ImageLoadCell> {
                 binding.pbLoading.setVisibility(View.GONE);
             }
         });
+
 
     }
 }

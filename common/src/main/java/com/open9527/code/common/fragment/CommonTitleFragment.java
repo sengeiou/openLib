@@ -26,11 +26,6 @@ import com.open9527.code.common.R;
 public abstract class CommonTitleFragment extends BaseLazyFragment {
     public abstract CharSequence bindTitle();
 
-    //public abstract boolean isContentScroll();
-    //public abstract boolean isCentre();
-    protected boolean isContentScroll = false;
-
-    protected boolean isCentre = true;
 
 
     protected Toolbar mToolbar;
@@ -46,11 +41,11 @@ public abstract class CommonTitleFragment extends BaseLazyFragment {
         //title
         mTitleGroup = findViewById(R.id.common_title_group);
         mViewStatus = findViewById(R.id.view_status);
-        mTitleViewStub = findViewById(isCentre ? R.id.common_centre_toolbar : R.id.common_toolbar);
+        mTitleViewStub = findViewById(hasCentre() ? R.id.common_centre_toolbar : R.id.common_toolbar);
         mTitleViewStub.setVisibility(View.VISIBLE);
         mToolbar = findViewById(R.id.common_title_toolbar);
         //content
-        mContentViewStub = findViewById(isContentScroll ? R.id.common_scroll_content : R.id.common_content);
+        mContentViewStub = findViewById(hasContentScroll() ? R.id.common_scroll_content : R.id.common_content);
         mContentViewStub.setVisibility(View.VISIBLE);
         mContentView = findViewById(R.id.common_content);
         //inflate
@@ -74,7 +69,7 @@ public abstract class CommonTitleFragment extends BaseLazyFragment {
     }
 
     private void setTitleBar() {
-        if (isCentre) {
+        if (hasCentre()) {
             tvTitle = findViewById(R.id.common_tv_title);
             if (tvTitle != null) {
                 tvTitle.setText(bindTitle());

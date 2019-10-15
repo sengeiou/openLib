@@ -87,6 +87,23 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="PreviewActivity"
             android:launchMode="singleTop" />
+        <activity
+            android:name=".module.browser.BrowserActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="BrowserActivity"
+            android:launchMode="singleTop"
+
+            />
+        <activity
+            android:name=".module.statelayout.StateActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="StateActivity"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".module.bglib.BackgroundLibActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="BackgroundLibActivity"
+            android:launchMode="singleTop" />
     </application>
 
 

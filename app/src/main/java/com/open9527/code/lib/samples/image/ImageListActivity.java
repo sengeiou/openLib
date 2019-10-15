@@ -83,6 +83,6 @@ public class ImageListActivity extends CommonBindingActivity<ActivityImagelistBi
 
 
     private void showImages(View view, int index) {
-        DraggableImageViewerHelper.showImages(this, mBinding.rvList, R.id.iv_photo, listUrl, index);
+//        DraggableImageViewerHelper.showImages(this, mBinding.rvList, R.id.iv_photo, listUrl, index);
     }
 }

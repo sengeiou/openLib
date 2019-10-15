@@ -1,5 +1,6 @@
 package com.open9527.code.common.databinding;
 
+
 import androidx.databinding.ViewDataBinding;
 
 import com.open9527.code.common.recycleview.holder.ItemViewHolder;
@@ -11,6 +12,7 @@ import com.open9527.code.common.recycleview.holder.ItemViewHolder;
  * DESC :描述文件.
  */
 public class BindingItemViewHolder<binding extends ViewDataBinding> extends ItemViewHolder {
+
     public binding mBinding;
 
     public BindingItemViewHolder(binding binding) {
@@ -18,8 +20,4 @@ public class BindingItemViewHolder<binding extends ViewDataBinding> extends Item
         this.mBinding = binding;
     }
 
-    public BindingItemViewHolder(binding binding, boolean isClick, boolean isLongClick) {
-        super(binding.getRoot(), isClick, isLongClick);
-        this.mBinding = binding;
-    }
 }

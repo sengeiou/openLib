@@ -1,4 +1,4 @@
-package com.open9527.code.customview;
+package com.open9527.code.customview.square;
 
 import android.content.Context;
 import android.util.AttributeSet;

@@ -12,7 +12,7 @@
     var receiveMessageQueue = [];
     var messageHandlers = {};
 
-    var CUSTOM_PROTOCOL_SCHEME = 'open9527';
+    var CUSTOM_PROTOCOL_SCHEME = 'yy';
     var QUEUE_HAS_MESSAGE = '__QUEUE_MESSAGE__/';
 
     var responseCallbacks = {};

@@ -13,7 +13,7 @@ import androidx.annotation.Nullable;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-interface IBaseView {
+public interface IBaseView {
     void initData(@Nullable Bundle bundle);
 
     int bindLayout();
@@ -22,7 +22,23 @@ interface IBaseView {
 
     void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView);
 
-    void doBusiness();
 
-    void onDebouncingClick(@NonNull View view);
+    default CharSequence bindTitle() {
+        return getClass().getSimpleName();
+    }
+
+    default void doBusiness() {
+    }
+
+    default void onDebouncingClick(@NonNull View view) {
+    }
+
+    default boolean hasContentScroll() {
+        return true;
+    }
+
+    default boolean hasCentre() {
+        return true;
+    }
+
 }

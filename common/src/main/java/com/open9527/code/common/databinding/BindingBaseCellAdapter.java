@@ -1,14 +1,15 @@
 package com.open9527.code.common.databinding;
 
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
-import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.open9527.code.common.recycleview.BaseCell;
-import com.open9527.code.common.recycleview.holder.ItemViewHolder;
+
+import com.blankj.utilcode.util.ClickUtils;
+import com.open9527.code.common.databinding.interfaces.IBindingCellClickListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,14 +24,27 @@ import java.util.List;
  */
 public class BindingBaseCellAdapter<Item extends BindingBaseCell> extends RecyclerView.Adapter<BindingItemViewHolder> {
 
-    public List<Item> mItems = new ArrayList<>();
+    private List<Item> mItems = new ArrayList<>();
+
+
+    private boolean hasClick = true;
 
     public BindingBaseCellAdapter() {
-        this(false);
+        this(false, true);
     }
 
-    public BindingBaseCellAdapter(boolean hasStableIds) {
-        setHasStableIds(hasStableIds);
+    public BindingBaseCellAdapter(boolean hasClick) {
+        this(false, hasClick);
+    }
+
+    public BindingBaseCellAdapter(boolean... booleans) {
+        if (booleans.length > 0) {
+            setHasStableIds(booleans[0]);
+            if (booleans.length > 1) {
+                this.hasClick = booleans[1];
+            }
+        }
+
     }
 
 
@@ -56,6 +70,16 @@ public class BindingBaseCellAdapter<Item extends BindingBaseCell> extends Recycl
     @Override
     public void onBindViewHolder(@NonNull BindingItemViewHolder holder, int position) {
         mItems.get(position).bind(holder, position);
+        //配置点击事件
+        if (hasClick) {
+            ClickUtils.applyGlobalDebouncing(holder.itemView, new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (iBindingCellClickListener != null)
+                        iBindingCellClickListener.onItemClick(view, position, mItems.get(position));
+                }
+            });
+        }
     }
 
 
@@ -252,5 +276,14 @@ public class BindingBaseCellAdapter<Item extends BindingBaseCell> extends Recycl
     public void sortItems(@NonNull final Comparator<Item> comparator, boolean notifyDataSetChanged) {
         Collections.sort(mItems, comparator);
         if (notifyDataSetChanged) notifyDataSetChanged();
+    }
+
+    /**
+     * 配置点击事件
+     */
+    private IBindingCellClickListener iBindingCellClickListener;
+
+    public void setOnCellClickListener(IBindingCellClickListener iBindingCellClickListener) {
+        this.iBindingCellClickListener = iBindingCellClickListener;
     }
 }

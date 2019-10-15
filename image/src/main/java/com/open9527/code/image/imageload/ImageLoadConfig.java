@@ -51,11 +51,11 @@ public class ImageLoadConfig {
     }
 
     public ImageLoadConfig(int failRes) {
-        this(0, failRes, 0, RoundedCornersTransformation.CornerType.ALL, ImageView.ScaleType.FIT_CENTER, DiskCacheStrategy.AUTOMATIC, false, false, -1, -1);
+        this(0, failRes, 0, RoundedCornersTransformation.CornerType.ALL, ImageView.ScaleType.CENTER_CROP, DiskCacheStrategy.AUTOMATIC, false, false, -1, -1);
     }
 
     public ImageLoadConfig(int defaultRes, int failRes) {
-        this(defaultRes, failRes, 0, RoundedCornersTransformation.CornerType.ALL, ImageView.ScaleType.FIT_CENTER, DiskCacheStrategy.AUTOMATIC, false, false, -1, -1);
+        this(defaultRes, failRes, 0, RoundedCornersTransformation.CornerType.ALL, ImageView.ScaleType.CENTER_CROP, DiskCacheStrategy.AUTOMATIC, false, false, -1, -1);
     }
 
     public ImageLoadConfig(int defaultRes, int failRes, ImageView.ScaleType scaleType) {
@@ -63,11 +63,11 @@ public class ImageLoadConfig {
     }
 
     public ImageLoadConfig(int defaultRes, int failRes, int radius) {
-        this(defaultRes, failRes, radius, RoundedCornersTransformation.CornerType.ALL, ImageView.ScaleType.FIT_CENTER, DiskCacheStrategy.AUTOMATIC, false, false, -1, -1);
+        this(defaultRes, failRes, radius, RoundedCornersTransformation.CornerType.ALL, ImageView.ScaleType.CENTER_CROP, DiskCacheStrategy.AUTOMATIC, false, false, -1, -1);
     }
 
 
     public ImageLoadConfig(int defaultRes, int failRes, int radius, RoundedCornersTransformation.CornerType cornerType) {
-        this(defaultRes, failRes, radius, cornerType, ImageView.ScaleType.FIT_CENTER, DiskCacheStrategy.AUTOMATIC, false, false, -1, -1);
+        this(defaultRes, failRes, radius, cornerType, ImageView.ScaleType.CENTER_CROP, DiskCacheStrategy.AUTOMATIC, false, false, -1, -1);
     }
 }

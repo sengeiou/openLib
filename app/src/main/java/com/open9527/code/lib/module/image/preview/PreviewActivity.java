@@ -17,10 +17,6 @@ import com.open9527.code.lib.databinding.ActivityPreviewBinding;
  * DESC :描述文件.
  */
 public class PreviewActivity extends CommonBindingActivity<ActivityPreviewBinding> {
-    @Override
-    public CharSequence bindTitle() {
-        return "PreviewActivity";
-    }
 
     @Override
     public void initData(@Nullable Bundle bundle) {
@@ -34,16 +30,6 @@ public class PreviewActivity extends CommonBindingActivity<ActivityPreviewBindin
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
-
-    }
-
-    @Override
-    public void doBusiness() {
-
-    }
-
-    @Override
-    public void onDebouncingClick(@NonNull View view) {
 
     }
 }

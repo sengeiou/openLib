@@ -46,11 +46,6 @@ public class CompressImageActivity extends CommonBindingActivity<ActivityCompres
     private String cameraCachePath;//拍照后,源文件路径
 
     @Override
-    public CharSequence bindTitle() {
-        return "CompressImageActivity";
-    }
-
-    @Override
     public void initData(@Nullable Bundle bundle) {
 
     }
@@ -62,13 +57,12 @@ public class CompressImageActivity extends CommonBindingActivity<ActivityCompres
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
-
+        //添加点击事件
+        applyDebouncingClickListener(mBinding.tvAlbum, mBinding.tvCamera, mBinding.tvCompression);
     }
 
     @Override
     public void doBusiness() {
-        //添加点击事件
-        applyDebouncingClickListener(mBinding.tvAlbum, mBinding.tvCamera, mBinding.tvCompression);
         //配置压缩属性
         compressConfig = CompressConfig.builder()
                 .setUnCompressMinPixel(1000)

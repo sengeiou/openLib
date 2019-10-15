@@ -54,44 +54,9 @@ public class ImageLoadManger {
      * @param imageView view
      * @param url       url
      */
-    private static void displayUrl(Context mContext, final ImageView imageView, final String url, final ImageLoadConfig config, final ImageLoadProcessInterface imageLoadProcessInterface) {
+    private static void displayUrl(Context mContext, final ImageView imageView, final Object url, final ImageLoadConfig config, final ImageLoadProcessInterface imageLoadProcessInterface) {
         try {
             imageLoad.display(mContext, imageView, url, config, imageLoadProcessInterface);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    /**
-     * 加载网络bitmap图片
-     *
-     * @param mContext
-     * @param view
-     * @param bitmap
-     * @param config
-     * @param imageLoadProcessInterface
-     */
-    public static void display(Context mContext, ImageView view, Bitmap bitmap, ImageLoadConfig config, ImageLoadProcessInterface imageLoadProcessInterface) {
-        displayBitmap(mContext, view, bitmap, config, imageLoadProcessInterface);
-    }
-
-    public static void display(Context mContext, ImageView view, Bitmap bitmap, ImageLoadConfig config) {
-        displayBitmap(mContext, view, bitmap, config, null);
-    }
-
-    /**
-     * 加载网络bitmap图片
-     *
-     * @param mContext
-     * @param imageView
-     * @param bitmap
-     * @param config
-     * @param imageLoadProcessInterface
-     */
-    private static void displayBitmap(Context mContext, final ImageView imageView, final Bitmap bitmap, final ImageLoadConfig config, final ImageLoadProcessInterface imageLoadProcessInterface) {
-        try {
-            imageLoad.display(mContext, imageView, bitmap, config, imageLoadProcessInterface);
         } catch (Exception e) {
             e.printStackTrace();
         }

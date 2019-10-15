@@ -7,18 +7,24 @@
 
     </data>
 
-    <com.open9527.code.customview.SquareConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@color/color_fff">
+        style="@style/bl_radius_fff_10">
 
         <ImageView
             android:id="@+id/iv_images"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/pt_0"
+            android:layout_height="@dimen/pt_0"
+            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
-            tools:src="@drawable/common_image_placeholder" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/image_placeholder" />
 
 
         <ProgressBar
@@ -26,7 +32,7 @@
             android:layout_width="@dimen/pt_50"
             android:layout_height="@dimen/pt_50"
             android:indeterminateBehavior="repeat"
-            android:indeterminateDrawable="@drawable/image_anima_loading"
+            android:indeterminateDrawable="@drawable/common_image_loading"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/iv_images"
             app:layout_constraintEnd_toEndOf="@+id/iv_images"
@@ -34,5 +40,5 @@
             app:layout_constraintTop_toTopOf="@+id/iv_images" />
 
 
-    </com.open9527.code.customview.SquareConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -12,6 +12,9 @@ import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.blankj.utilcode.util.ClickUtils;
+import com.open9527.code.common.databinding.interfaces.IBindingViewHolder;
+import com.open9527.code.common.recycleview.interfaces.ICellClickListener;
 
 
 /**
@@ -20,10 +23,11 @@ import androidx.recyclerview.widget.RecyclerView;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public abstract class BindingBaseCell<T extends BindingBaseCell>  {
+public abstract class BindingBaseCell<T extends BindingBaseCell> implements IBindingViewHolder {
     protected final String TAG = getClass().getSimpleName();
     private static final SparseIntArray LAYOUT_SPARSE_ARRAY = new SparseIntArray();
     private static final SparseArray<View> VIEW_SPARSE_ARRAY = new SparseArray<>();
+
     static BindingItemViewHolder<ViewDataBinding> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         int layoutByType = LAYOUT_SPARSE_ARRAY.get(viewType, -1);
         if (layoutByType != -1) {
@@ -39,37 +43,25 @@ public abstract class BindingBaseCell<T extends BindingBaseCell>  {
         throw new RuntimeException("onCreateViewHolder: get holder from view type failed.");
     }
 
-
-    public abstract void bind(@NonNull final BindingItemViewHolder holder, final int position);
-
-    public void onViewRecycled(@NonNull final BindingItemViewHolder holder, final int position) {/**/}
-
-    public long getItemId() {
-        return RecyclerView.NO_ID;
-    }
-
     private int viewType;
     BindingBaseCellAdapter<T> mAdapter;
+
+    public BindingBaseCellAdapter<T> getAdapter() {
+        return mAdapter;
+    }
 
     public BindingBaseCell(@LayoutRes int layoutId) {
         viewType = getViewTypeByLayoutId(layoutId);
         LAYOUT_SPARSE_ARRAY.put(viewType, layoutId);
     }
 
-    //
     public BindingBaseCell(@NonNull View view) {
         viewType = getViewTypeByView(view);
         VIEW_SPARSE_ARRAY.put(viewType, view);
     }
 
-
-
     public int getViewType() {
         return viewType;
-    }
-
-    public BindingBaseCellAdapter<T> getAdapter() {
-        return mAdapter;
     }
 
     public boolean isViewType(@LayoutRes int layoutId) {
@@ -87,6 +79,5 @@ public abstract class BindingBaseCell<T extends BindingBaseCell>  {
     private int getViewTypeByView(@NonNull View view) {
         return view.hashCode() + getClass().hashCode();
     }
-
 
 }

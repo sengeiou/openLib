@@ -25,14 +25,7 @@ import com.open9527.code.common.R;
 public abstract class CommonTitleActivity extends CommonScreenActivity {
 
 
-    public abstract CharSequence bindTitle();
-
-    //public abstract boolean isContentScroll();
-    //public abstract boolean isCentre();
-    protected boolean isContentScroll = false;
-
-    protected boolean isCentre = true;
-
+//    public abstract CharSequence bindTitle();
 
     protected CoordinatorLayout mCoordinatorLayout;
     protected AppBarLayout mAppBarLayout;
@@ -48,11 +41,11 @@ public abstract class CommonTitleActivity extends CommonScreenActivity {
         mCoordinatorLayout = findViewById(R.id.common_coordinator_layout);
         mAppBarLayout = findViewById(R.id.common_appbar_layout);
         //title
-        mTitleViewStub = findViewById(isCentre ? R.id.common_centre_toolbar : R.id.common_toolbar);
+        mTitleViewStub = findViewById(hasCentre() ? R.id.common_centre_toolbar : R.id.common_toolbar);
         mTitleViewStub.setVisibility(View.VISIBLE);
         mToolbar = findViewById(R.id.common_title_toolbar);
         //content
-        mContentViewStub = findViewById(isContentScroll ? R.id.common_scroll_content : R.id.common_content);
+        mContentViewStub = findViewById(hasContentScroll() ? R.id.common_scroll_content : R.id.common_content);
         mContentViewStub.setVisibility(View.VISIBLE);
         mContentView = findViewById(R.id.common_content);
         //inflate
@@ -77,7 +70,7 @@ public abstract class CommonTitleActivity extends CommonScreenActivity {
 
 
     private void setTitleBar() {
-        if (isCentre) {
+        if (hasCentre()) {
             tvTitle = findViewById(R.id.common_tv_title);
             if (tvTitle != null) {
                 tvTitle.setText(bindTitle());
@@ -91,5 +84,4 @@ public abstract class CommonTitleActivity extends CommonScreenActivity {
             }
         }
     }
-
 }

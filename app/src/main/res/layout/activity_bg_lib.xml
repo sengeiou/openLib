@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.noober.background.view.BLTextView
+            android:id="@+id/tv_radius"
+            style="@style/bl_function_event"
+            android:layout_width="@dimen/pt_300"
+            android:layout_height="@dimen/pt_150"
+            android:layout_margin="@dimen/pt_150"
+            android:gravity="center"
+            android:text="圆角(响应事件)"
+            android:textSize="@dimen/pt_42"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.noober.background.view.BLButton
+            android:id="@+id/bt_like_left"
+            style="@style/bl_button_like_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/pt_150"
+            android:background="@null"
+            android:drawablePadding="@dimen/pt_10"
+            android:text="未点赞"
+            android:textSize="@dimen/pt_30"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_radius" />
+
+
+        <com.noober.background.view.BLButton
+            android:id="@+id/bt_like_right"
+            style="@style/bl_button_like_pressed_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/pt_150"
+            android:background="@null"
+            android:clickable="true"
+            android:drawablePadding="@dimen/pt_10"
+            android:text="点赞  +1"
+            android:textSize="@dimen/pt_30"
+            app:layout_constraintStart_toEndOf="@+id/bt_like_left"
+            app:layout_constraintTop_toBottomOf="@+id/tv_radius" />
+
+        <com.noober.background.view.BLImageView
+            android:id="@+id/iv_gradient"
+            style="@style/bl_gradient"
+            android:layout_width="@dimen/pt_300"
+            android:layout_height="@dimen/pt_150"
+            android:layout_margin="@dimen/pt_150"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bt_like_right" />
+
+
+        <TextView
+            android:id="@+id/tv_change_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/pt_150"
+            android:text="代码配置点击变色"
+            android:textSize="@dimen/pt_42"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_gradient" />
+
+
+        <com.noober.background.view.BLButton
+            android:id="@+id/bt_radius"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/pt_150"
+            android:background="@null"
+            android:drawablePadding="@dimen/pt_10"
+            android:text="代码配置圆角"
+            android:textSize="@dimen/pt_40"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_change_color" />
+
+        <TextView
+            android:id="@+id/tv_bottom"
+            style="@style/bl_function_event"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pt_800"
+            app:layout_constraintTop_toBottomOf="@+id/bt_radius" />
+
+        <TextView
+            style="@style/bl_gradient"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pt_800"
+            app:layout_constraintTop_toBottomOf="@+id/tv_bottom" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
