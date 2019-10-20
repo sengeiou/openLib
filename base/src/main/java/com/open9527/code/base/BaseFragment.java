@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Lifecycle;
 
 import com.blankj.utilcode.util.ClickUtils;
 
@@ -52,13 +53,14 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
         super.onCreate(savedInstanceState);
         if (savedInstanceState != null) {
             boolean isSupportHidden = savedInstanceState.getBoolean(STATE_SAVE_IS_HIDDEN);
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+
             if (isSupportHidden) {
-                ft.hide(this);
+                fragmentTransaction.hide(this);
             } else {
-                ft.show(this);
+                fragmentTransaction.show(this);
             }
-            ft.commitAllowingStateLoss();
+            fragmentTransaction.commitAllowingStateLoss();
         }
     }
 

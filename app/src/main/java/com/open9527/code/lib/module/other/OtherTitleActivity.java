@@ -16,7 +16,7 @@ import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.blankj.utilcode.util.ToastUtils;
-import com.open9527.code.common.databinding.CommonBindingActivity;
+import com.open9527.code.common.databinding.CommonBindingTitleActivity;
 import com.open9527.code.common.entity.Contacts;
 import com.open9527.code.common.entity.LocalMediaFolder;
 import com.open9527.code.common.interfaces.ILoadData;
@@ -41,7 +41,7 @@ import java.util.List;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class OtherActivity extends CommonBindingActivity<ActivityOtherBinding> {
+public class OtherTitleActivity extends CommonBindingTitleActivity<ActivityOtherBinding> {
 
     @Override
     public void initData(@Nullable Bundle bundle) {

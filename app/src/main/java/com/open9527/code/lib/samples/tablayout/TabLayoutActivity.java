@@ -33,7 +33,7 @@ public class TabLayoutActivity extends CommonTitleActivity {
 
     @Override
     public CharSequence bindTitle() {
-        return "TabLayoutActivity";
+        return "TabLayoutTitleActivity";
     }
 
     @Override

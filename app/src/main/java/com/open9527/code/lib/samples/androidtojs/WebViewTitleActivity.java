@@ -2,14 +2,13 @@ package com.open9527.code.lib.samples.androidtojs;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.open9527.code.common.databinding.CommonBindingActivity;
+import com.open9527.code.common.databinding.CommonBindingTitleActivity;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ActivityX5webviewBinding;
 //import com.open9527.code.webview.X5WebView;
@@ -20,13 +19,13 @@ import com.open9527.code.lib.databinding.ActivityX5webviewBinding;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class WebViewActivity extends CommonBindingActivity<ActivityX5webviewBinding> {
+public class WebViewTitleActivity extends CommonBindingTitleActivity<ActivityX5webviewBinding> {
 
 //    private X5WebView x5WebView;
 
     @Override
     public CharSequence bindTitle() {
-        return "WebViewActivity";
+        return "WebViewTitleActivity";
     }
 
     @Override

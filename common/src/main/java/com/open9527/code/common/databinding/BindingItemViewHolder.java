@@ -1,6 +1,5 @@
 package com.open9527.code.common.databinding;
 
-
 import androidx.databinding.ViewDataBinding;
 
 import com.open9527.code.common.recycleview.holder.ItemViewHolder;
@@ -17,6 +16,11 @@ public class BindingItemViewHolder<binding extends ViewDataBinding> extends Item
 
     public BindingItemViewHolder(binding binding) {
         super(binding.getRoot());
+        this.mBinding = binding;
+    }
+
+    public BindingItemViewHolder(binding binding, boolean hasClick) {
+        super(binding.getRoot(),hasClick);
         this.mBinding = binding;
     }
 

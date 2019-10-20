@@ -113,15 +113,12 @@ public class CustomTabLayout extends TabLayout {
         //获取宽高
         int w = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
         int h = MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED);
-//        Log.d("yc-----setTabWidth--","宽---"+w+"高----"+h);
         //手动测量一下
         customTabView.measure(w, h);
         int measuredWidth = customTabView.getMeasuredWidth();
         int paddingLeft = tabView.getPaddingLeft();
         int paddingRight = tabView.getPaddingRight();
-//        Log.d("yc-----padding--","paddingRight---"+paddingLeft+"paddingRight----"+paddingRight);
         params.width = measuredWidth + paddingLeft + paddingRight;
-//        Log.d("yc-----width--","宽---"+params.width);
         //设置tabView的宽度
         tabView.setLayoutParams(params);
     }
@@ -253,7 +250,6 @@ public class CustomTabLayout extends TabLayout {
             final boolean updateText = mScrollState != ViewPager.SCROLL_STATE_SETTLING ||
                     mPreviousScrollState == ViewPager.SCROLL_STATE_DRAGGING;
             if (updateText) {
-//                Log.d("yc-----onPageScrolled--","positionOffset---"+positionOffset);
                 tabLayout.tabScrolled(position, positionOffset);
             }
         }

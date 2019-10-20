@@ -17,7 +17,7 @@ import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.UriUtils;
-import com.open9527.code.common.databinding.CommonBindingActivity;
+import com.open9527.code.common.databinding.CommonBindingTitleActivity;
 import com.open9527.code.image.compression.CachePathUtils;
 import com.open9527.code.image.compression.CompressConfig;
 import com.open9527.code.image.compression.CompressImage;
@@ -38,7 +38,7 @@ import java.util.List;
  * E-Mail Address ：open_9527@163.com.
  * DESC :图片压缩.
  */
-public class CompressImageActivity extends CommonBindingActivity<ActivityCompressImageBinding> implements CompressImage.CompressListener {
+public class CompressImageTitleActivity extends CommonBindingTitleActivity<ActivityCompressImageBinding> implements CompressImage.CompressListener {
 
 
     private CompressConfig compressConfig;//压缩配置

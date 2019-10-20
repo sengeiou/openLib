@@ -224,14 +224,14 @@ public class MarqueeView extends ViewFlipper {
      * @param position position
      * @return TextView
      */
-    private TextView createTextView(CharSequence text, int position) {
+    protected TextView createTextView(CharSequence text, int position) {
         TextView tv = new TextView(mContext);
         tv.setGravity(gravity);
         tv.setText(text);
         tv.setTextColor(textColor);
         tv.setTextSize(textSize);
         tv.setSingleLine(singleLine);
-        if (singleLine){
+        if (singleLine) {
             tv.setEllipsize(TextUtils.TruncateAt.END);
         }
         tv.setTag(position);

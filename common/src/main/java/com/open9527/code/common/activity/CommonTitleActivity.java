@@ -24,9 +24,6 @@ import com.open9527.code.common.R;
  */
 public abstract class CommonTitleActivity extends CommonScreenActivity {
 
-
-//    public abstract CharSequence bindTitle();
-
     protected CoordinatorLayout mCoordinatorLayout;
     protected AppBarLayout mAppBarLayout;
     protected Toolbar mToolbar;
@@ -55,7 +52,6 @@ public abstract class CommonTitleActivity extends CommonScreenActivity {
         //StatusBar
         setStatusBar();
     }
-
     /**
      * 配置app主题UI样式
      * 需要定制不同的可以自行重写该方法

@@ -1,15 +1,14 @@
 package com.open9527.code.lib;
 
-import androidx.databinding.ObservableField;
 import androidx.lifecycle.ViewModel;
 
 import com.open9527.code.lib.model.EntryBean;
-import com.open9527.code.lib.model.RequestGitHubBean;
 import com.open9527.code.lib.net.api.GitHubApi;
 import com.open9527.code.lib.net.client.GitHubApiClient;
 import com.open9527.code.lib.net.response.GitHubResponse;
 import com.open9527.code.lib.net.response.GitHubSingleDataLoadRepository;
 import com.open9527.code.lib.net.response.GitHubSingleDataLoader;
+import com.open9527.code.network.livedata.SingleLiveEvent;
 import com.open9527.code.network.repository.DataLoadRepository;
 
 import java.util.List;
@@ -23,6 +22,7 @@ import io.reactivex.Single;
  * DESC :描述文件.
  */
 public class MainViewModel extends ViewModel {
+   public SingleLiveEvent<String> stringSingleLiveEvent = new SingleLiveEvent<>();
 
 
     DataLoadRepository<List<EntryBean>> mEntryInfoRepository = new GitHubSingleDataLoadRepository<>(new GitHubSingleDataLoader<List<EntryBean>>() {
@@ -36,8 +36,6 @@ public class MainViewModel extends ViewModel {
     void getEntryInfo() {
         mEntryInfoRepository.loadData(true);
     }
-
-
 
 
 //    DataLoadRepository<List<UserBean>> mUserListRepository = new GitHubSingleDataLoadRepository<>(() -> GitHubApiClient.getApiService(GitHubApi.class).getUsers(BuildConfig.HOST_USER, BuildConfig.TOKEN));

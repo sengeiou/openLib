@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.open9527.code.common.databinding.BindingBaseCell;
 import com.open9527.code.common.databinding.BindingBaseCellAdapter;
-import com.open9527.code.common.databinding.CommonBindingActivity;
-import com.open9527.code.image.dragimageview.DraggableImageViewerHelper;
+import com.open9527.code.common.databinding.CommonBindingTitleActivity;
 import com.open9527.code.image.dragimageview.core.ImageInfo;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ActivityImagelistBinding;
@@ -25,13 +24,13 @@ import java.util.List;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class ImageListActivity extends CommonBindingActivity<ActivityImagelistBinding> {
+public class ImageListTitleActivity extends CommonBindingTitleActivity<ActivityImagelistBinding> {
     List<ImageInfo> listUrl = new LinkedList<>();
     List<View> listView = new LinkedList<>();
 
     @Override
     public CharSequence bindTitle() {
-        return "ImageListActivity";
+        return "ImageListTitleActivity";
     }
 
     @Override

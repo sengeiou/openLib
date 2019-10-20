@@ -10,7 +10,7 @@ import com.open9527.code.common.databinding.BindingBaseCell;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public interface IBindingCellClickListener<Item extends BindingBaseCell> {
+public interface IBindingCellClickListener {
 
 
     /**
@@ -20,7 +20,7 @@ public interface IBindingCellClickListener<Item extends BindingBaseCell> {
      * @param position
      * @param cell
      */
-    default void onItemClick(View view, int position, Item cell) {
+    default void onItemClick(View view, int position, BindingBaseCell... bindingBaseCells) {
     }
 
     /**
@@ -30,6 +30,8 @@ public interface IBindingCellClickListener<Item extends BindingBaseCell> {
      * @param position
      * @param cell
      */
-    default void onItemLongClick(View view, int position, Item cell) {
+    default boolean onItemLongClick(View view, int position, BindingBaseCell... bindingBaseCells) {
+
+        return false;
     }
 }

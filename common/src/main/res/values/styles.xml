@@ -1,14 +1,17 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <style name="CommonAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+    <!-- 所有主题样式 -->
+    <style name="CommonAppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/color_fff</item>
-        <item name="colorPrimaryDark">@color/color_fff</item>
-        <item name="colorAccent">@color/color_fff</item>
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorPrimaryDark">@android:color/white</item>//5.0+
+        <item name="colorAccent">@android:color/white</item>
+        <!--<item name="android:windowAnimationStyle">@style/AnimationActivity</item>-->
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
-
-
-
 
 </resources>

@@ -12,16 +12,13 @@ import androidx.annotation.Nullable;
 
 import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.GsonUtils;
-import com.blankj.utilcode.util.ImageUtils;
 import com.blankj.utilcode.util.IntentUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
-import com.blankj.utilcode.util.SDCardUtils;
 import com.blankj.utilcode.util.ScreenUtils;
-import com.blankj.utilcode.util.TimeUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.UriUtils;
-import com.open9527.code.common.databinding.CommonBindingActivity;
+import com.open9527.code.common.databinding.CommonBindingTitleActivity;
 import com.open9527.code.image.compression.CachePathUtils;
 import com.open9527.code.image.compression.CompressConfig;
 import com.open9527.code.image.compression.CompressImage;
@@ -42,7 +39,7 @@ import java.util.List;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class CompressPicturesActivity extends CommonBindingActivity<ActivityCompressPicturesBinding> implements CompressImage.CompressListener {
+public class CompressPicturesTitleActivity extends CommonBindingTitleActivity<ActivityCompressPicturesBinding> implements CompressImage.CompressListener {
 
     private CompressConfig compressConfig;//压缩配置
     private ProgressDialog dialog;//压缩dialog
@@ -104,7 +101,7 @@ public class CompressPicturesActivity extends CommonBindingActivity<ActivityComp
                     public void onGranted(List<String> permissionsGranted) {
                         //权限确认
                         ToastUtils.showShort("权限确认");
-                        CommonImageUtils.openAlbum(CompressPicturesActivity.this, Constants.ALBUM_CODE);
+                        CommonImageUtils.openAlbum(CompressPicturesTitleActivity.this, Constants.ALBUM_CODE);
                     }
 
                     @Override

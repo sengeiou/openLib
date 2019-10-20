@@ -14,7 +14,7 @@ import com.blankj.utilcode.util.AdaptScreenUtils;
 import com.blankj.utilcode.util.ColorUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.noober.background.drawable.DrawableCreator;
-import com.open9527.code.common.databinding.CommonBindingActivity;
+import com.open9527.code.common.databinding.CommonBindingTitleActivity;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ActivityBgLibBinding;
 
@@ -24,7 +24,7 @@ import com.open9527.code.lib.databinding.ActivityBgLibBinding;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class BackgroundLibActivity extends CommonBindingActivity<ActivityBgLibBinding> {
+public class BackgroundLibTitleActivity extends CommonBindingTitleActivity<ActivityBgLibBinding> {
 
     private int i = 1;
     @Override

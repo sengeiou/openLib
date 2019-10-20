@@ -24,7 +24,6 @@ import com.open9527.code.common.R;
  * DESC :描述文件.
  */
 public abstract class CommonTitleFragment extends BaseLazyFragment {
-    public abstract CharSequence bindTitle();
 
 
 
@@ -65,7 +64,6 @@ public abstract class CommonTitleFragment extends BaseLazyFragment {
 //        BarUtils.setStatusBarColor(mActivity, Color.WHITE)
 //                .setBackgroundResource(R.drawable.common_bar_bg);
         BarUtils.setStatusBarColor(mViewStatus, ColorUtils.getColor(R.color.color_fff));
-
     }
 
     private void setTitleBar() {

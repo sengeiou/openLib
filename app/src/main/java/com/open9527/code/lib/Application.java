@@ -3,7 +3,6 @@ package com.open9527.code.lib;
 
 import com.billy.android.swipe.SmartSwipeBack;
 import com.open9527.code.common.CommonApplication;
-import com.open9527.code.webview.X5WebUtils;
 
 /**
  * Created by     : open9527

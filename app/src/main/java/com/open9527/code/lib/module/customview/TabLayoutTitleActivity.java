@@ -1,23 +1,19 @@
-package com.open9527.code.lib.module.image.preview;
+package com.open9527.code.lib.module.customview;
 
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.open9527.code.common.databinding.CommonBindingActivity;
-import com.open9527.code.lib.R;
-import com.open9527.code.lib.databinding.ActivityPreviewBinding;
+import com.open9527.code.common.databinding.CommonBindingTitleActivity;
 
 /**
  * Created by     : open9527
- * Created times  : on 2019/10/10 15:57.
+ * Created times  : on 2019/10/17 9:58.
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class PreviewActivity extends CommonBindingActivity<ActivityPreviewBinding> {
-
+public class TabLayoutTitleActivity extends CommonBindingTitleActivity {
     @Override
     public void initData(@Nullable Bundle bundle) {
 
@@ -25,7 +21,7 @@ public class PreviewActivity extends CommonBindingActivity<ActivityPreviewBindin
 
     @Override
     public int bindLayout() {
-        return R.layout.activity_preview;
+        return 0;
     }
 
     @Override

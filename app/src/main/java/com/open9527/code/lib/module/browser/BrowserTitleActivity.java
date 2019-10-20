@@ -7,11 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.blankj.utilcode.util.LogUtils;
-import com.open9527.code.common.databinding.CommonBindingActivity;
+import com.open9527.code.common.databinding.CommonBindingTitleActivity;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ActivityBrowserBinding;
 import com.open9527.code.webview.CallBackFunction;
@@ -24,7 +23,7 @@ import com.open9527.code.webview.bridge.DefaultHandler;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class BrowserActivity extends CommonBindingActivity<ActivityBrowserBinding> {
+public class BrowserTitleActivity extends CommonBindingTitleActivity<ActivityBrowserBinding> {
 
     @Override
     public int bindLayout() {
@@ -45,8 +44,8 @@ public class BrowserActivity extends CommonBindingActivity<ActivityBrowserBindin
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
 //        String url = "http://activity.fm.easttone.com/awardquestion/toIndex.do?&linkid=3e89d38278aa41a9acc8ac6904a29228&actId=8a8a9e5f6d67102a016d67102a760000&jwid=gh_835d899e19dc&type=h5";
-//        String url="https://github.com/open9527";
-        String url = "https://activity.shmedia.tech/businesshall/vm/toIndex.do?openid=logout&appid=${appid}&linkid=ff808081552973740155298eb8360006&actId=8a8a9e5f6caf3e51016caf3e517f0000&jwid=gh_835d899e19dc&type=h5&token=logout";
+        String url="https://github.com/open9527";
+//        String url = "https://activity.shmedia.tech/businesshall/vm/toIndex.do?openid=logout&appid=${appid}&linkid=ff808081552973740155298eb8360006&actId=8a8a9e5f6caf3e51016caf3e517f0000&jwid=gh_835d899e19dc&type=h5&token=logout";
         mBinding.x5Web.loadUrl(url);
     }
 
@@ -82,7 +81,7 @@ public class BrowserActivity extends CommonBindingActivity<ActivityBrowserBindin
             mBinding.x5Web.getSettings().setJavaScriptEnabled(true);
         }
     }
-
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onStop() {
         super.onStop();
@@ -119,7 +118,7 @@ public class BrowserActivity extends CommonBindingActivity<ActivityBrowserBindin
         public void handler(String data, CallBackFunction function) {
             LogUtils.i(TAG, "data=" + data + "  type= " + type);
             switch (type) {
-                case "goToLoginFormTheApp"://举报
+                case "goToLoginFormTheApp":
                     //TODO:
                     break;
                 default:

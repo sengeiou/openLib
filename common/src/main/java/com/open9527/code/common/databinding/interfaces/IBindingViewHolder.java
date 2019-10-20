@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.open9527.code.common.databinding.BindingItemViewHolder;
 
+import java.util.List;
+
 /**
  * Created by     : open9527
  * Created times  : on 2019/10/14 16:33.
@@ -19,6 +21,17 @@ public interface IBindingViewHolder {
      * @param position
      */
     default void bind(@NonNull final BindingItemViewHolder holder, final int position) {
+
+    }
+
+    /**
+     * 绑定 holder
+     *
+     * @param holder
+     * @param position
+     * @param payloads (payloads size 始终为1)
+     */
+    default void bind(@NonNull final BindingItemViewHolder holder, final int position, final List<Object> payloads) {
 
     }
 

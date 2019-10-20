@@ -1,6 +1,8 @@
 package com.open9527.code.base;
 
-import android.util.Log;
+
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Lifecycle;
 
 /**
  * Created by     : open9527
@@ -17,7 +19,6 @@ public abstract class BaseLazyFragment extends BaseFragment {
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
-        Log.d(TAG, "setUserVisibleHint: " + isVisibleToUser);
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser && mContentView != null && !isDataLoaded) {
             doLazyBusiness();
@@ -25,8 +26,20 @@ public abstract class BaseLazyFragment extends BaseFragment {
         }
     }
 
+
     @Override
     public void doBusiness() {
+//        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+//        //onCreate
+//        fragmentTransaction.setMaxLifecycle(this, Lifecycle.State.INITIALIZED);
+//        //onCreate(onStop-->onCreate)
+//        fragmentTransaction.setMaxLifecycle(this, Lifecycle.State.CREATED);
+//        //onStart(onPause-->onStart)
+//        fragmentTransaction.setMaxLifecycle(this, Lifecycle.State.STARTED);
+//        //onResume();
+//        fragmentTransaction.setMaxLifecycle(this, Lifecycle.State.RESUMED);
+//        //onDestroy()
+//        fragmentTransaction.setMaxLifecycle(this, Lifecycle.State.DESTROYED);
         if (getUserVisibleHint() && !isDataLoaded) {
             doLazyBusiness();
             isDataLoaded = true;

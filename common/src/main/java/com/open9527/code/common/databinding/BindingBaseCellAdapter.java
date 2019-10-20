@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.blankj.utilcode.util.ClickUtils;
 import com.open9527.code.common.databinding.interfaces.IBindingCellClickListener;
 
 import java.util.ArrayList;
@@ -22,12 +21,13 @@ import java.util.List;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class BindingBaseCellAdapter<Item extends BindingBaseCell> extends RecyclerView.Adapter<BindingItemViewHolder> {
+public class BindingBaseCellAdapter<Item extends BindingBaseCell> extends RecyclerView.Adapter<BindingItemViewHolder> implements IBindingCellClickListener {
 
     private List<Item> mItems = new ArrayList<>();
 
 
     private boolean hasClick = true;
+    private BindingItemViewHolder holder;
 
     public BindingBaseCellAdapter() {
         this(false, true);
@@ -64,24 +64,19 @@ public class BindingBaseCellAdapter<Item extends BindingBaseCell> extends Recycl
     @NonNull
     @Override
     public BindingItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return Item.onCreateViewHolder(parent, viewType);
+        return Item.onCreateViewHolder(parent, viewType, hasClick);
     }
 
     @Override
     public void onBindViewHolder(@NonNull BindingItemViewHolder holder, int position) {
+        this.holder = holder;
         mItems.get(position).bind(holder, position);
         //配置点击事件
         if (hasClick) {
-            ClickUtils.applyGlobalDebouncing(holder.itemView, new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (iBindingCellClickListener != null)
-                        iBindingCellClickListener.onItemClick(view, position, mItems.get(position));
-                }
-            });
+            //配置点击事件
+            holder.setItemViewListener(this);
         }
     }
-
 
     @Override
     public int getItemCount() {
@@ -278,12 +273,26 @@ public class BindingBaseCellAdapter<Item extends BindingBaseCell> extends Recycl
         if (notifyDataSetChanged) notifyDataSetChanged();
     }
 
-    /**
-     * 配置点击事件
-     */
+    /*配置点击事件*/
     private IBindingCellClickListener iBindingCellClickListener;
 
-    public void setOnCellClickListener(IBindingCellClickListener iBindingCellClickListener) {
+    public void setOnBindingCellClickListener(IBindingCellClickListener iBindingCellClickListener) {
         this.iBindingCellClickListener = iBindingCellClickListener;
+    }
+
+    @Override
+    public void onItemClick(View view, int position, BindingBaseCell... bindingBaseCells) {
+        if (iBindingCellClickListener != null) {
+            iBindingCellClickListener.onItemClick(view, position, mItems.get(position));
+        }
+    }
+
+
+    @Override
+    public boolean onItemLongClick(View view, int position, BindingBaseCell... bindingBaseCells) {
+        if (iBindingCellClickListener != null) {
+            return iBindingCellClickListener.onItemLongClick(view, position, mItems.get(position));
+        }
+        return false;
     }
 }

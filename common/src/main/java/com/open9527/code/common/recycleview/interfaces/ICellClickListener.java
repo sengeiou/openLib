@@ -12,9 +12,10 @@ import com.open9527.code.common.recycleview.BaseCell;
  */
 public interface ICellClickListener {
 
-    default void onItemClick(View view, int position, BaseCell cell) {
+    default void onItemClick(View view, int position, BaseCell... baseCells) {
     }
 
-    default void onItemLongClick(View view, int position, BaseCell cell) {
+    default boolean onItemLongClick(View view, int position, BaseCell... baseCells) {
+        return false;
     }
 }

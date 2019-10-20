@@ -21,7 +21,7 @@ import com.blankj.utilcode.util.ScreenUtils;
 import com.blankj.utilcode.util.TimeUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.UriUtils;
-import com.open9527.code.common.databinding.CommonBindingActivity;
+import com.open9527.code.common.databinding.CommonBindingTitleActivity;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ActivityImageBinding;
 import com.open9527.code.lib.model.CommitterBean;
@@ -37,16 +37,16 @@ import java.util.List;
  * Created by     : open9527
  * Created times  : on 2019/9/29 9:36.
  * E-Mail Address ：open_9527@163.com.
- * DESC :ImageActivity.
+ * DESC :ImageTitleActivity.
  */
-public class ImageActivity extends CommonBindingActivity<ActivityImageBinding> {
+public class ImageTitleActivity extends CommonBindingTitleActivity<ActivityImageBinding> {
 
     private ImageViewModel mViewModel;
     private Uri uri;
 
     @Override
     public CharSequence bindTitle() {
-        return "ImageActivity";
+        return "ImageTitleActivity";
     }
 
     @Override

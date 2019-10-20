@@ -7,7 +7,6 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.blankj.utilcode.util.ClickUtils;
 import com.open9527.code.common.recycleview.holder.ItemViewHolder;
 import com.open9527.code.common.recycleview.interfaces.ICellClickListener;
 
@@ -22,7 +21,9 @@ import java.util.List;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class BaseCellAdapter<Item extends BaseCell> extends RecyclerView.Adapter<ItemViewHolder> {
+public class BaseCellAdapter<Item extends BaseCell> extends RecyclerView.Adapter<ItemViewHolder> implements ICellClickListener {
+
+    private static final String TAG = "BaseCellAdapter";
 
     public List<Item> mItems = new ArrayList<>();
     ;
@@ -68,15 +69,7 @@ public class BaseCellAdapter<Item extends BaseCell> extends RecyclerView.Adapter
     public final void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         mItems.get(position).bind(holder, position);
         //配置点击事件
-        if (hasClick) {
-            ClickUtils.applyGlobalDebouncing(holder.itemView, new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (iCellClickListener != null)
-                        iCellClickListener.onItemClick(view, position, mItems.get(position));
-                }
-            });
-        }
+        holder.setItemViewListener(this);
     }
 
     @Override
@@ -275,11 +268,25 @@ public class BaseCellAdapter<Item extends BaseCell> extends RecyclerView.Adapter
     }
 
     /*配置点击事件*/
-
     private ICellClickListener iCellClickListener;
 
     public void setOnCellClickListener(ICellClickListener iCellClickListener) {
         this.iCellClickListener = iCellClickListener;
     }
 
+    @Override
+    public void onItemClick(View view, int position, BaseCell... baseCells) {
+        if (iCellClickListener != null) {
+            iCellClickListener.onItemClick(view, position, mItems.get(position));
+        }
+    }
+
+
+    @Override
+    public boolean onItemLongClick(View view, int position, BaseCell... baseCells) {
+        if (iCellClickListener != null) {
+            return iCellClickListener.onItemLongClick(view, position, mItems.get(position));
+        }
+        return false;
+    }
 }

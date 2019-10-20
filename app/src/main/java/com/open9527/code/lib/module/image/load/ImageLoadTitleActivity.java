@@ -3,16 +3,14 @@ package com.open9527.code.lib.module.image.load;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.open9527.code.common.databinding.BindingBaseCell;
 import com.open9527.code.common.databinding.BindingBaseCellAdapter;
-import com.open9527.code.common.databinding.CommonBindingActivity;
+import com.open9527.code.common.databinding.CommonBindingTitleActivity;
 import com.open9527.code.common.databinding.interfaces.IBindingCellClickListener;
 import com.open9527.code.common.recycleview.decoration.CommonItemDecoration;
-import com.open9527.code.common.recycleview.interfaces.ICellClickListener;
 import com.open9527.code.image.dragimageview.DraggableImageViewerHelper;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.cell.ImageLoadCell;
@@ -27,7 +25,7 @@ import java.util.List;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class ImageLoadActivity extends CommonBindingActivity<ActivityImageloadBinding> {
+public class ImageLoadTitleActivity extends CommonBindingTitleActivity<ActivityImageloadBinding> implements IBindingCellClickListener {
 
     private List<String> list = new LinkedList<>();
     private List<BindingBaseCell> cellList = new LinkedList<>();
@@ -61,6 +59,7 @@ public class ImageLoadActivity extends CommonBindingActivity<ActivityImageloadBi
         list.add("http://b-ssl.duitang.com/uploads/item/201207/30/20120730095212_LEexc.jpeg");
         list.add("http://pic.rmb.bdstatic.com/b395e365fc7700f73069e092f464b49b.jpeg");
         list.add("http://omsproductionimg.yangkeduo.com/images/label/610/GS4X5Ojt5TlVPuAtNGqr2hywByGs2FHN.jpg@120w_1l_50Q.webp");
+        list.add("https://github.com/open9527/Images/raw/master/upload/adapter.webp");
 
         for (int i = 0; i < list.size(); i++) {
             final String url = list.get(i);
@@ -87,19 +86,15 @@ public class ImageLoadActivity extends CommonBindingActivity<ActivityImageloadBi
         BindingBaseCellAdapter mAdapter = new BindingBaseCellAdapter<>();
         mBinding.includeRecycleview.commonRv.setAdapter(mAdapter);
         mAdapter.setItems(cellList);
-        mAdapter.setOnCellClickListener(new IBindingCellClickListener() {
-            @Override
-            public void onItemClick(View view, int position, BindingBaseCell cell) {
-                if (cell instanceof ImageLoadCell) {
-//                    ImageLoadCell imageLoadCell = (ImageLoadCell) cell;
-                    DraggableImageViewerHelper.showImages(mActivity, mBinding.includeRecycleview.commonRv, R.id.iv_images, list, position);
-                }
-
-            }
-        });
-
+        mAdapter.setOnBindingCellClickListener(this);
 
     }
 
-
+    @Override
+    public void onItemClick(View view, int position, BindingBaseCell... bindingBaseCells) {
+        if (bindingBaseCells[0] instanceof ImageLoadCell) {
+//            ImageLoadCell imageLoadCell = (ImageLoadCell) bindingBaseCells[0];
+            DraggableImageViewerHelper.showImages(mActivity, mBinding.includeRecycleview.commonRv, R.id.iv_images, list, position);
+        }
+    }
 }

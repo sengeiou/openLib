@@ -7,4 +7,12 @@
         <item name="colorPrimaryDark">@color/color_fff</item>
         <item name="colorAccent">@color/color_fff</item>
     </style>
+
+    <!--启动页-->
+    <style name="SplashTheme" parent="CommonAppTheme">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowBackground">@mipmap/splash</item>
+        <item name="android:windowDisablePreview">false</item>
+    </style>
 </resources>
