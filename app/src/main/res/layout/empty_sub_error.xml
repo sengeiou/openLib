@@ -11,10 +11,10 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tv_desc"
+            android:id="@+id/tv_error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="这是显示的数据!"
+            android:text="@string/empty_error"
             android:textColor="@color/color_333"
             android:textSize="@dimen/pt_40"
             app:layout_constraintBottom_toBottomOf="parent"
