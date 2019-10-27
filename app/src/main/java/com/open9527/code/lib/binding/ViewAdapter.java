@@ -1,11 +1,5 @@
 package com.open9527.code.lib.binding;
 
-import android.widget.TextView;
-
-import androidx.databinding.BindingAdapter;
-
-import com.blankj.utilcode.util.LogUtils;
-
 /**
  * Created by     : open9527
  * Created times  : on 2019/10/21 19:43.
@@ -15,9 +9,4 @@ import com.blankj.utilcode.util.LogUtils;
 public class ViewAdapter {
     private static final String TAG = "ViewAdapter";
 
-//    @BindingAdapter(value = {"bindingText"}, requireAll = false)
-//    public static void bindingText(TextView textView, String string) {
-//        LogUtils.i(TAG, string);
-//        textView.setText(string);
-//    }
 }

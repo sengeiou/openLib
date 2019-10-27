@@ -1,7 +1,5 @@
 package com.open9527.code.lib.cell;
 
-import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 
@@ -10,8 +8,6 @@ import com.open9527.code.common.databinding.BindingBaseCell;
 import com.open9527.code.common.databinding.BindingItemViewHolder;
 import com.open9527.code.common.databinding.click.BindingAction;
 import com.open9527.code.common.databinding.click.BindingClick;
-import com.open9527.code.common.recycleview.BaseCell;
-import com.open9527.code.common.recycleview.holder.ItemViewHolder;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ItemDescBinding;
 
@@ -30,16 +26,6 @@ public class DescCell extends BindingBaseCell<DescCell> {
         stringObservableField.set(string);
         stringObservableField1.set("这是第二段描述文件:" + string);
     }
-
-//    @Override
-//    public void bind(@NonNull ItemViewHolder holder, int position) {
-//        TextView desc = holder.findViewById(R.id.tv_desc);
-//        TextView desc1 = holder.findViewById(R.id.tv_desc_1);
-//        desc.setText(stringObservableField.get());
-//        desc1.setText(stringObservableField1.get());
-//        holder.setViewsClickListener(desc, desc1);
-//        holder.setViewsLongClickListener(desc, desc1);
-//    }
 
     @Override
     public void bind(@NonNull BindingItemViewHolder holder, int position) {
