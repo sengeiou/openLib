@@ -37,7 +37,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         mActivity = this;
         super.onCreate(savedInstanceState);
         initData(getIntent().getExtras());
-        setRootLayout(bindLayout());
+        setRootLayout(bindLayout() > 0 ? bindLayout() : 0);
         initView(savedInstanceState, mContentView);
         doBusiness();
     }

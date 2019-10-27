@@ -30,11 +30,6 @@ public class LaunchCell extends BindingBaseCell<LaunchCell> {
     public void bind(@NonNull BindingItemViewHolder holder, int position) {
         ItemCellLaunchBinding mBinding = (ItemCellLaunchBinding) holder.mBinding;
         mBinding.tvDesc.setText(descObservableField.get().getDesc());
-//        holder.itemView.setOnClickListener(view -> {
-//            if (iCellClickListener != null) {
-//                iCellClickListener.onItemClick(view, position, descObservableField.get());
-//            }
-//        });
     }
 
 }

@@ -38,6 +38,7 @@ public class SplashFragment extends CommonBindingFragment<FragmentSplashBinding>
 
     @Override
     public void initData(@Nullable Bundle bundle) {
+        mTitleGroup.setVisibility(View.GONE);
         if (getActivity() != null) {
             mViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
         }
@@ -106,7 +107,7 @@ public class SplashFragment extends CommonBindingFragment<FragmentSplashBinding>
     }
 
     private void removeFragment() {
-        mViewModel.stringSingleLiveEvent.postValue("跳过");
+        mViewModel.closeSplashEvent.postValue(null);
         FragmentActivity activity = (FragmentActivity) mActivity;
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
         transaction.remove(fragment);

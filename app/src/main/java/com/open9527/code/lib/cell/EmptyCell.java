@@ -1,16 +1,15 @@
 package com.open9527.code.lib.cell;
 
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 
-import com.blankj.utilcode.util.ClickUtils;
 import com.open9527.code.common.databinding.BindingBaseCell;
 import com.open9527.code.common.databinding.BindingItemViewHolder;
-import com.open9527.code.common.databinding.interfaces.IBindingCellClickListener;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ItemCellEmptyBinding;
+import com.open9527.code.lib.model.LaunchModel;
+import com.open9527.code.network.livedata.SingleLiveEvent;
 
 /**
  * Created by     : open9527
@@ -19,27 +18,20 @@ import com.open9527.code.lib.databinding.ItemCellEmptyBinding;
  * DESC :Empty.
  */
 public class EmptyCell extends BindingBaseCell<EmptyCell> {
-    public ObservableField<String> msgObservable = new ObservableField<>();
-    public ObservableField<String> urlObservable = new ObservableField<>();
+    public ObservableField<LaunchModel> descObservableField = new ObservableField<>();
+    public SingleLiveEvent<LaunchModel> launchModelSingleLiveEvent = new SingleLiveEvent<>();
+    public ObservableField<String> stringObservableField = new ObservableField<>();
 
-
-    public EmptyCell(String... strings) {
+    public EmptyCell(LaunchModel launchModel) {
         super(R.layout.item_cell_empty);
-        if (strings.length > 0) {
-            msgObservable.set(strings[0]);
-            if (strings.length > 1) {
-                urlObservable.set(strings[1]);
-            }
-        }
+//        descObservableField.set(launchModel);
+        stringObservableField.set(launchModel.getDesc());
     }
 
     @Override
     public void bind(@NonNull BindingItemViewHolder holder, int position) {
         ItemCellEmptyBinding emptyBinding = (ItemCellEmptyBinding) holder.mBinding;
-        String msg = msgObservable.get();
-        if (msg != null) {
-            emptyBinding.tvEmpty.setText(msg);
-        }
-//        addViewClickListener(emptyBinding.tvEmpty);
+        emptyBinding.setCell(this);
+        holder.setViewsClickListener(emptyBinding.tvEmpty);
     }
 }

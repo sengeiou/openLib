@@ -1,7 +1,5 @@
 package com.open9527.code.lib;
 
-import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
@@ -11,7 +9,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.blankj.utilcode.util.BarUtils;
 import com.open9527.code.common.databinding.CommonBindingActivity;
 import com.open9527.code.lib.databinding.ActivityMainBinding;
 import com.open9527.code.lib.model.EntryBean;
@@ -37,15 +34,15 @@ public class MainActivity extends CommonBindingActivity<ActivityMainBinding> {
 
     @Override
     public int bindLayout() {
-
         return R.layout.activity_main;
     }
 
+
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
-        mViewModel.stringSingleLiveEvent.observe(this, new Observer<String>() {
+        mViewModel.closeSplashEvent.observe(this, new Observer<Void>() {
             @Override
-            public void onChanged(String s) {
+            public void onChanged(Void v) {
                 initFragment(new MainFragment());
             }
         });

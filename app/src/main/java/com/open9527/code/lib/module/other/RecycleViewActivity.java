@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.blankj.utilcode.util.ToastUtils;
+import com.open9527.code.common.databinding.BindingBaseCell;
+import com.open9527.code.common.databinding.BindingBaseCellAdapter;
 import com.open9527.code.common.databinding.CommonBindingTitleActivity;
 import com.open9527.code.common.recycleview.BaseCell;
 import com.open9527.code.common.recycleview.BaseCellAdapter;
@@ -26,8 +28,8 @@ import java.util.List;
  */
 public class RecycleViewActivity extends CommonBindingTitleActivity<ActivityRecycleviewBinding> implements ICellClickListener {
 
-    private List<BaseCell> cellList = new LinkedList<>();
-    private BaseCellAdapter mAdapter;
+    private List<BindingBaseCell> cellList = new LinkedList<>();
+    private BindingBaseCellAdapter<BindingBaseCell> mAdapter;
 
 
     @Override
@@ -50,34 +52,34 @@ public class RecycleViewActivity extends CommonBindingTitleActivity<ActivityRecy
     private void initAdapter() {
         mBinding.rvList.setLayoutManager(new LinearLayoutManager(mActivity));
         mBinding.rvList.setHasFixedSize(true);
-        mAdapter = new BaseCellAdapter<>();
+        mAdapter = new BindingBaseCellAdapter<>();
         mBinding.rvList.setAdapter(mAdapter);
         mAdapter.setItems(cellList);
-        mAdapter.setOnCellClickListener(this);
+//        mAdapter.setOnCellClickListener(this);
     }
 
-    @Override
-    public void onItemClick(View view, int position, BaseCell... baseCells) {
-        final DescCell descCell = (DescCell) baseCells[0];
-        if (view.getId() == R.id.tv_desc) {
-            ToastUtils.showShort("onItemClick:" + descCell.stringObservableField.get());
-        } else if (view.getId() == R.id.tv_desc_1) {
-            ToastUtils.showShort("onItemClick:" + descCell.stringObservableField1.get());
-        } else {
-            ToastUtils.showShort("onItemClick-- item");
-        }
-    }
+//    @Override
+//    public void onItemClick(View view, int position, BaseCell... baseCells) {
+//        final DescCell descCell = (DescCell) baseCells[0];
+//        if (view.getId() == R.id.tv_desc) {
+//            ToastUtils.showShort("onItemClick:" + descCell.stringObservableField.get());
+//        } else if (view.getId() == R.id.tv_desc_1) {
+//            ToastUtils.showShort("onItemClick:" + descCell.stringObservableField1.get());
+//        } else {
+//            ToastUtils.showShort("onItemClick-- item");
+//        }
+//    }
 
-    @Override
-    public boolean onItemLongClick(View view, int position, BaseCell... baseCells) {
-        final DescCell descCell = (DescCell) baseCells[0];
-        if (view.getId() == R.id.tv_desc) {
-            ToastUtils.showShort("onItemLongClick:" + descCell.stringObservableField.get());
-        } else if (view.getId() == R.id.tv_desc_1) {
-            ToastUtils.showShort("onItemLongClick:" + descCell.stringObservableField1.get());
-        } else {
-            ToastUtils.showShort(" onItemLongClick--item");
-        }
-        return true;
-    }
+//    @Override
+//    public boolean onItemLongClick(View view, int position, BaseCell... baseCells) {
+//        final DescCell descCell = (DescCell) baseCells[0];
+//        if (view.getId() == R.id.tv_desc) {
+//            ToastUtils.showShort("onItemLongClick:" + descCell.stringObservableField.get());
+//        } else if (view.getId() == R.id.tv_desc_1) {
+//            ToastUtils.showShort("onItemLongClick:" + descCell.stringObservableField1.get());
+//        } else {
+//            ToastUtils.showShort(" onItemLongClick--item");
+//        }
+//        return true;
+//    }
 }

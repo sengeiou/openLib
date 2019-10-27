@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.open9527.code.common.databinding.CommonBindingTitleActivity;
 import com.open9527.code.customview.empty.EmptyConfig;
@@ -14,6 +15,7 @@ import com.open9527.code.customview.empty.IEmptyClick;
 import com.open9527.code.image.compression.Constants;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ActivityStateBinding;
+import com.open9527.code.lib.model.LaunchModel;
 import com.taobao.accs.ErrorCode;
 
 /**
@@ -22,11 +24,13 @@ import com.taobao.accs.ErrorCode;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class StateTitleActivity extends CommonBindingTitleActivity<ActivityStateBinding> {
+public class StateTitleActivity extends CommonBindingTitleActivity<ActivityStateBinding> implements IEmptyClick {
     private EmptyManager emptyManager;
+    private StateTitleViewModel mViewModel;
 
     @Override
     public void initData(@Nullable Bundle bundle) {
+        mViewModel = ViewModelProviders.of(this).get(StateTitleViewModel.class);
     }
 
     @Override
@@ -36,6 +40,7 @@ public class StateTitleActivity extends CommonBindingTitleActivity<ActivityState
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
+        mBinding.setVm(mViewModel);
         initEmptyLayou();
         applyDebouncingClickListener(mBinding.tvDesc);
     }
@@ -45,14 +50,11 @@ public class StateTitleActivity extends CommonBindingTitleActivity<ActivityState
         emptyManager = EmptyManager.build(EmptyConfig.builder()
                 .setContentLayout(mContentView)
                 .setEmptyLayoutHelper(new EmptyLayoutHelper(mContentView))
-                .setIEmptyClick(new IEmptyClick() {
-                    @Override
-                    public void onErrorRetry(View view) {
-                        emptyManager.showSuccessLayout();
-                    }
-                })
+                .setIEmptyClick(this)
                 .create());
+        //加载错误
         emptyManager.showEmptyLayout(EmptyManager.ERROR);
+        mViewModel.observableFieldLaunchModel.set(new LaunchModel("加载中..."));
     }
 
     @Override
@@ -60,10 +62,21 @@ public class StateTitleActivity extends CommonBindingTitleActivity<ActivityState
         switch (view.getId()) {
             case R.id.tv_desc:
                 //加载中..
-                emptyManager.showEmptyLayout(EmptyManager.LOADING);
+//                emptyManager.showEmptyLayout(EmptyManager.LOADING);
+                mViewModel.observableFieldLaunchModel.set(new LaunchModel("再次点击...."));
                 break;
             default:
                 break;
         }
+    }
+
+    /**
+     * 错误重试
+     *
+     * @param view
+     */
+    @Override
+    public void onErrorRetry(View view) {
+        emptyManager.showSuccessLayout();
     }
 }

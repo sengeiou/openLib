@@ -26,9 +26,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".MainActivity"
+            android:name=".module.splash.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="MainActivity"
+            android:label="SplashActivity"
             android:launchMode="singleTask"
             android:screenOrientation="user"
             android:theme="@style/SplashTheme"
@@ -39,6 +39,11 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="MainActivity"
+            android:launchMode="singleTop" />
         <activity
             android:name=".module.other.OtherTitleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -84,7 +89,12 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="CoordinatorLayoutActivity"
             android:launchMode="singleTop" />
-        <activity android:name=".module.other.RecycleViewActivity" />
+        <activity
+            android:name=".module.other.RecycleViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="RecycleViewActivity"
+            android:launchMode="singleTop" />
+
 
     </application>
 

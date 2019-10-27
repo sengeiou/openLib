@@ -42,7 +42,6 @@ public class MainFragment extends CommonBindingFragment<FragmentMainBinding> imp
 
     @Override
     public void initData(@Nullable Bundle bundle) {
-        mActivity.getWindow().setBackgroundDrawableResource(R.color.color_fff);
         BarUtils.setStatusBarLightMode(mActivity, true);
         cellList.add(new LaunchCell(new LaunchModel("图片压缩", CompressImageTitleActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("图片加载/预览", ImageLoadTitleActivity.class)));
@@ -52,7 +51,8 @@ public class MainFragment extends CommonBindingFragment<FragmentMainBinding> imp
         cellList.add(new LaunchCell(new LaunchModel("CoordinatorLayout", CoordinatorLayoutTitleActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("other", OtherTitleActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("other--RecycleView", RecycleViewActivity.class)));
-        cellList.add(new EmptyCell("空布局"));
+        cellList.add(new EmptyCell(new LaunchModel("空布局")));
+
     }
 
     @Override
@@ -90,12 +90,13 @@ public class MainFragment extends CommonBindingFragment<FragmentMainBinding> imp
                 ToastUtils.showShort("cell is null !");
             }
         } else if (bindingBaseCells[0] instanceof EmptyCell) {
-            EmptyCell cell1 = (EmptyCell) bindingBaseCells[0];
+            EmptyCell emptyCell = (EmptyCell) bindingBaseCells[0];
             if (view.getId() == R.id.tv_empty) {
                 ToastUtils.showShort("文本内容" + position);
+                emptyCell.stringObservableField.set("点击文本内容" + position);
             } else {
-                ToastUtils.showShort(cell1.msgObservable.get());
-                mAdapter.addItem(new EmptyCell("添加的空布局"), true);
+                ToastUtils.showShort(emptyCell.stringObservableField.get());
+                mAdapter.addItem(new EmptyCell(new LaunchModel("添加的空布局")), true);
             }
         } else {
             LogUtils.i(TAG, "onItemClick");

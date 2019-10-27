@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -14,8 +15,10 @@ import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.ImageUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
+import com.blankj.utilcode.util.ResourceUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.google.gson.reflect.TypeToken;
 import com.open9527.code.common.databinding.CommonBindingTitleActivity;
 import com.open9527.code.common.entity.Contacts;
 import com.open9527.code.common.entity.LocalMediaFolder;
@@ -25,6 +28,7 @@ import com.open9527.code.image.compression.CachePathUtils;
 import com.open9527.code.image.compression.Constants;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ActivityOtherBinding;
+import com.open9527.code.lib.model.EntryBean;
 import com.open9527.code.lib.utils.ImageLoadUtils;
 
 import java.io.File;
@@ -34,6 +38,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.observers.DisposableObserver;
 
 /**
  * Created by     : open9527
@@ -58,18 +70,42 @@ public class OtherTitleActivity extends CommonBindingTitleActivity<ActivityOther
         //添加点击事件
         applyDebouncingClickListener(mBinding.tvAlbum, mBinding.tvContacts);
 
+        ViewsClick(1, mBinding.tvDesc, new IViewsClick() {
+            @Override
+            public void onClick(View view) {
+                LogUtils.i(TAG, "ViewsClick-->");
+            }
+        });
+
     }
 
     @Override
     public void doBusiness() {
-
         //解析array.xml
         String[] letter = getResources().getStringArray(R.array.letter);
         int[] number = getResources().getIntArray(R.array.number);
 
         LogUtils.i(TAG, "letter: " + GsonUtils.toJson(letter));
         LogUtils.i(TAG, "number: " + GsonUtils.toJson(number));
+        //解析json
+        List<EntryBean> entryBeanList = getObject("json/entry.json");
+        for (int i = 0; i < entryBeanList.size(); i++) {
+            final EntryBean entryBean = entryBeanList.get(i);
+            LogUtils.i(TAG, entryBean.toString());
+
+        }
+
+
     }
+
+    public static List<EntryBean> getObject(String assetsFilePath) {
+        String string = ResourceUtils.readAssets2String(assetsFilePath);
+        List<EntryBean> list = GsonUtils.fromJson(string, new TypeToken<List<EntryBean>>() {
+        }.getType());
+
+        return list;
+    }
+
 
     @Override
     public void onDebouncingClick(@NonNull View view) {
@@ -254,5 +290,43 @@ public class OtherTitleActivity extends CommonBindingTitleActivity<ActivityOther
         }
         // 对字节数组Base64编码
         return new String(Base64.encode(data, Base64.DEFAULT));// 返回Base64编码过的字节数组字符串
+    }
+
+    private void ViewsClick(int seconds, final View view, final IViewsClick iViewsClick) {
+        ObservableOnSubscribe<View> subscribe = new ObservableOnSubscribe<View>() {
+            @Override
+            public void subscribe(final ObservableEmitter<View> observableEmitter) throws Exception {
+                view.setOnClickListener(v -> observableEmitter.onNext(view));
+            }
+        };
+
+        Observer<View> observer = new Observer<View>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+            }
+
+            @Override
+            public void onNext(View view) {
+                iViewsClick.onClick(view);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+
+            }
+        };
+        Observable.create(subscribe)
+                .throttleFirst(seconds, TimeUnit.SECONDS)
+                .subscribe(observer);
+    }
+
+
+    public interface IViewsClick {
+        void onClick(View view);
     }
 }

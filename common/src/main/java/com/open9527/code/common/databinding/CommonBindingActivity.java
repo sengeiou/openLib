@@ -1,6 +1,7 @@
 package com.open9527.code.common.databinding;
 
 
+import androidx.annotation.LayoutRes;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
@@ -16,9 +17,10 @@ public abstract class CommonBindingActivity<D extends ViewDataBinding> extends C
     protected D mBinding;
 
     @Override
-    public void setRootLayout(int layoutId) {
+    public void setRootLayout(@LayoutRes int layoutId) {
         super.setRootLayout(layoutId);
         //mBinding
+        if (null == mContentView) return;
         mBinding = DataBindingUtil.bind(mContentView);
     }
 }

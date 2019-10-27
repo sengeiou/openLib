@@ -18,7 +18,7 @@ public interface IBindingCellClickListener {
      *
      * @param view
      * @param position
-     * @param cell
+     * @param bindingBaseCells
      */
     default void onItemClick(View view, int position, BindingBaseCell... bindingBaseCells) {
     }
@@ -28,7 +28,7 @@ public interface IBindingCellClickListener {
      *
      * @param view
      * @param position
-     * @param cell
+     * @param bindingBaseCells
      */
     default boolean onItemLongClick(View view, int position, BindingBaseCell... bindingBaseCells) {
 

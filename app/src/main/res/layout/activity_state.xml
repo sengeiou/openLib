@@ -4,6 +4,12 @@
 
     <data>
 
+        <variable
+            name="vm"
+            type="com.open9527.code.lib.module.statelayout.StateTitleViewModel" />
+
+
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +20,7 @@
             android:id="@+id/tv_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="这是显示的数据!"
+            android:text="@{vm.observableFieldLaunchModel.desc,default=desc}"
             android:textColor="@color/color_333"
             android:textSize="@dimen/pt_40"
             app:layout_constraintBottom_toBottomOf="parent"

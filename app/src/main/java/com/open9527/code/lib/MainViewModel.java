@@ -22,7 +22,7 @@ import io.reactivex.Single;
  * DESC :描述文件.
  */
 public class MainViewModel extends ViewModel {
-   public SingleLiveEvent<String> stringSingleLiveEvent = new SingleLiveEvent<>();
+    public SingleLiveEvent<Void> closeSplashEvent = new SingleLiveEvent<>();
 
 
     DataLoadRepository<List<EntryBean>> mEntryInfoRepository = new GitHubSingleDataLoadRepository<>(new GitHubSingleDataLoader<List<EntryBean>>() {

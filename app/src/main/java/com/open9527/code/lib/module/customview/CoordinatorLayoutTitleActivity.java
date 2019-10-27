@@ -17,11 +17,10 @@ import com.open9527.code.common.databinding.BindingBaseCell;
 import com.open9527.code.common.databinding.BindingBaseCellAdapter;
 import com.open9527.code.common.databinding.CommonBindingActivity;
 import com.open9527.code.common.databinding.interfaces.IBindingCellClickListener;
-import com.open9527.code.common.recycleview.BaseCell;
-import com.open9527.code.common.recycleview.interfaces.ICellClickListener;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.cell.EmptyCell;
 import com.open9527.code.lib.databinding.ActivityCoordinatorLayoutBinding;
+import com.open9527.code.lib.model.LaunchModel;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -92,7 +91,7 @@ public class CoordinatorLayoutTitleActivity extends CommonBindingActivity<Activi
         mBinding.rvList.setAdapter(mAdapter);
         List<BindingBaseCell> cellList = new LinkedList<>();
         for (int i = 0; i < 20; i++) {
-            cellList.add(new EmptyCell("空布局" + i));
+            cellList.add(new EmptyCell(new LaunchModel("空布局" + i)));
         }
         mAdapter.setItems(cellList);
         mAdapter.setOnBindingCellClickListener(this);
@@ -103,7 +102,7 @@ public class CoordinatorLayoutTitleActivity extends CommonBindingActivity<Activi
         final BindingBaseCell baseCell = bindingBaseCells[0];
         if (baseCell instanceof EmptyCell) {
             EmptyCell emptyCell = (EmptyCell) baseCell;
-            ToastUtils.showShort(emptyCell.msgObservable.get());
+            ToastUtils.showShort(emptyCell.descObservableField.get().getDesc());
         }
     }
 }

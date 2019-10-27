@@ -1,12 +1,14 @@
 package com.open9527.code.lib.model;
 
+import java.io.Serializable;
+
 /**
  * Created by     : open9527
  * Created times  : on 2019/8/23 14:02.
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class EntryBean {
+public class EntryBean implements Serializable {
     private String icon;
     private String title;
     private String desc;
@@ -45,4 +47,13 @@ public class EntryBean {
         this.avatars = avatars;
     }
 
+    @Override
+    public String toString() {
+        return "EntryBean{" +
+                "icon='" + icon + '\'' +
+                ", title='" + title + '\'' +
+                ", desc='" + desc + '\'' +
+                ", avatars='" + avatars + '\'' +
+                '}';
+    }
 }
