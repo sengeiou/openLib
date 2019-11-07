@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- //tabMode：fixed：指的是固定tab；scrollable指的是tab可滑动。
+        //tabGravity：center指的是居中显示，fill指的是沾满全屏-->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pt_150"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabGravity="center"
+            app:tabMode="scrollable"
+            tools:background="@color/color_ff6699" />
+
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/pt_150"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tabGravity="center"
+            app:tabMode="scrollable"
+            tools:background="@color/color_ff6699" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

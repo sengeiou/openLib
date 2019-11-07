@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="cell"
+            type="com.open9527.code.lib.cell.IndicatorCell" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/pt_50"
+        android:layout_height="@dimen/pt_100">
+
+        <ImageView
+            android:id="@+id/iv_indicator"
+            android:layout_width="@dimen/pt_20"
+            android:layout_height="@dimen/pt_20"
+            android:background="@{cell.observableField?@color/color_ff6699:@color/color_999}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

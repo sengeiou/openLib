@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/pt_500"
+    android:background="@color/color_80_000"
+    android:layout_gravity="bottom">
+
+    <TextView
+        android:id="@+id/tv_share"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:textColor="@color/color_333"
+        android:textSize="@dimen/pt_42"
+        tools:text="分享" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

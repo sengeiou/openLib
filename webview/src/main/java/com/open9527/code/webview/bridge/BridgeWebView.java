@@ -274,4 +274,6 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
         doSend(handlerName, data, callBack);
 	}
 
+
+
 }

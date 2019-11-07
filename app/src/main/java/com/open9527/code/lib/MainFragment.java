@@ -3,6 +3,7 @@ package com.open9527.code.lib;
 import android.os.Bundle;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -20,12 +21,22 @@ import com.open9527.code.lib.databinding.FragmentMainBinding;
 import com.open9527.code.lib.model.LaunchModel;
 import com.open9527.code.lib.module.bglib.BackgroundLibTitleActivity;
 import com.open9527.code.lib.module.browser.BrowserTitleActivity;
+import com.open9527.code.lib.module.browser.WebViewAndRecycleView;
+import com.open9527.code.lib.module.customview.BannerTitleActivity;
 import com.open9527.code.lib.module.customview.CoordinatorLayoutTitleActivity;
+import com.open9527.code.lib.module.customview.TabLayoutTitleActivity;
+import com.open9527.code.lib.module.dialog.DialogActivity;
 import com.open9527.code.lib.module.image.compression.CompressImageTitleActivity;
 import com.open9527.code.lib.module.image.load.ImageLoadTitleActivity;
+import com.open9527.code.lib.module.customview.BottomNavigationActivity;
+import com.open9527.code.lib.module.other.DrawableTitleActivity;
 import com.open9527.code.lib.module.other.OtherTitleActivity;
-import com.open9527.code.lib.module.other.RecycleViewActivity;
+import com.open9527.code.lib.module.customview.RecycleViewActivity;
+import com.open9527.code.lib.module.other.YImagePickerTitleActivity;
+import com.open9527.code.lib.module.smartswipe.SmartSwipeActivity;
 import com.open9527.code.lib.module.statelayout.StateTitleActivity;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -46,13 +57,20 @@ public class MainFragment extends CommonBindingFragment<FragmentMainBinding> imp
         cellList.add(new LaunchCell(new LaunchModel("图片压缩", CompressImageTitleActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("图片加载/预览", ImageLoadTitleActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("StateLayout", StateTitleActivity.class)));
-        cellList.add(new LaunchCell(new LaunchModel("x5WebView", BrowserTitleActivity.class)));
+        cellList.add(new LaunchCell(new LaunchModel("WebView---x5WebView", BrowserTitleActivity.class)));
+        cellList.add(new LaunchCell(new LaunchModel("WebView---WebViewAndRecycleView", WebViewAndRecycleView.class)));
         cellList.add(new LaunchCell(new LaunchModel("BackgroundLib", BackgroundLibTitleActivity.class)));
-        cellList.add(new LaunchCell(new LaunchModel("CoordinatorLayout", CoordinatorLayoutTitleActivity.class)));
+        cellList.add(new LaunchCell(new LaunchModel("customview--CoordinatorLayout", CoordinatorLayoutTitleActivity.class)));
+        cellList.add(new LaunchCell(new LaunchModel("customview--RecycleView", RecycleViewActivity.class)));
+        cellList.add(new LaunchCell(new LaunchModel("customview--BottomNavigation", BottomNavigationActivity.class)));
+        cellList.add(new LaunchCell(new LaunchModel("customview--TabLayout", TabLayoutTitleActivity.class)));
+        cellList.add(new LaunchCell(new LaunchModel("customview--Banner", BannerTitleActivity.class)));
+        cellList.add(new LaunchCell(new LaunchModel("SmartSwipe", SmartSwipeActivity.class)));
+        cellList.add(new LaunchCell(new LaunchModel("Dialog", DialogActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("other", OtherTitleActivity.class)));
-        cellList.add(new LaunchCell(new LaunchModel("other--RecycleView", RecycleViewActivity.class)));
+        cellList.add(new LaunchCell(new LaunchModel("other--Drawables", DrawableTitleActivity.class)));
+        cellList.add(new LaunchCell(new LaunchModel("other--小红书", YImagePickerTitleActivity.class)));
         cellList.add(new EmptyCell(new LaunchModel("空布局")));
-
     }
 
     @Override
@@ -68,6 +86,13 @@ public class MainFragment extends CommonBindingFragment<FragmentMainBinding> imp
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
         initAdapter();
+        mBinding.RefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                refreshLayout.finishLoadMoreWithNoMoreData();
+                refreshLayout.setEnableFooterFollowWhenNoMoreData(true);
+            }
+        });
     }
 
     private void initAdapter() {

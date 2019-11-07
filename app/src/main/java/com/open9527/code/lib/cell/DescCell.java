@@ -32,7 +32,6 @@ public class DescCell extends BindingBaseCell<DescCell> {
         ItemDescBinding binding = (ItemDescBinding) holder.mBinding;
         binding.setCell(this);
     }
-
     public BindingClick bindingDescClick = new BindingClick(new BindingAction() {
         @Override
         public void call() {

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="cell"
+            type="com.open9527.code.lib.cell.DialogCell" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pt_300">
+
+        <TextView
+            android:id="@+id/tv_title"
+            bindingText="@{cell.observableField}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/pt_50"
+            android:background="@color/color_80_000"
+            android:gravity="center"
+            android:textColor="@color/color_333"
+            android:textSize="@dimen/pt_42"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

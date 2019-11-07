@@ -90,6 +90,7 @@ public class X5WebChromeClient extends WebChromeClient {
         }
     }
 
+
     /**
      * 这个方法主要是监听标题变化操作的
      *
@@ -325,4 +326,6 @@ public class X5WebChromeClient extends WebChromeClient {
         }
         mUploadMessageForAndroid5 = null;
     }
+
+
 }

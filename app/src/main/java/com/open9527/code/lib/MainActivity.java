@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.open9527.code.common.databinding.CommonBindingActivity;
 import com.open9527.code.lib.databinding.ActivityMainBinding;
 import com.open9527.code.lib.model.EntryBean;
@@ -49,6 +50,7 @@ public class MainActivity extends CommonBindingActivity<ActivityMainBinding> {
         mViewModel.mEntryInfoRepository.getData().observe(this, new Observer<List<EntryBean>>() {
             @Override
             public void onChanged(List<EntryBean> entryBeans) {
+
 
             }
         });

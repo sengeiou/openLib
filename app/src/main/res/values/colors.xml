@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--不透明度数值
+100% — FF 95% — F2 90% — E6 85% — D9 80% — CC
+75% — BF  70% — B3 65% — A6 60% — 99 55% — 8C
+50% — 80  45% — 73 40% — 66 35% — 59 30% — 4D
+25% — 40  20% — 33 15% — 26 10% — 1A 5% — 0D
+0% — 00
+-->
+
+
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
@@ -8,4 +17,5 @@
     <color name="color_00aaae">#00aaae</color>
     <color name="color_d81b60">#d81b60</color>
     <color name="color_00_000">#00000000</color>
+    <color name="color_80_000">#80000000</color>
 </resources>

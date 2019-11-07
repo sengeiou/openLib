@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        drawable_endColor="@{@color/color_fff}"
+        drawable_orientation="@{@integer/orientation_bottom_top}"
+        drawable_startColor="@{@color/color_fff}"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_pic"
+            drawable_radius="@{8}"
+            drawable_solidColor="@{@color/color_d81b60}"
+            drawable_strokeColor="@{@color/color_00aaae}"
+            drawable_strokeWidth="@{1}"
+            android:layout_width="@dimen/pt_200"
+            android:layout_height="@dimen/pt_200"
+            android:layout_margin="@dimen/pt_50"
+            android:background="@color/color_80_000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/et_phone"
+
+            drawable_focused_height="@{90}"
+            drawable_focused_marginLeft="@{-2}"
+            drawable_focused_marginRight="@{-2}"
+            drawable_focused_strokeColor="@{0xff00ff00}"
+            drawable_focused_strokeWidth="@{1}"
+            drawable_focused_width="@{50}"
+            drawable_height="@{50}"
+            drawable_marginBottom="@{-2}"
+
+            drawable_marginTop="@{-2}"
+            drawable_pressed_centerColor="@{0x7fffffff}"
+            drawable_pressed_endColor="@{0x00000000}"
+            drawable_pressed_orientation="@{@integer/orientation_left_right}"
+            drawable_pressed_shapeMode="@{@integer/shapeMode_oval}"
+            drawable_pressed_solidColor="@{0x7f00ffff}"
+
+            drawable_pressed_startColor="@{0x00000000}"
+            drawable_strokeColor="@{0xff00ff00}"
+            drawable_strokeWidth="@{0.2f}"
+            drawable_width="@{250}"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="32dp"
+            android:gravity="center"
+            android:hint="该控件用于测试属性，点击试试"
+            android:inputType="phone"
+            android:textColor="#fff"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_pic" />
+
+
+        <Button
+            android:id="@+id/open_xml"
+
+            drawable_pressed_radiusLT="@{30}"
+            drawable_pressed_radiusRB="@{30}"
+            drawable_pressed_solidColor="@{0xffD6D7D7}"
+
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="打开「drawable.xml」方案的Activity"
+            android:textSize="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/et_phone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@+id/open_xml">
+
+            <View
+                drawable_endColor="@{0x00000000}"
+                drawable_gradientType="@{@integer/gradientType_linear}"
+                drawable_radialRadius="@{30}"
+                drawable_radius="@{30}"
+                drawable_startColor="@{0xffD86157}"
+                drawable_strokeColor="@{0xffD86157}"
+                drawable_strokeWidth="@{1}"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp" />
+
+            <View
+                drawable_endColor="@{0x00000000}"
+                drawable_gradientType="@{@integer/gradientType_sweep}"
+                drawable_radius="@{30}"
+                drawable_startColor="@{0xffD86157}"
+                drawable_strokeColor="@{0xffD86157}"
+                drawable_strokeWidth="@{1}"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp" />
+
+
+            <View
+                drawable_endColor="@{0x00000000}"
+                drawable_gradientType="@{@integer/gradientType_radial}"
+                drawable_radialRadius="@{30}"
+                drawable_radius="@{30}"
+                drawable_startColor="@{0xffD86157}"
+                drawable_strokeColor="@{0xffD86157}"
+                drawable_strokeWidth="@{1}"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp" />
+
+            <View
+                drawable_endColor="@{0x00000000}"
+                drawable_gradientType="@{@integer/gradientType_sweep}"
+                drawable_ringInnerRadius="@{20}"
+                drawable_ringThickness="@{8}"
+                drawable_shapeMode="@{3}"
+                drawable_startColor="@{0xffD86157}"
+                drawable_strokeColor="@{0xffD86157}"
+                drawable_strokeWidth="@{1}"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp" />
+
+
+            <View
+                drawable_marginBottom="@{-2}"
+                drawable_marginRight="@{-2}"
+                drawable_marginTop="@{-2}"
+                drawable_solidColor="@{0x3fD86157}"
+                drawable_strokeColor="@{0xffD86157}"
+                drawable_strokeWidth="@{1}"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp" />
+
+            <View
+                drawable_marginBottom="@{-2}"
+                drawable_marginLeft="@{-2}"
+                drawable_marginRight="@{-2}"
+                drawable_solidColor="@{0x3fD86157}"
+                drawable_strokeColor="@{0xffD86157}"
+                drawable_strokeWidth="@{1}"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp" />
+
+            <View
+                drawable_marginLeft="@{-2}"
+                drawable_marginRight="@{-2}"
+                drawable_marginTop="@{-2}"
+                drawable_solidColor="@{0x3fD86157}"
+                drawable_strokeColor="@{0xffD86157}"
+                drawable_strokeWidth="@{1}"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp" />
+
+            <View
+                drawable_marginBottom="@{-2}"
+                drawable_marginLeft="@{-2}"
+                drawable_marginTop="@{-2}"
+                drawable_solidColor="@{0x3fD86157}"
+                drawable_strokeColor="@{0xffD86157}"
+                drawable_strokeWidth="@{1}"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp" />
+
+
+            <View
+                drawable_marginBottom="@{-2}"
+                drawable_marginTop="@{-2}"
+                drawable_radiusRB="@{30}"
+                drawable_radiusRT="@{30}"
+                drawable_solidColor="@{0x3fD86157}"
+                drawable_strokeColor="@{0xffD86157}"
+                drawable_strokeWidth="@{1}"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp" />
+
+            <View
+                drawable_marginBottom="@{30}"
+                drawable_marginLeft="@{-2}"
+                drawable_marginRight="@{-2}"
+                drawable_solidColor="@{0x3fD86157}"
+                drawable_strokeColor="@{0xffD86157}"
+                drawable_strokeWidth="@{1}"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp" />
+
+            <View
+                drawable_marginLeft="@{-2}"
+                drawable_marginRight="@{-2}"
+                drawable_marginTop="@{30}"
+                drawable_radius="@{10}"
+                drawable_solidColor="@{0x3fD86157}"
+                drawable_strokeColor="@{0xffD86157}"
+                drawable_strokeWidth="@{1}"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp" />
+
+            <View
+                drawable_radiusLT="@{60}"
+                drawable_radiusRB="@{60}"
+                drawable_solidColor="@{0x3fD86157}"
+                drawable_strokeColor="@{0xffD86157}"
+                drawable_strokeDash="@{2}"
+                drawable_strokeDashGap="@{2}"
+                drawable_strokeWidth="@{1}"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_margin="8dp" />
+
+
+            <EditText
+                drawable_focused_marginLeft="@{-3}"
+                drawable_focused_marginRight="@{-3}"
+                drawable_focused_marginTop="@{-3}"
+                drawable_focused_strokeColor="@{@color/color_d81b60}"
+                drawable_focused_strokeDash="@{4}"
+                drawable_focused_strokeDashGap="@{4}"
+                drawable_focused_strokeWidth="@{2}"
+                drawable_radius="@{21}"
+                drawable_solidColor="@{0x7fffffff}"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:hint="输入框状态" />
+
+            <Button
+                drawable_enabled_radius="@{21}"
+                drawable_enabled_solidColor="@{@color/color_d81b60}"
+                drawable_radius="@{21}"
+                drawable_solidColor="@{@color/color_ff6699}"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="@dimen/pt_100"
+                android:text="登录按钮的背景" />
+
+
+            <View
+                drawable_endColor="@{@color/color_d81b60}"
+                drawable_orientation="@{@integer/orientation_right_left}"
+                drawable_startColor="@{@color/color_ff6699}"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_margin="@dimen/pt_100"
+                android:text="“第三方登录”左右两边的“尾翼”" />
+
+
+            <ImageView
+                drawable_pressed_shapeMode="@{@integer/shapeMode_oval}"
+                drawable_pressed_solidColor="@{0xff54B536}"
+                drawable_shapeMode="@{1}"
+                drawable_solidColor="@{0xffDCDFE8}"
+                android:layout_width="@dimen/pt_200"
+                android:layout_height="@dimen/pt_200"
+                android:layout_margin="@dimen/pt_100"
+                android:layout_marginStart="@dimen/pt_100"
+                android:layout_marginEnd="@dimen/pt_100"
+                android:src="@mipmap/launch"
+                android:text="微信按钮按压效果" />
+
+
+            <Button
+                drawable_pressed_radius="@{50}"
+                drawable_pressed_solidColor="@{@color/color_00aaae}"
+                drawable_radius="@{50}"
+                drawable_solidColor="@{@color/color_ff6699}"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/pt_100"
+                android:layout_margin="@dimen/pt_100"
+                android:text="按压效果" />
+
+            <CheckBox
+                app:drawable="@{@drawable/icon_unlike}"
+                app:drawable_checkable="@{@drawable/icon_unlike}"
+                app:drawable_checked="@{@drawable/icon_like}"
+                android:layout_width="@dimen/pt_100"
+                android:layout_height="@dimen/pt_100"
+                android:layout_margin="@dimen/pt_100"
+                android:button="@null" />
+
+            <Button
+                drawable="@{@drawable/icon_unlike}"
+                drawable_checkable="@{@drawable/icon_unlike}"
+                drawable_width="@{@dimen/pt_100}"
+                drawable_height="@{@dimen/pt_100}"
+                drawable_checked="@{@drawable/icon_like}"
+                android:layout_width="@dimen/pt_500"
+                android:layout_height="@dimen/pt_500"
+                android:layout_margin="@dimen/pt_100"
+                android:background="@null"
+                android:text="点赞"
+                android:textSize="@dimen/pt_30" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

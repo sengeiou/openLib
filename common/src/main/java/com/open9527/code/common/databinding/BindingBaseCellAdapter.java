@@ -27,7 +27,6 @@ public class BindingBaseCellAdapter<Item extends BindingBaseCell> extends Recycl
 
 
     private boolean hasClick = true;
-    private BindingItemViewHolder holder;
 
     public BindingBaseCellAdapter() {
         this(false, true);
@@ -69,7 +68,6 @@ public class BindingBaseCellAdapter<Item extends BindingBaseCell> extends Recycl
 
     @Override
     public void onBindViewHolder(@NonNull BindingItemViewHolder holder, int position) {
-        this.holder = holder;
         mItems.get(position).bind(holder, position);
         //配置点击事件
         if (hasClick) {

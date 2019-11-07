@@ -49,8 +49,9 @@ public class LifecycleHandler extends Handler implements LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     private void onDestory() {
-        removeCallbacks(null);
+        removeCallbacksAndMessages(null);
         CommonImageUtils.showLogInfo(TAG, "onDestory---->");
         mlifecycleOwner.getLifecycle().removeObserver(this);
+
     }
 }

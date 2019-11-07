@@ -41,11 +41,20 @@ dependencies {
     //js bridge
     implementation 'com.github.lzyzsd:jsbridge:1.0.4'
     //room
-    annotationProcessor 'androidx.room:room-compiler:2.1.0'
-    implementation 'androidx.room:room-runtime:2.1.0'
+    annotationProcessor 'androidx.room:room-compiler:2.2.1'
+    implementation 'androidx.room:room-runtime:2.2.1'
 
     //阿里推送
-    implementation ('com.aliyun.ams:alicloud-android-push:3.1.6'){
-//        exclude (module: 'alicloud-android-utdid')
+    implementation('com.aliyun.ams:alicloud-android-push:3.1.6') {
     }
+
+    //DoraemonKit
+    debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:1.2.1'
+    releaseImplementation 'com.didichuxing.doraemonkit:doraemonkit-no-op:1.2.0'
+
+
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
+
+    //小红书图片选择
+    implementation 'com.ypx.yimagepicker:androidx:2.4.6.2'
 }

@@ -9,6 +9,7 @@
     <!--读取,写入文件-->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--悬浮窗-->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <!--CONTACTS-->
@@ -24,13 +25,13 @@
         android:roundIcon="@mipmap/launch"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
             android:name=".module.splash.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="SplashActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="user"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>
@@ -43,58 +44,112 @@
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="MainActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.other.OtherTitleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="OtherActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.image.compression.CompressImageTitleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="CompressImageActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.image.load.ImageLoadTitleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="ImageLoadActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.image.preview.PreviewTitleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="PreviewActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.browser.BrowserTitleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="BrowserActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.statelayout.StateTitleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="StateActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.bglib.BackgroundLibTitleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="BackgroundLibActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.customview.TabLayoutTitleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="TabLayoutActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.customview.CoordinatorLayoutTitleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="CoordinatorLayoutActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
         <activity
-            android:name=".module.other.RecycleViewActivity"
+            android:name=".module.customview.RecycleViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="RecycleViewActivity"
-            android:launchMode="singleTop" />
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.customview.BottomNavigationActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="BottomNavigationActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.customview.BannerTitleActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="BottomNavigationActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.browser.WebViewAndRecycleView"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="WebViewAndRecycleView"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.smartswipe.SmartSwipeActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="SmartSwipeActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.dialog.DialogActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="DialogActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="user" />
+        <activity
+            android:name=".module.other.DrawableTitleActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="DrawableTitleActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
 
+            />
+        <activity
+            android:name=".module.other.YImagePickerTitleActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="YImagePickerTitleActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
 
     </application>
 

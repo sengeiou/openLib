@@ -1,6 +1,5 @@
 package com.open9527.code.lib.net.response;
 
-
 import io.reactivex.Single;
 
 /**
@@ -11,5 +10,4 @@ import io.reactivex.Single;
  */
 public interface GitHubSingleDataLoader<T> {
     Single<GitHubResponse<T>> getLoader();
-
 }

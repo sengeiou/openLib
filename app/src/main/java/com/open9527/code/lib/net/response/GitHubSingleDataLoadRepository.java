@@ -2,6 +2,7 @@ package com.open9527.code.lib.net.response;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Observer;
 
 import com.open9527.code.network.exception.NetError;
 import com.open9527.code.network.livedata.NetStatusLiveData;
@@ -90,6 +91,5 @@ public class GitHubSingleDataLoadRepository<T> implements DataLoadRepository<T> 
                 netStatusLiveData.postError(NetError.getErrorMessage(e), 0);
             }
         });
-
     }
 }

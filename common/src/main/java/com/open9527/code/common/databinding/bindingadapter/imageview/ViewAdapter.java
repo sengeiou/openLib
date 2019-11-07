@@ -19,9 +19,10 @@ import com.open9527.code.image.imageload.ImageLoadManger;
 public class ViewAdapter {
     private static final String TAG = "ViewAdapter";
 
-    @BindingAdapter(value = {"bindingImage"}, requireAll = false)
-    public static void bindingImage(ImageView imageView, String url) {
+    @BindingAdapter(value = {"bindingImage", "bindingImageRadius"}, requireAll = false)
+    public static void bindingImage(ImageView imageView, String url, int imageRadius) {
         LogUtils.i(TAG, url);
-        ImageLoadManger.display(imageView.getContext(), imageView,url, new ImageLoadConfig(R.drawable.image_placeholder, R.drawable.image_placeholder));
+        ImageLoadManger.display(imageView.getContext(), imageView, url, new ImageLoadConfig(0, R.drawable.image_placeholder, imageRadius), null);
+
     }
 }
