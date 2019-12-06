@@ -1,12 +1,11 @@
 package com.open9527.code.common.databinding;
 
-import android.annotation.SuppressLint;
 import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.open9527.code.common.activity.CommonTitleActivity;
 
 /**
@@ -18,12 +17,10 @@ import com.open9527.code.common.activity.CommonTitleActivity;
 public abstract class CommonBindingTitleActivity<D extends ViewDataBinding> extends CommonTitleActivity {
     protected D mBinding;
 
-    @SuppressLint("ResourceType")
+
     @Override
-    public void setRootLayout(int layoutId) {
-        if (layoutId <= 0) return;
-        super.setRootLayout(layoutId);
-        //mBinding
+    public void bindingView() {
+        if (null == mRootView) return;
         mBinding = DataBindingUtil.bind(getBindView());
     }
 
@@ -33,10 +30,10 @@ public abstract class CommonBindingTitleActivity<D extends ViewDataBinding> exte
      * @return bindingView
      */
     protected View getBindView() {
-        if (mContentView.getChildCount() > 0) {
-            return mContentView.getChildAt(0);
+        if (mRootView.getChildCount() > 0) {
+            return mRootView.getChildAt(0);
         } else {
-            LogUtils.i(TAG, "bindingView is null");
+            logI(TAG, "bindingView is null");
         }
         return null;
     }

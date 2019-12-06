@@ -5,7 +5,6 @@ import android.view.View;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.open9527.code.common.fragment.CommonTitleFragment;
 
 /**
@@ -17,10 +16,10 @@ import com.open9527.code.common.fragment.CommonTitleFragment;
 public abstract class CommonBindingFragment<D extends ViewDataBinding> extends CommonTitleFragment {
     protected D mBinding;
 
+
     @Override
-    public void setRootLayout(int layoutId) {
-        super.setRootLayout(layoutId);
-        //mBinding
+    public void bindingView() {
+        if (null == mRootView) return;
         mBinding = DataBindingUtil.bind(getBindView());
     }
 
@@ -30,10 +29,10 @@ public abstract class CommonBindingFragment<D extends ViewDataBinding> extends C
      * @return bindingView
      */
     protected View getBindView() {
-        if (mContentView.getChildCount() > 0) {
-            return mContentView.getChildAt(0);
+        if (mRootView.getChildCount() > 0) {
+            return mRootView.getChildAt(0);
         } else {
-            LogUtils.i(TAG, "bindingView is null");
+            logI(TAG, "bindingView is null");
         }
         return null;
     }

@@ -65,7 +65,9 @@ public class ImageLoadConfig {
     public ImageLoadConfig(int defaultRes, int failRes, int radius) {
         this(defaultRes, failRes, radius, RoundedCornersTransformation.CornerType.ALL, ImageView.ScaleType.CENTER_CROP, DiskCacheStrategy.AUTOMATIC, false, false, -1, -1);
     }
-
+    public ImageLoadConfig(int defaultRes, int failRes, int radius,int width,int height) {
+        this(defaultRes, failRes, radius, RoundedCornersTransformation.CornerType.ALL, ImageView.ScaleType.CENTER_CROP, DiskCacheStrategy.AUTOMATIC, false, false, width, height);
+    }
 
     public ImageLoadConfig(int defaultRes, int failRes, int radius, RoundedCornersTransformation.CornerType cornerType) {
         this(defaultRes, failRes, radius, cornerType, ImageView.ScaleType.CENTER_CROP, DiskCacheStrategy.AUTOMATIC, false, false, -1, -1);

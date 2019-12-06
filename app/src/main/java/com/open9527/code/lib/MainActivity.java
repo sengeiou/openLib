@@ -1,5 +1,7 @@
 package com.open9527.code.lib;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -9,10 +11,14 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.blankj.utilcode.util.ActivityUtils;
+import com.blankj.utilcode.util.GsonUtils;
+import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.open9527.code.common.databinding.CommonBindingActivity;
 import com.open9527.code.lib.databinding.ActivityMainBinding;
 import com.open9527.code.lib.model.EntryBean;
+import com.open9527.code.lib.module.customview.RadioRecycleViewActivity;
 import com.open9527.code.lib.module.splash.SplashFragment;
 
 import java.util.List;
@@ -28,9 +34,15 @@ public class MainActivity extends CommonBindingActivity<ActivityMainBinding> {
     private MainViewModel mViewModel;
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        getWindow().setBackgroundDrawable(null);
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
     public void initData(@Nullable Bundle bundle) {
         mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        initFragment(new SplashFragment());
+        initScheme();
     }
 
     @Override
@@ -51,15 +63,36 @@ public class MainActivity extends CommonBindingActivity<ActivityMainBinding> {
             @Override
             public void onChanged(List<EntryBean> entryBeans) {
 
-
             }
         });
-
     }
 
     private void initFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fl_content, fragment);
         transaction.commit();
+    }
+
+    private void initScheme() {
+        try {
+            Uri uri = getIntent().getData();
+            if (uri != null) {
+                LogUtils.i(TAG, GsonUtils.toJson(uri));
+                //获取指定参数值
+                String query1 = uri.getQueryParameter("query1");
+                boolean query2 = uri.getBooleanQueryParameter("query2", false);
+                if ("1".equals(query1) && query2) {
+                    initFragment(new MainFragment());
+                    ActivityUtils.startActivity(RadioRecycleViewActivity.class);
+                    return;
+                }
+                initFragment(new MainFragment());
+                return;
+            }
+        } catch (Exception e) {
+            initFragment(new SplashFragment());
+            return;
+        }
+        initFragment(new SplashFragment());
     }
 }

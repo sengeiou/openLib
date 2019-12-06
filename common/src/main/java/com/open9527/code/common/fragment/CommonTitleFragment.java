@@ -1,12 +1,13 @@
 package com.open9527.code.common.fragment;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -14,7 +15,7 @@ import androidx.constraintlayout.widget.Group;
 
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ColorUtils;
-import com.open9527.code.base.BaseLazyFragment;
+import com.open9527.code.base.BaseFragment;
 import com.open9527.code.common.R;
 
 /**
@@ -23,20 +24,25 @@ import com.open9527.code.common.R;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public abstract class CommonTitleFragment extends BaseLazyFragment {
-
+public abstract class CommonTitleFragment extends BaseFragment {
 
 
     protected Toolbar mToolbar;
     protected TextView tvTitle;
-    protected FrameLayout mContentView;
+    protected FrameLayout mRootView;
     protected ViewStub mTitleViewStub, mContentViewStub;
     protected View mViewStatus;
     protected Group mTitleGroup;
 
+
+//    @Override
+//    public int bindLayout() {
+//        return R.layout.common_fragment_title;
+//    }
+
     @Override
-    public void setRootLayout(@LayoutRes int layoutId) {
-        super.setRootLayout(R.layout.common_fragment_title);
+    public void setContentView() {
+        mContentView = mInflater.inflate(R.layout.common_fragment_title, null);
         //title
         mTitleGroup = findViewById(R.id.common_title_group);
         mViewStatus = findViewById(R.id.view_status);
@@ -46,14 +52,16 @@ public abstract class CommonTitleFragment extends BaseLazyFragment {
         //content
         mContentViewStub = findViewById(hasContentScroll() ? R.id.common_scroll_content : R.id.common_content);
         mContentViewStub.setVisibility(View.VISIBLE);
-        mContentView = findViewById(R.id.common_content);
+        mRootView = findViewById(R.id.common_content);
         //inflate
-        LayoutInflater.from(mActivity).inflate(layoutId, mContentView);
+        LayoutInflater.from(mActivity).inflate(bindLayout(), mRootView);
         //title text
         setTitleBar();
         //StatusBar
         setStatusBar();
+        bindingView();
     }
+
 
     /**
      * 配置app主题UI样式

@@ -17,7 +17,7 @@ public class ViewAdapter {
 
     @BindingAdapter(value = {"bindingText"}, requireAll = false)
     public static void bindingText(TextView textView, String string) {
-        LogUtils.i(TAG, string);
+//        LogUtils.i(TAG, string);
         textView.setText(string);
     }
 }

@@ -2,6 +2,7 @@ package com.open9527.code.common.activity;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -28,13 +29,16 @@ public abstract class CommonTitleActivity extends CommonScreenActivity {
     protected AppBarLayout mAppBarLayout;
     protected Toolbar mToolbar;
     protected TextView tvTitle;
-    protected FrameLayout mContentView;
+    protected FrameLayout mRootView;
     protected ViewStub mTitleViewStub;
     protected ViewStub mContentViewStub;
 
+
     @Override
-    public void setRootLayout(@LayoutRes int layoutId) {
-        super.setRootLayout(R.layout.common_activity_title);
+    public void setContentView() {
+        mContentView = LayoutInflater.from(this).inflate(R.layout.common_activity_title, null);
+        setContentView(mContentView);
+
         mCoordinatorLayout = findViewById(R.id.common_coordinator_layout);
         mAppBarLayout = findViewById(R.id.common_appbar_layout);
         //title
@@ -44,14 +48,16 @@ public abstract class CommonTitleActivity extends CommonScreenActivity {
         //content
         mContentViewStub = findViewById(hasContentScroll() ? R.id.common_scroll_content : R.id.common_content);
         mContentViewStub.setVisibility(View.VISIBLE);
-        mContentView = findViewById(R.id.common_content);
+        mRootView = findViewById(R.id.common_content);
         //inflate
-        LayoutInflater.from(this).inflate(layoutId, mContentView);
+        LayoutInflater.from(this).inflate(bindLayout(), mRootView);
         //title text
         setTitleBar();
         //StatusBar
         setStatusBar();
+        bindingView();
     }
+
     /**
      * 配置app主题UI样式
      * 需要定制不同的可以自行重写该方法

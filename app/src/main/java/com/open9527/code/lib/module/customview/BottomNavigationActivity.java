@@ -19,6 +19,8 @@ import com.open9527.code.lib.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import static androidx.fragment.app.FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT;
+
 /**
  * Created by     : open9527
  * Created times  : on 2019/10/29 17:27.
@@ -38,7 +40,7 @@ public class BottomNavigationActivity extends CommonScreenActivity implements Vi
         fragments.add(NavigationFragmentOne.newInstance("002"));
         fragments.add(NavigationFragmentOne.newInstance("003"));
         fragments.add(NavigationFragmentOne.newInstance("004"));
-        mPageAdapter = new CommonPagerAdapter(getSupportFragmentManager(), fragments);
+        mPageAdapter = new CommonPagerAdapter(getSupportFragmentManager(),BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT, fragments);
         BarUtils.setStatusBarLightMode(this, true);
     }
 

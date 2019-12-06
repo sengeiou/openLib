@@ -7,12 +7,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
-
-import com.blankj.utilcode.util.SPUtils;
 import com.open9527.code.common.databinding.CommonBindingFragment;
 import com.open9527.code.lib.MainViewModel;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.FragmentSplashBinding;
+import com.open9527.code.lib.utils.ImageLoadUtils;
 
 import java.util.concurrent.TimeUnit;
 
@@ -38,11 +37,9 @@ public class SplashFragment extends CommonBindingFragment<FragmentSplashBinding>
 
     @Override
     public void initData(@Nullable Bundle bundle) {
-        mTitleGroup.setVisibility(View.GONE);
         if (getActivity() != null) {
             mViewModel = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
         }
-
     }
 
     @Override
@@ -52,13 +49,15 @@ public class SplashFragment extends CommonBindingFragment<FragmentSplashBinding>
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
+        mTitleGroup.setVisibility(View.GONE);
         fragment = this;
+        ImageLoadUtils.imageLoad(mActivity,mBinding.ivAd,"https://bs.storage.shmedia.tech/1613346.png?imageslim");
+
         mCompositeDisposable = new CompositeDisposable();
         mCompositeDisposable.add(getObservable()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(getDisposableObserver()));
-
         mBinding.tvTime.setOnClickListener(view -> removeFragment());
     }
 

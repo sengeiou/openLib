@@ -1,13 +1,10 @@
 package com.open9527.code.base;
 
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-
-import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.blankj.utilcode.util.ClickUtils;
@@ -37,21 +34,22 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseVie
         mActivity = this;
         super.onCreate(savedInstanceState);
         initData(getIntent().getExtras());
-        setRootLayout(bindLayout() > 0 ? bindLayout() : 0);
+        setContentView();
         initView(savedInstanceState, mContentView);
         doBusiness();
     }
 
-    @SuppressLint("ResourceType")
     @Override
-    public void setRootLayout(@LayoutRes int layoutId) {
-        if (layoutId <= 0) return;
-        setContentView(mContentView = LayoutInflater.from(this).inflate(layoutId, null));
+    public void setContentView() {
+        if (bindLayout() <= 0) return;
+        mContentView = LayoutInflater.from(this).inflate(bindLayout(), null);
+        setContentView(mContentView);
     }
+
 
     public void applyDebouncingClickListener(View... views) {
         ClickUtils.applyGlobalDebouncing(views, mClickListener);
-        ClickUtils.applyScale(views);
+        ClickUtils.applyPressedViewScale(views);
     }
 
 }

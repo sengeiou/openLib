@@ -6,7 +6,6 @@ import android.view.View;
 import androidx.annotation.Nullable;
 
 import com.blankj.utilcode.util.ActivityUtils;
-import com.blankj.utilcode.util.BarUtils;
 import com.open9527.code.common.databinding.CommonBindingActivity;
 import com.open9527.code.lib.MainActivity;
 import com.open9527.code.lib.R;
@@ -21,9 +20,6 @@ public class SplashActivity extends CommonBindingActivity {
     @Override
     public void initData(@Nullable Bundle bundle) {
         getWindow().setBackgroundDrawable(null);
-//        BarUtils.setStatusBarVisibility(this,false);
-//        BarUtils.setNotificationBarVisibility(false);
-//        BarUtils.setNavBarVisibility(this,false);
     }
 
     @Override

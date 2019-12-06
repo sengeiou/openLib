@@ -1,13 +1,13 @@
 package com.open9527.code.lib.cell;
 
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.open9527.code.common.databinding.BindingBaseCell;
 import com.open9527.code.common.databinding.BindingItemViewHolder;
-import com.open9527.code.common.databinding.click.BindingAction;
-import com.open9527.code.common.databinding.click.BindingClick;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ItemDescBinding;
 
@@ -32,11 +32,7 @@ public class DescCell extends BindingBaseCell<DescCell> {
         ItemDescBinding binding = (ItemDescBinding) holder.mBinding;
         binding.setCell(this);
     }
-    public BindingClick bindingDescClick = new BindingClick(new BindingAction() {
-        @Override
-        public void call() {
-            ToastUtils.showShort(stringObservableField1.get());
-        }
-    });
+    public View.OnClickListener onClickListener = v -> ToastUtils.showShort(stringObservableField.get());
+    public View.OnClickListener onClickListener1 = v -> ToastUtils.showShort(stringObservableField1.get());
 
 }

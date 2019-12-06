@@ -54,6 +54,19 @@ public class ImageLoadUtils {
      * @param context
      * @param imageView
      * @param url
+     * @param radius
+     * @param imageLoadProcessInterface
+     */
+    public static void imageLoad(Context context, ImageView imageView, String url, int radius,int width,int height, final ImageLoadProcessInterface imageLoadProcessInterface) {
+        ImageLoadManger.display(context, imageView, CommonUtils.getUrl(url), new ImageLoadConfig(0, R.drawable.image_placeholder, radius,width, height), imageLoadProcessInterface);
+    }
+
+    /**
+     * 图片加载
+     *
+     * @param context
+     * @param imageView
+     * @param url
      * @param imageLoadProcessInterface
      */
     public static void imageLoad(Context context, ImageView imageView, String url, final ImageLoadProcessInterface imageLoadProcessInterface) {

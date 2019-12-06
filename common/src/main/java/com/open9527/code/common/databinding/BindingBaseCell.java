@@ -51,7 +51,15 @@ public abstract class BindingBaseCell<T extends BindingBaseCell> implements IBin
     public BindingBaseCellAdapter<T> getAdapter() {
         return mAdapter;
     }
+    public void update() {
+        //noinspection unchecked
+        getAdapter().updateItem((T) this);
+    }
 
+    public int getIndex() {
+        //noinspection SuspiciousMethodCalls
+        return getAdapter().getItems().indexOf(this);
+    }
 
     public BindingBaseCell(@LayoutRes int layoutId) {
         viewType = getViewTypeByLayoutId(layoutId);

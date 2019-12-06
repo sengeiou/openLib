@@ -1,21 +1,18 @@
 package com.open9527.code.base;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.IdRes;
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Lifecycle;
 
 import com.blankj.utilcode.util.ClickUtils;
 
@@ -28,6 +25,7 @@ import com.blankj.utilcode.util.ClickUtils;
 public abstract class BaseFragment extends Fragment implements IBaseView {
 
     protected final String TAG = getClass().getSimpleName();
+
     private static final String STATE_SAVE_IS_HIDDEN = "STATE_SAVE_IS_HIDDEN";
 
     private View.OnClickListener mClickListener = new View.OnClickListener() {
@@ -37,84 +35,99 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
         }
     };
 
-    protected Activity mActivity;
+    protected AppCompatActivity mActivity;
     protected LayoutInflater mInflater;
     protected View mContentView;
 
+    protected boolean isFirstLoad = true; // 是否第一次加载
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (isFirstLoad) {
+            doBusiness();
+            isFirstLoad = false;
+        }
+    }
+
     @Override
     public void onAttach(Context context) {
+        logI(TAG, "onAttach");
         super.onAttach(context);
-        mActivity = (Activity) context;
+        mActivity = (AppCompatActivity) context;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate: ");
+        logI(TAG, "onCreate");
         super.onCreate(savedInstanceState);
+        FragmentManager fm = getFragmentManager();
+        if (fm == null) return;
         if (savedInstanceState != null) {
             boolean isSupportHidden = savedInstanceState.getBoolean(STATE_SAVE_IS_HIDDEN);
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-
+            FragmentTransaction ft = fm.beginTransaction();
             if (isSupportHidden) {
-                fragmentTransaction.hide(this);
+                ft.hide(this);
             } else {
-                fragmentTransaction.show(this);
+                ft.show(this);
             }
-            fragmentTransaction.commitAllowingStateLoss();
+            ft.commitAllowingStateLoss();
         }
+        Bundle bundle = getArguments();
+        initData(bundle);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onCreateView: ");
+        logI(TAG, "onCreateView");
+        super.onCreateView(inflater, container, savedInstanceState);
         mInflater = inflater;
-        setRootLayout(bindLayout());
+        setContentView();
         return mContentView;
     }
 
-    @SuppressLint("ResourceType")
     @Override
-    public void setRootLayout(@LayoutRes int layoutId) {
-        if (layoutId <= 0) return;
-        mContentView = mInflater.inflate(layoutId, null);
+    public void setContentView() {
+        if (bindLayout() <= 0) return;
+        mContentView = mInflater.inflate(bindLayout(), null);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onViewCreated: ");
+        logI(TAG, "onViewCreated");
         super.onViewCreated(view, savedInstanceState);
-        Bundle bundle = getArguments();
-        initData(bundle);
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        Log.d(TAG, "onActivityCreated: ");
+        logI(TAG, "onActivityCreated");
         super.onActivityCreated(savedInstanceState);
         initView(savedInstanceState, mContentView);
-        doBusiness();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        logI(TAG, "onHiddenChanged: " + hidden);
+        super.onHiddenChanged(hidden);
     }
 
     @Override
     public void onDestroyView() {
-        Log.d(TAG, "onDestroyView: ");
-        if (mContentView != null) {
-            ((ViewGroup) mContentView.getParent()).removeView(mContentView);
-        }
+        logI(TAG, "onDestroyView");
         super.onDestroyView();
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        Log.d(TAG, "onSaveInstanceState: ");
+        logI(TAG, "onSaveInstanceState");
         super.onSaveInstanceState(outState);
         outState.putBoolean(STATE_SAVE_IS_HIDDEN, isHidden());
     }
 
     @Override
     public void onDestroy() {
-        Log.d(TAG, "onDestroy: ");
+        logI(TAG, "onDestroy");
         super.onDestroy();
     }
 
@@ -126,4 +139,6 @@ public abstract class BaseFragment extends Fragment implements IBaseView {
         if (mContentView == null) throw new NullPointerException("ContentView is null.");
         return mContentView.findViewById(id);
     }
+
+
 }

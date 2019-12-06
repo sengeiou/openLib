@@ -1,6 +1,13 @@
 package com.open9527.code.base;
 
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Lifecycle;
 
@@ -12,37 +19,24 @@ import androidx.lifecycle.Lifecycle;
  */
 public abstract class BaseLazyFragment extends BaseFragment {
 
+    protected boolean isFirstLoad = true; // 是否第一次加载
 
-    private boolean isDataLoaded;
 
-    public abstract void doLazyBusiness();
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return super.onCreateView(inflater, container, savedInstanceState);
+
+    }
 
     @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser && mContentView != null && !isDataLoaded) {
+    public void onResume() {
+        super.onResume();
+        if (isFirstLoad) {
+            // 将数据加载逻辑放到onResume()方法中
             doLazyBusiness();
-            isDataLoaded = true;
+            isFirstLoad = false;
         }
     }
 
-
-    @Override
-    public void doBusiness() {
-//        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-//        //onCreate
-//        fragmentTransaction.setMaxLifecycle(this, Lifecycle.State.INITIALIZED);
-//        //onCreate(onStop-->onCreate)
-//        fragmentTransaction.setMaxLifecycle(this, Lifecycle.State.CREATED);
-//        //onStart(onPause-->onStart)
-//        fragmentTransaction.setMaxLifecycle(this, Lifecycle.State.STARTED);
-//        //onResume();
-//        fragmentTransaction.setMaxLifecycle(this, Lifecycle.State.RESUMED);
-//        //onDestroy()
-//        fragmentTransaction.setMaxLifecycle(this, Lifecycle.State.DESTROYED);
-        if (getUserVisibleHint() && !isDataLoaded) {
-            doLazyBusiness();
-            isDataLoaded = true;
-        }
-    }
 }

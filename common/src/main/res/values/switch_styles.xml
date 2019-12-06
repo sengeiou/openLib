@@ -1,0 +1,8 @@
+<resources>
+
+    <style name="SwitchStyle">
+        <item name="android:thumb">@drawable/common_switch_thumb</item>
+        <item name="android:track">@drawable/common_switch_track</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+</resources>

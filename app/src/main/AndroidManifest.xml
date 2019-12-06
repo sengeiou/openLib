@@ -38,6 +38,17 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
+
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+
+<!--                <data-->
+<!--                    android:host="android"-->
+<!--                    android:scheme="com.open9527.code.lib" />-->
+<!--            </intent-filter>-->
         </activity>
 
         <activity
@@ -45,7 +56,18 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="MainActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="android"
+                    android:scheme="com.open9527.code.lib" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".module.other.OtherTitleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -141,16 +163,32 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="DrawableTitleActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".module.other.YImagePickerTitleActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="YImagePickerTitleActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
-
+        <activity
+            android:name=".module.customview.CoordinatorLayoutTabLayoutActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="CoordinatorLayoutTabLayoutActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.customview.RadioRecycleViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="RadioRecycleViewActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.rv.demo.RecycleViewDemoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="RecycleViewDemoActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity android:name=".module.fragment.common.LazyFragmentActivity" />
     </application>
 
 

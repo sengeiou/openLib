@@ -12,7 +12,7 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        onBindClick="@{cell.bannerClick}"
+        onBindViewClick="@{cell.onClickListener}"
         android:background="@color/color_ff6699"
         android:layout_width="match_parent"
         android:layout_height="match_parent">

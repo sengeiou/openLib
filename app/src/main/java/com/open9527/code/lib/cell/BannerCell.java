@@ -1,21 +1,16 @@
 package com.open9527.code.lib.cell;
 
-import android.database.Observable;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 
-import com.blankj.utilcode.util.ScreenUtils;
-import com.blankj.utilcode.util.SizeUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
 import com.open9527.code.common.databinding.BindingBaseCell;
-import com.open9527.code.common.databinding.BindingBaseCellAdapter;
 import com.open9527.code.common.databinding.BindingItemViewHolder;
-import com.open9527.code.common.databinding.click.BindingAction;
-import com.open9527.code.common.databinding.click.BindingClick;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ItemCellBannerBinding;
 
@@ -50,12 +45,7 @@ public class BannerCell extends BindingBaseCell<BannerCell> {
         layoutParams.height = (int) (layoutParams.width * ratio);
     }
 
-    public BindingClick bannerClick = new BindingClick(new BindingAction() {
-        @Override
-        public void call() {
-            ToastUtils.showShort(titleObservableField.get());
-        }
-    });
+    public View.OnClickListener onClickListener = v -> ToastUtils.showShort(titleObservableField.get());
 
 
 }

@@ -7,6 +7,9 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.blankj.utilcode.util.AppUtils;
+import com.blankj.utilcode.util.LogUtils;
+
 /**
  * Created by     : open9527
  * Created times  : on 2019/8/22 17:35.
@@ -14,6 +17,7 @@ import androidx.annotation.Nullable;
  * DESC :描述文件.
  */
 public interface IBaseView {
+
     /**
      * 初始化数据
      *
@@ -30,10 +34,15 @@ public interface IBaseView {
 
     /**
      * 配置 layout
-     *
-     * @param layoutId
      */
-    void setRootLayout(@LayoutRes int layoutId);
+    void setContentView();
+
+    /**
+     * 配置 databing
+     */
+    default void bindingView() {
+
+    }
 
     /**
      * 初始化view
@@ -42,7 +51,6 @@ public interface IBaseView {
      * @param contentView
      */
     void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView);
-
 
     /**
      * 配置标题(默认是类名)
@@ -57,6 +65,14 @@ public interface IBaseView {
      * 配置 执行业务代码
      */
     default void doBusiness() {
+
+    }
+
+    /**
+     * 配置 懒加载执行业务代码
+     */
+    default void doLazyBusiness() {
+
     }
 
     /**
@@ -68,7 +84,7 @@ public interface IBaseView {
     }
 
     /**
-     * 配置内容是否滚动
+     * 配置内容是否滚动(默认不滚动)
      *
      * @return
      */
@@ -77,7 +93,7 @@ public interface IBaseView {
     }
 
     /**
-     * 配置标题是否居中
+     * 配置标题是否居中(默认居中)
      *
      * @return
      */
@@ -85,4 +101,15 @@ public interface IBaseView {
         return true;
     }
 
+    /**
+     * 配置统一日志提示
+     *
+     * @param TAG
+     * @param msg
+     */
+    default void logI(String TAG, String msg) {
+        if (AppUtils.isAppDebug()) {
+            LogUtils.i(TAG, msg);
+        }
+    }
 }

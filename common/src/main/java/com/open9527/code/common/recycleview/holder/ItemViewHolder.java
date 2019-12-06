@@ -4,6 +4,8 @@ import android.util.SparseArray;
 import android.view.View;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.blankj.utilcode.util.ClickUtils;
@@ -36,14 +38,11 @@ public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnCl
         super(itemView);
         // fix databinding tag问题
         itemView.setTag(R.id.rv_holder_item_id, this);
-        if (hasClick) {
-            //添加点击事件
-            ClickUtils.applyGlobalDebouncing(itemView, this);
-            //添加长按事件{TODO:用的较少暂时注释}
+        //添加点击事件
+        ClickUtils.applyGlobalDebouncing(itemView, this);
+        //添加长按事件{TODO:用的较少暂时注释}
 //            itemView.setOnLongClickListener(this);
-        }
     }
-
 
     @SuppressWarnings("unchecked")
     public <T extends View> T findViewById(@IdRes final int viewId) {
@@ -58,13 +57,13 @@ public class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     /*配置点击事件*/
     private ICellClickListener iCellClickListener;
 
-    public void setItemViewListener(ICellClickListener iCellClickListener) {
+    public void setItemViewListener(@Nullable ICellClickListener iCellClickListener) {
         this.iCellClickListener = iCellClickListener;
     }
 
     private IBindingCellClickListener iBindingCellClickListener;
 
-    public void setItemViewListener(IBindingCellClickListener iBindingCellClickListener) {
+    public void setItemViewListener(@Nullable IBindingCellClickListener iBindingCellClickListener) {
         this.iBindingCellClickListener = iBindingCellClickListener;
     }
 

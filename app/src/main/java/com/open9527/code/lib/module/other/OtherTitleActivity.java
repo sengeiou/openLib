@@ -4,16 +4,22 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.AttributeSet;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.view.LayoutInflaterCompat;
 
 import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.GsonUtils;
@@ -100,7 +106,30 @@ public class OtherTitleActivity extends CommonBindingTitleActivity<ActivityOther
 
         }
 
+        //切换字体
+//        initFont("");
+    }
 
+
+    private void initFont(String path) {
+        Typeface typeface = Typeface.createFromAsset(getAssets(), path);
+        LayoutInflaterCompat.setFactory2(LayoutInflater.from(this), new LayoutInflater.Factory2() {
+            @Override
+            public View onCreateView(String name, Context context, AttributeSet attrs) {
+                return null;
+            }
+
+            @Override
+            public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
+                AppCompatDelegate delegate = getDelegate();
+                View view = delegate.createView(parent, name, context, attrs);
+                if (view != null && (view instanceof TextView)) {
+                    ((TextView) view).setTypeface(typeface);
+                }
+                return view;
+            }
+
+        });
     }
 
     public static List<EntryBean> getObject(String assetsFilePath) {
@@ -338,9 +367,10 @@ public class OtherTitleActivity extends CommonBindingTitleActivity<ActivityOther
 
     /**
      * 获取自启动管理页面的Intent
+     *
      * @param context context
      * @return 返回自启动管理页面的Intent
-     * */
+     */
     public static Intent getAutostartSettingIntent(Context context) {
         ComponentName componentName = null;
         String brand = Build.MANUFACTURER;

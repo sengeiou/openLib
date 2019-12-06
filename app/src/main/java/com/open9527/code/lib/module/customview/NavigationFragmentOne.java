@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.open9527.code.common.databinding.CommonBindingFragment;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.FragmentNavigationOneBinding;
@@ -29,13 +30,14 @@ public class NavigationFragmentOne extends CommonBindingFragment<FragmentNavigat
 
     @Override
     public void doLazyBusiness() {
-
+        LogUtils.i(TAG, "doLazyBusiness" + title);
     }
 
     @Override
     public void initData(@Nullable Bundle bundle) {
         title = bundle.getString("title");
-        tvTitle.setText(title);
+
+        LogUtils.i(TAG, "initData" + title);
     }
 
     @Override
@@ -46,5 +48,7 @@ public class NavigationFragmentOne extends CommonBindingFragment<FragmentNavigat
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
         mBinding.tvTitle.setText(title);
+
+        LogUtils.i(TAG, "initView" + title);
     }
 }

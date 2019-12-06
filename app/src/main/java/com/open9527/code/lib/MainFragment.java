@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.BarUtils;
+import com.blankj.utilcode.util.CollectionUtils;
+import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.open9527.code.common.databinding.BindingBaseCell;
@@ -23,9 +25,12 @@ import com.open9527.code.lib.module.bglib.BackgroundLibTitleActivity;
 import com.open9527.code.lib.module.browser.BrowserTitleActivity;
 import com.open9527.code.lib.module.browser.WebViewAndRecycleView;
 import com.open9527.code.lib.module.customview.BannerTitleActivity;
+import com.open9527.code.lib.module.customview.CoordinatorLayoutTabLayoutActivity;
 import com.open9527.code.lib.module.customview.CoordinatorLayoutTitleActivity;
+import com.open9527.code.lib.module.customview.RadioRecycleViewActivity;
 import com.open9527.code.lib.module.customview.TabLayoutTitleActivity;
 import com.open9527.code.lib.module.dialog.DialogActivity;
+import com.open9527.code.lib.module.fragment.common.LazyFragmentActivity;
 import com.open9527.code.lib.module.image.compression.CompressImageTitleActivity;
 import com.open9527.code.lib.module.image.load.ImageLoadTitleActivity;
 import com.open9527.code.lib.module.customview.BottomNavigationActivity;
@@ -33,6 +38,7 @@ import com.open9527.code.lib.module.other.DrawableTitleActivity;
 import com.open9527.code.lib.module.other.OtherTitleActivity;
 import com.open9527.code.lib.module.customview.RecycleViewActivity;
 import com.open9527.code.lib.module.other.YImagePickerTitleActivity;
+import com.open9527.code.lib.module.rv.demo.RecycleViewDemoActivity;
 import com.open9527.code.lib.module.smartswipe.SmartSwipeActivity;
 import com.open9527.code.lib.module.statelayout.StateTitleActivity;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -62,15 +68,23 @@ public class MainFragment extends CommonBindingFragment<FragmentMainBinding> imp
         cellList.add(new LaunchCell(new LaunchModel("BackgroundLib", BackgroundLibTitleActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("customview--CoordinatorLayout", CoordinatorLayoutTitleActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("customview--RecycleView", RecycleViewActivity.class)));
+        cellList.add(new LaunchCell(new LaunchModel("customview--RadioRecycleView", RadioRecycleViewActivity.class)));
+        cellList.add(new LaunchCell(new LaunchModel("customview--RecycleViewDemoActivity", RecycleViewDemoActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("customview--BottomNavigation", BottomNavigationActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("customview--TabLayout", TabLayoutTitleActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("customview--Banner", BannerTitleActivity.class)));
+        cellList.add(new LaunchCell(new LaunchModel("customview--CoordinatorLayoutTabLayout", CoordinatorLayoutTabLayoutActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("SmartSwipe", SmartSwipeActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("Dialog", DialogActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("other", OtherTitleActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("other--Drawables", DrawableTitleActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("other--小红书", YImagePickerTitleActivity.class)));
+        cellList.add(new LaunchCell(new LaunchModel("other-- LazyFragment", LazyFragmentActivity.class)));
         cellList.add(new EmptyCell(new LaunchModel("空布局")));
+
+//        cellList = CollectionUtils.newArrayList(
+//
+//        );
     }
 
     @Override

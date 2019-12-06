@@ -36,11 +36,12 @@ public class BannerTitleActivity extends CommonBindingTitleActivity<ActivityBann
     List<BindingBaseCell> cellList = new ArrayList<>();
     private List<BindingBaseCell> bindingBaseCells;
     private BindingBaseCellAdapter<BindingBaseCell> mIndicatorAdapter;
+    private BindingBaseCellAdapter<BindingBaseCell> mAdapter;
 
     @Override
     public void initData(@Nullable Bundle bundle) {
         for (int i = 0; i < 10; i++) {
-            cellList.add(new BannerCell("http://pic1.ytqmx.com:82/2015/0305/07/002.jpg%21960.jpg", "海贼王" + i));
+            cellList.add(new BannerCell("http://n.sinaimg.cn/sinacn/w541h255/20180218/57b9-fyrswmu0605716.jpg", "海贼王" + i));
         }
     }
 
@@ -87,12 +88,12 @@ public class BannerTitleActivity extends CommonBindingTitleActivity<ActivityBann
 
     private void initAdapter2() {
         BannerLayoutManager bannerLayoutManager = new BannerLayoutManager();
-        bannerLayoutManager.setHeightScale(1.0f);
+        bannerLayoutManager.setHeightScale(0.6f);
         bannerLayoutManager.setWidthScale(0.8f);
         mBinding.rvList2.setLayoutManager(bannerLayoutManager);
         BannerPageSnapHelper bannerPageSnapHelper = new BannerPageSnapHelper();
         bannerPageSnapHelper.attachToRecyclerView(mBinding.rvList2);
-        BindingBaseCellAdapter<BindingBaseCell> mAdapter = new BindingBaseCellAdapter<>();
+        mAdapter = new BindingBaseCellAdapter<>();
         mBinding.rvList2.setAdapter(mAdapter);
         mAdapter.addItems(cellList);
     }
@@ -122,7 +123,7 @@ public class BannerTitleActivity extends CommonBindingTitleActivity<ActivityBann
 
     private void startScroll(int pos) {
         int size = cellList.size();
-        if (size <= 1) return;
+        if (size <= 0) return;
         if (pos < size) {
             lifecycleHandler.sendEmptyMessageDelayed(pos, 2500);
         } else {
@@ -135,12 +136,15 @@ public class BannerTitleActivity extends CommonBindingTitleActivity<ActivityBann
         @Override
         public void handleMessage(@NonNull Message msg) {
             LogUtils.i(TAG, "msg-->" + msg.what);
-            mBinding.rvList2.smoothScrollToPosition(msg.what);
+            setScroll(msg.what);
             setIndicator(msg.what);
-
             startScroll(msg.what + 1);
         }
     };
+
+    private void setScroll(int pos){
+        mBinding.rvList2.smoothScrollToPosition(pos);
+    }
 
     private void setIndicator(int pos) {
         for (int i = 0; i < bindingBaseCells.size(); i++) {

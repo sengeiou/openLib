@@ -12,6 +12,7 @@ import com.blankj.utilcode.util.AdaptScreenUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.google.android.material.tabs.TabLayout;
 import com.open9527.code.common.databinding.CommonBindingTitleActivity;
+import com.open9527.code.common.pageadapter.CommonPagerAdapter;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ActivityCustomTablayoutBinding;
 
@@ -72,6 +73,9 @@ public class TabLayoutTitleActivity extends CommonBindingTitleActivity<ActivityC
                 setTabLayoutSelected(tab, getResources().getColor(R.color.colorAccent), View.VISIBLE);
             }
         });
+
+
+
     }
 
     /**

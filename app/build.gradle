@@ -57,4 +57,17 @@ dependencies {
 
     //小红书图片选择
     implementation 'com.ypx.yimagepicker:androidx:2.4.6.2'
+
+    //视频 这两个是必须要加的，其它的可供选择
+    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.4'
+    //其他库文件
+    //implementation 'tv.danmaku.ijk.media:ijkplayer-armv5:0.8.8'
+    //implementation 'tv.danmaku.ijk.media:ijkplayer-arm64:0.8.8'
+    //implementation 'tv.danmaku.ijk.media:ijkplayer-x86:0.8.8'
+    //implementation 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.8.8'
+
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.3.4'
+
+
 }

@@ -6,9 +6,11 @@ import android.view.View;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.blankj.utilcode.util.ToastUtils;
 import com.open9527.code.common.databinding.BindingBaseCell;
 import com.open9527.code.common.databinding.BindingBaseCellAdapter;
 import com.open9527.code.common.databinding.CommonBindingTitleActivity;
+import com.open9527.code.common.databinding.interfaces.IBindingCellClickListener;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.cell.DescCell;
 import com.open9527.code.lib.databinding.ActivityRecycleviewBinding;
@@ -22,7 +24,7 @@ import java.util.List;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class RecycleViewActivity extends CommonBindingTitleActivity<ActivityRecycleviewBinding> {
+public class RecycleViewActivity extends CommonBindingTitleActivity<ActivityRecycleviewBinding> implements IBindingCellClickListener {
 
     private List<BindingBaseCell> cellList = new LinkedList<>();
     private BindingBaseCellAdapter<BindingBaseCell> mAdapter;
@@ -51,6 +53,11 @@ public class RecycleViewActivity extends CommonBindingTitleActivity<ActivityRecy
         mAdapter = new BindingBaseCellAdapter<>();
         mBinding.rvList.setAdapter(mAdapter);
         mAdapter.setItems(cellList);
+        mAdapter.setOnBindingCellClickListener(this);
     }
 
+    @Override
+    public void onItemClick(View view, int position, BindingBaseCell... bindingBaseCells) {
+//        ToastUtils.showShort("");
+    }
 }

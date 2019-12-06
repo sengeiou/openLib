@@ -48,8 +48,8 @@ public class StateTitleActivity extends CommonBindingTitleActivity<ActivityState
     private void initEmptyLayou() {
         //配置 状态布局管理器
         emptyManager = EmptyManager.build(EmptyConfig.builder()
-                .setContentLayout(mContentView)
-                .setEmptyLayoutHelper(new EmptyLayoutHelper(mContentView))
+                .setContentLayout(mRootView)
+                .setEmptyLayoutHelper(new EmptyLayoutHelper(mRootView))
                 .setIEmptyClick(this)
                 .create());
         //加载错误

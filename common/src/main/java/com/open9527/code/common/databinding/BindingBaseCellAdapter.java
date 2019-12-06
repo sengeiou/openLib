@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.open9527.code.common.databinding.interfaces.IBindingCellClickListener;
+import com.open9527.code.common.recycleview.interfaces.ICellClickListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,27 +26,13 @@ public class BindingBaseCellAdapter<Item extends BindingBaseCell> extends Recycl
 
     private List<Item> mItems = new ArrayList<>();
 
-
-    private boolean hasClick = true;
-
     public BindingBaseCellAdapter() {
-        this(false, true);
+        setHasStableIds(false);
     }
 
-    public BindingBaseCellAdapter(boolean hasClick) {
-        this(false, hasClick);
+    public BindingBaseCellAdapter(boolean hasStableIds) {
+        setHasStableIds(hasStableIds);
     }
-
-    public BindingBaseCellAdapter(boolean... booleans) {
-        if (booleans.length > 0) {
-            setHasStableIds(booleans[0]);
-            if (booleans.length > 1) {
-                this.hasClick = booleans[1];
-            }
-        }
-
-    }
-
 
     @Override
     public final int getItemViewType(int position) {
@@ -63,17 +50,14 @@ public class BindingBaseCellAdapter<Item extends BindingBaseCell> extends Recycl
     @NonNull
     @Override
     public BindingItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return Item.onCreateViewHolder(parent, viewType, hasClick);
+        return Item.onCreateViewHolder(parent, viewType, iBindingCellClickListener != null);
     }
 
     @Override
     public void onBindViewHolder(@NonNull BindingItemViewHolder holder, int position) {
         mItems.get(position).bind(holder, position);
         //配置点击事件
-        if (hasClick) {
-            //配置点击事件
-            holder.setItemViewListener(this);
-        }
+        holder.setItemViewListener(this);
     }
 
     @Override
@@ -162,6 +146,18 @@ public class BindingBaseCellAdapter<Item extends BindingBaseCell> extends Recycl
     ///////////////////////////////////////////////////////////////////////////
     // operate
     ///////////////////////////////////////////////////////////////////////////
+
+    public void updateItem(@NonNull final Item item) {
+        int itemIndex = mItems.indexOf(item);
+        if (itemIndex != -1) {
+            notifyItemChanged(itemIndex);
+        }
+    }
+
+    public void updateItem(@IntRange(from = 0) final int index) {
+        notifyItemChanged(index);
+    }
+
 
     public void addItem(@NonNull final Item item) {
         addItem(item, false);

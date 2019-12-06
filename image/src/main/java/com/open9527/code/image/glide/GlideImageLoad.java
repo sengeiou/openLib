@@ -99,7 +99,7 @@ public class GlideImageLoad implements ImageLoadInterface {
                 //仅从缓存加载图片
                 requestOptions.onlyRetrieveFromCache(config.onlyRetrieveFromCache);
 
-
+//                requestOptions.override(config.width, config.height);
             } else {
                 //fallback
                 requestOptions.fallback(new ColorDrawable(Color.GRAY));

@@ -1,6 +1,7 @@
 package com.open9527.code.lib.module.dialog;
 
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
@@ -20,6 +21,8 @@ import com.open9527.code.common.databinding.interfaces.IBindingCellClickListener
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.cell.DialogCell;
 import com.open9527.code.lib.databinding.ActivityDialogBinding;
+import com.open9527.code.lib.module.dialog.demo.CommonDialogContent;
+import com.open9527.code.lib.module.dialog.demo.CommonDialogLoading;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -33,6 +36,7 @@ import java.util.List;
 public class DialogActivity extends CommonBindingTitleActivity<ActivityDialogBinding> implements IBindingCellClickListener {
     private List<BindingBaseCell> cellList = new LinkedList<>();
     private BindingBaseCellAdapter mAdapter;
+    private CommonDialogLoading mDialogLoading;
 
 
     @Override
@@ -41,6 +45,9 @@ public class DialogActivity extends CommonBindingTitleActivity<ActivityDialogBin
         cellList.add(new DialogCell("dialog---居中"));
         cellList.add(new DialogCell("dialog---底部"));
         cellList.add(new DialogCell("dialog---CustomDialogFragment"));
+        cellList.add(new DialogCell("dialog---showLoading"));
+        cellList.add(new DialogCell("dialog---showLoading dosomething"));
+        cellList.add(new DialogCell("dialog---dismissLoading"));
     }
 
     @Override
@@ -109,15 +116,15 @@ public class DialogActivity extends CommonBindingTitleActivity<ActivityDialogBin
                     .show();
         } else if (3 == position) {
             int[] location = new int[2];
-            TextView textView=view.findViewById(R.id.tv_title);
+            TextView textView = view.findViewById(R.id.tv_title);
 //            textView.getLocationInWindow(location); //获取在当前窗口内的绝对坐标
             textView.getLocationOnScreen(location);//获取在整个屏幕内的绝对坐标
             LogUtils.i(TAG, location[0] + "--->x坐标", location[1] + "--->y坐标");
             CustomDialogFragment.create(getSupportFragmentManager())
                     .setLayoutRes(R.layout.dialog_custom)
-                    .setX( location[0])
+                    .setX(location[0])
                     .setY(location[1])
-                    .setGravity(Gravity.TOP|Gravity.START)
+                    .setGravity(Gravity.TOP | Gravity.START)
                     .setWidth(AdaptScreenUtils.pt2Px(500))
                     .setHeight(AdaptScreenUtils.pt2Px(500))
                     .setCancelOutside(true)
@@ -129,6 +136,60 @@ public class DialogActivity extends CommonBindingTitleActivity<ActivityDialogBin
                         }
                     })
                     .show();
+        } else if (4 == position) {
+            showLoading();
+        } else if (5 == position) {
+            showLoading(new Runnable() {
+                @Override
+                public void run() {
+                    finish();
+                }
+            });
+        } else {
+
+            showCommonDialog();
+
+            dismissLoading();
         }
     }
+
+    public void showLoading() {
+        showLoading(null);
+    }
+
+    public void showLoading(Runnable listener) {
+        if (mDialogLoading != null) {
+            dismissLoading();
+        }
+        mDialogLoading = new CommonDialogLoading().init(this, listener);
+        mDialogLoading.show();
+    }
+
+    public void dismissLoading() {
+        if (mDialogLoading != null) {
+            mDialogLoading.dismiss();
+            mDialogLoading = null;
+        }
+    }
+
+
+    private void showCommonDialog() {
+        final Pair<CharSequence, View.OnClickListener> positiveBtnAction = new Pair<>("positiveBtnAction", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogUtils.i(TAG,"positiveBtnAction");
+            }
+        });
+
+
+        final Pair<CharSequence, View.OnClickListener> negativeBtnAction = new Pair<>("negativeBtnAction", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LogUtils.i(TAG,"negativeBtnAction");
+            }
+        });
+
+        new CommonDialogContent().init(this, "", "", positiveBtnAction, negativeBtnAction).show();
+    }
+
 }

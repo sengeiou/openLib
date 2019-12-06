@@ -20,7 +20,10 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 
 /**
- * Created by linjiang on 2018/9/6.
+ * Created by     : linjiang
+ * Created times  : on 2018/9/5.
+ * E-Mail Address ：https://github.com/whataa/noDrawable.
+ * DESC :描述文件.
  */
 
 public class ProxyDrawable extends StateListDrawable {

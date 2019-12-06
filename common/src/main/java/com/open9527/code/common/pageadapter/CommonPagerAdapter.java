@@ -2,6 +2,7 @@ package com.open9527.code.common.pageadapter;
 
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -22,10 +23,14 @@ public class CommonPagerAdapter extends FragmentPagerAdapter {
     private List<Fragment> mFragments;
     private FragmentManager mFragmentManager;
 
-    public CommonPagerAdapter(FragmentManager fm, List<Fragment> mFragments) {
-        super(fm);
+    public CommonPagerAdapter(FragmentManager fm, int behavior, List<Fragment> mFragments) {
+        super(fm,behavior);
         this.mFragmentManager = fm;
         this.mFragments = mFragments;
+    }
+
+    public CommonPagerAdapter(@NonNull FragmentManager fm, int behavior) {
+        super(fm, behavior);
     }
 
     @Override

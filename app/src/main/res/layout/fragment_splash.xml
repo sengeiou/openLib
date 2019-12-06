@@ -9,16 +9,22 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@mipmap/ad">
+        android:background="@mipmap/splash">
+
+        <ImageView
+            android:id="@+id/iv_ad"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <TextView
             android:id="@+id/tv_time"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            tools:text="SplashFragment"
             android:textColor="@color/color_333"
-            android:textSize="@dimen/pt_60" />
+            android:textSize="@dimen/pt_60"
+            tools:text="SplashFragment" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
