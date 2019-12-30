@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.view.View;
 import androidx.annotation.Nullable;
 
+import com.blankj.utilcode.util.ActivityUtils;
 import com.open9527.code.common.databinding.CommonBindingFragment;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.FragmentNavigationOneBinding;
+import com.open9527.code.lib.module.customview.RadioRecycleViewActivity;
 
 /**
  * Created by     : open9527
@@ -40,6 +42,11 @@ public class FragmentTwo extends CommonBindingFragment<FragmentNavigationOneBind
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
         mTitleGroup.setVisibility(View.GONE);
         mBinding.tvTitle.setText(bundleString);
+
+        mBinding.tvTitle.setOnClickListener(v -> {
+            ActivityUtils.startActivity(RadioRecycleViewActivity.class);
+        });
+
     }
     @Override
     public void doBusiness() {

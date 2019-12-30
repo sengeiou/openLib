@@ -6,5 +6,5 @@ package com.open9527.code.customview.banner;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class Banner {
+public class BannerView {
 }

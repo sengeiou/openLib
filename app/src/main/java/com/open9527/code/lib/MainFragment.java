@@ -1,16 +1,17 @@
 package com.open9527.code.lib;
 
+import android.annotation.SuppressLint;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.BarUtils;
-import com.blankj.utilcode.util.CollectionUtils;
-import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.open9527.code.common.databinding.BindingBaseCell;
@@ -41,6 +42,7 @@ import com.open9527.code.lib.module.other.YImagePickerTitleActivity;
 import com.open9527.code.lib.module.rv.demo.RecycleViewDemoActivity;
 import com.open9527.code.lib.module.smartswipe.SmartSwipeActivity;
 import com.open9527.code.lib.module.statelayout.StateTitleActivity;
+import com.open9527.code.lib.utils.WhitelistUtils;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 
@@ -72,7 +74,7 @@ public class MainFragment extends CommonBindingFragment<FragmentMainBinding> imp
         cellList.add(new LaunchCell(new LaunchModel("customview--RecycleViewDemoActivity", RecycleViewDemoActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("customview--BottomNavigation", BottomNavigationActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("customview--TabLayout", TabLayoutTitleActivity.class)));
-        cellList.add(new LaunchCell(new LaunchModel("customview--Banner", BannerTitleActivity.class)));
+        cellList.add(new LaunchCell(new LaunchModel("customview--BannerView", BannerTitleActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("customview--CoordinatorLayoutTabLayout", CoordinatorLayoutTabLayoutActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("SmartSwipe", SmartSwipeActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("Dialog", DialogActivity.class)));
@@ -80,6 +82,7 @@ public class MainFragment extends CommonBindingFragment<FragmentMainBinding> imp
         cellList.add(new LaunchCell(new LaunchModel("other--Drawables", DrawableTitleActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("other--小红书", YImagePickerTitleActivity.class)));
         cellList.add(new LaunchCell(new LaunchModel("other-- LazyFragment", LazyFragmentActivity.class)));
+        cellList.add(new LaunchCell(new LaunchModel("other-- 配置白名单", null)));
         cellList.add(new EmptyCell(new LaunchModel("空布局")));
 
 //        cellList = CollectionUtils.newArrayList(
@@ -118,13 +121,20 @@ public class MainFragment extends CommonBindingFragment<FragmentMainBinding> imp
         mAdapter.setOnBindingCellClickListener(this);
     }
 
+    @SuppressLint("NewApi")
     @Override
     public void onItemClick(View view, int position, BindingBaseCell... bindingBaseCells) {
         if (bindingBaseCells[0] instanceof LaunchCell) {
             LaunchCell cell1 = (LaunchCell) bindingBaseCells[0];
             LaunchModel launchModel = cell1.descObservableField.get();
             if (launchModel != null) {
-                ActivityUtils.startActivity(launchModel.getClazz());
+                if (launchModel.getClazz() != null) {
+                    ActivityUtils.startActivity(launchModel.getClazz());
+                } else {
+                    ToastUtils.showShort(launchModel.getDesc());
+                    startSetting();
+                }
+
             } else {
                 ToastUtils.showShort("cell is null !");
             }
@@ -141,4 +151,31 @@ public class MainFragment extends CommonBindingFragment<FragmentMainBinding> imp
             LogUtils.i(TAG, "onItemClick");
         }
     }
+
+    /**
+     * 测试  白名单 小米,华为
+     */
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void startSetting() {
+        if (WhitelistUtils.isIgnoringBatteryOptimizations()) {
+            if (WhitelistUtils.isHuawei()) {//华为
+                WhitelistUtils.goHuaweiSetting();
+            } else if (WhitelistUtils.isXiaomi()) {//小米
+                WhitelistUtils.goXiaomiSetting();
+            }else if (WhitelistUtils.isOPPO()){//oppo
+                WhitelistUtils.goOPPOSetting();
+            }else if (WhitelistUtils.isVIVO()){//vivo
+                WhitelistUtils.goVIVOSetting();
+            }else if (WhitelistUtils.isMeizu()){//魅族
+                WhitelistUtils.goMeizuSetting();
+            }else if (WhitelistUtils.isSamsung()){//三星
+                WhitelistUtils.goSamsungSetting();
+            }else if (WhitelistUtils.isLeTV()){//乐视
+                WhitelistUtils.goSamsungSetting();
+            }
+        } else {
+            WhitelistUtils.requestIgnoreBatteryOptimizations();
+        }
+    }
+
 }

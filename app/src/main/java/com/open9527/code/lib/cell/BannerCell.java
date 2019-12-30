@@ -44,8 +44,5 @@ public class BannerCell extends BindingBaseCell<BannerCell> {
         layoutParams.width = (int) (displayMetrics.widthPixels * itemWidth);
         layoutParams.height = (int) (layoutParams.width * ratio);
     }
-
     public View.OnClickListener onClickListener = v -> ToastUtils.showShort(titleObservableField.get());
-
-
 }

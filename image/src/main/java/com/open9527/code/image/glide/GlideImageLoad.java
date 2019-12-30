@@ -171,6 +171,7 @@ public class GlideImageLoad implements ImageLoadInterface {
                 .asBitmap()
                 .load(object)
                 .apply(requestOptions)
+                .thumbnail(0.1f)
                 .into(simpleTarget);
     }
 

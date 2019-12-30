@@ -61,7 +61,7 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
     }
 
     @Override
-    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+    public void onDraw(Canvas c, RecyclerView parent, @NonNull RecyclerView.State state) {
         if (parent.getLayoutManager() == null) {
             return;
         }
@@ -73,7 +73,7 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
     }
 
     @SuppressLint("NewApi")
-    protected void drawVertical(Canvas canvas, RecyclerView parent) {
+    private void drawVertical(Canvas canvas, RecyclerView parent) {
         canvas.save();
         final int left;
         final int right;
@@ -129,7 +129,7 @@ public class RecycleViewDivider extends RecyclerView.ItemDecoration {
     }
 
     @Override
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+    public void getItemOffsets(@NonNull Rect outRect, @NonNull View view, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         if (mOrientation == VERTICAL) {
             outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
         } else {

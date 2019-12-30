@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.TaskStackBuilder;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
@@ -53,6 +54,12 @@ public class MainActivity extends CommonBindingActivity<ActivityMainBinding> {
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
+        mAppViewModel.openOrCloseDrawer.observe(this, new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+
+            }
+        });
         mViewModel.closeSplashEvent.observe(this, new Observer<Void>() {
             @Override
             public void onChanged(Void v) {
@@ -74,8 +81,18 @@ public class MainActivity extends CommonBindingActivity<ActivityMainBinding> {
     }
 
     private void initScheme() {
+        if (ActivityUtils.isActivityAlive(this)) {
+            Intent intent = new Intent();
+
+        }
         try {
             Uri uri = getIntent().getData();
+
+//            TaskStackBuilder.create(this)
+//                    .addParentStack(getIntent().getComponent())
+//                    .addNextIntent(getIntent())
+//                    .startActivities();
+
             if (uri != null) {
                 LogUtils.i(TAG, GsonUtils.toJson(uri));
                 //获取指定参数值
@@ -86,13 +103,20 @@ public class MainActivity extends CommonBindingActivity<ActivityMainBinding> {
                     ActivityUtils.startActivity(RadioRecycleViewActivity.class);
                     return;
                 }
-                initFragment(new MainFragment());
-                return;
             }
         } catch (Exception e) {
             initFragment(new SplashFragment());
             return;
         }
         initFragment(new SplashFragment());
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        LogUtils.i();
+//        startIntent(intent);
+
     }
 }

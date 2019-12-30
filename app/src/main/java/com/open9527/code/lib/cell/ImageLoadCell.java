@@ -33,7 +33,8 @@ public class ImageLoadCell extends BindingBaseCell<ImageLoadCell> {
     @Override
     public void bind(@NonNull BindingItemViewHolder holder, int position) {
         ItemCellImageloadBinding binding = (ItemCellImageloadBinding) holder.mBinding;
-        ImageLoadUtils.imageLoad(holder.itemView.getContext(), binding.ivImages, urlObservableField.get(), AdaptScreenUtils.pt2Px(10), 100, 100, new ImageLoadProcessInterface() {
+//        ImageLoadUtils.imageLoad(holder.itemView.getContext(), binding.ivImages, urlObservableField.get(), AdaptScreenUtils.pt2Px(10), 100, 100, new ImageLoadProcessInterface() {
+        ImageLoadUtils.imageLoad(holder.itemView.getContext(), binding.ivImages, urlObservableField.get(), AdaptScreenUtils.pt2Px(10),  new ImageLoadProcessInterface() {
             @Override
             public void onLoadStarted() {
                 binding.pbLoading.setVisibility(View.VISIBLE);

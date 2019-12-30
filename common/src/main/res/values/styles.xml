@@ -1,6 +1,4 @@
 <resources>
-
-
     <!-- 所有主题样式 -->
     <style name="CommonAppTheme" parent="@style/Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->

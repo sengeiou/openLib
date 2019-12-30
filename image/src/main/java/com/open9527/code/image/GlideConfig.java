@@ -59,8 +59,7 @@ public class GlideConfig extends AppGlideModule {
     /**
      * 修改 glide 加载图片超时时间
      */
-
-     OkHttpClient client = new OkHttpClient.Builder()
+    OkHttpClient client = new OkHttpClient.Builder()
             .connectTimeout(30, TimeUnit.SECONDS)
             .readTimeout(30, TimeUnit.SECONDS)
             .writeTimeout(30, TimeUnit.SECONDS)

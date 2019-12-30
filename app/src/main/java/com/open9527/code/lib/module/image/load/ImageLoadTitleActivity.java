@@ -132,7 +132,7 @@ public class ImageLoadTitleActivity extends CommonBindingTitleActivity<ActivityI
     public void onItemClick(View view, int position, BindingBaseCell... bindingBaseCells) {
         if (bindingBaseCells[0] instanceof ImageLoadCell) {
 //            ImageLoadCell imageLoadCell = (ImageLoadCell) bindingBaseCells[0];
-            DraggableImageViewerHelper.showImages(mActivity, mBinding.includeRecycleview.commonRv, R.id.iv_images, list, position);
+//            DraggableImageViewerHelper.showImages(mActivity, mBinding.includeRecycleview.commonRv, R.id.iv_images, list, position);
         }
     }
 

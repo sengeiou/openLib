@@ -2,12 +2,10 @@ package com.open9527.code.common.activity;
 
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewStub;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
-import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -58,6 +56,7 @@ public abstract class CommonTitleActivity extends CommonScreenActivity {
         bindingView();
     }
 
+
     /**
      * 配置app主题UI样式
      * 需要定制不同的可以自行重写该方法
@@ -86,4 +85,5 @@ public abstract class CommonTitleActivity extends CommonScreenActivity {
             }
         }
     }
+
 }
