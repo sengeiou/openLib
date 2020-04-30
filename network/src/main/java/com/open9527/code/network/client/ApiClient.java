@@ -76,8 +76,7 @@ public class ApiClient {
             Request request = chain.request();
             Request.Builder requestBuilder = request.newBuilder();
             String url = request.url().toString();
-            requestBuilder
-                    .addHeader(ApiConfig.VERSION_NAME, BuildConfig.VERSION_NAME);
+            requestBuilder.addHeader(ApiConfig.VERSION_NAME, BuildConfig.VERSION_NAME);
             request = requestBuilder.url(url).build();
             Log.i(TAG, "url--->" + chain.request().url().toString());
             return chain.proceed(request);

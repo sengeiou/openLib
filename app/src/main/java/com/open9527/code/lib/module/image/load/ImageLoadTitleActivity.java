@@ -139,8 +139,7 @@ public class ImageLoadTitleActivity extends CommonBindingTitleActivity<ActivityI
 
     public static List<ImagesBean> getObject(String assetsFilePath) {
         String string = ResourceUtils.readAssets2String(assetsFilePath);
-        List<ImagesBean> list = GsonUtils.fromJson(string, new TypeToken<List<ImagesBean>>() {
-        }.getType());
+        List<ImagesBean> list = GsonUtils.fromJson(string, new TypeToken<List<ImagesBean>>() {}.getType());
 
         return list;
     }
