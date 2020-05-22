@@ -13,32 +13,32 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         onBindViewClick="@{cell.onClickListener}"
-        android:background="@color/color_ff6699"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/color_ff6699">
 
         <ImageView
             android:id="@+id/iv_banner"
-            bindingImage="@{cell.urlObservableField}"
-            bindingImageRadius="@{10}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/pt_20"
             android:scaleType="fitXY"
+            app:bindImageRadius="@{10}"
+            app:bindImageUrl="@{cell.urlObservableField}"
             tools:src="@color/color_ff6699" />
 
         <TextView
             android:id="@+id/tv_title"
-            bindingText="@{cell.titleObservableField}"
             android:layout_width="@dimen/pt_0"
-            app:layout_constraintEnd_toEndOf="@+id/iv_banner"
-            app:layout_constraintStart_toStartOf="@+id/iv_banner"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/pt_60"
             android:background="@color/color_80_000"
             android:gravity="center"
             android:textColor="@color/color_fff"
             android:textSize="@dimen/pt_42"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:bindText="@{cell.titleObservableField}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/iv_banner"
+            app:layout_constraintStart_toStartOf="@+id/iv_banner" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -16,7 +16,7 @@ import com.blankj.utilcode.util.LogUtils;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public interface IBaseView {
+public  interface IBaseView {
 
     /**
      * 初始化数据
@@ -109,7 +109,7 @@ public interface IBaseView {
      */
     default void logI(String TAG, String msg) {
         if (AppUtils.isAppDebug()) {
-            LogUtils.i(TAG, msg);
+//            LogUtils.i(TAG, msg);
         }
     }
 }

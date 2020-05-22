@@ -1,0 +1,42 @@
+// 通用配置
+android {
+    compileSdkVersion 29
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+    }
+
+    // 支持 Java JDK 8
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+    //支持dataBinding
+    dataBinding {
+        enabled true
+    }
+
+    // 设置 SO 库存放目录
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+dependencies {
+    // 依赖 libs 目录下所有 jar 包
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    // 依赖 libs 目录下所有 aar 包
+    implementation fileTree(include: ['*.aar'], dir: 'libs')
+    implementation rootProject.ext.depend.appcompat
+//    annotationProcessor rootProject.ext.depend.annotationProcessor
+//    implementation rootProject.ext.depend.constraint_layout
+//    implementation rootProject.ext.depend.material
+//    implementation rootProject.ext.depend.recyclerview
+//    implementation rootProject.ext.depend.viewpager2
+//    implementation rootProject.ext.depend.cardview
+//    implementation rootProject.ext.depend.utilcode
+}

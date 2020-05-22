@@ -7,34 +7,22 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ResourceUtils;
-import com.blankj.utilcode.util.ScreenUtils;
 import com.blankj.utilcode.util.SizeUtils;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.ListPreloader;
-import com.bumptech.glide.RequestBuilder;
-import com.bumptech.glide.integration.recyclerview.RecyclerViewPreloader;
-import com.bumptech.glide.util.FixedPreloadSizeProvider;
 import com.google.gson.reflect.TypeToken;
 import com.open9527.code.common.databinding.BindingBaseCell;
 import com.open9527.code.common.databinding.BindingBaseCellAdapter;
 import com.open9527.code.common.databinding.CommonBindingTitleActivity;
 import com.open9527.code.common.databinding.interfaces.IBindingCellClickListener;
-import com.open9527.code.common.recycleview.decoration.CommonItemDecoration;
-import com.open9527.code.image.GlideApp;
-import com.open9527.code.image.dragimageview.DraggableImageViewerHelper;
-import com.open9527.code.image.imageload.ImageLoadManger;
+import com.open9527.code.common.recycleview.GridSpaceItemDecoration;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.cell.ImageLoadCell;
 import com.open9527.code.lib.databinding.ActivityImageloadBinding;
-import com.open9527.code.lib.model.EntryBean;
 import com.open9527.code.lib.model.ImagesBean;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -49,7 +37,7 @@ public class ImageLoadTitleActivity extends CommonBindingTitleActivity<ActivityI
     private List<String> list = new LinkedList<>();
     private List<BindingBaseCell> cellList = new LinkedList<>();
 
-    private final int imageWidthPixels =100;
+    private final int imageWidthPixels = 100;
     private final int imageHeightPixels = 100;
 
     @Override
@@ -104,23 +92,14 @@ public class ImageLoadTitleActivity extends CommonBindingTitleActivity<ActivityI
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
-//        ListPreloader.PreloadSizeProvider sizeProvider =
-//                new FixedPreloadSizeProvider(imageWidthPixels, imageHeightPixels);
-//        ListPreloader.PreloadModelProvider modelProvider = new GlidePreloadModelProvider();
-//        RecyclerViewPreloader<String> preloader = new RecyclerViewPreloader<>(this, modelProvider
-//                , sizeProvider, 10);
-
-
-        mBinding.includeRecycleview.commonRv.setLayoutManager(new GridLayoutManager(this, 3));
-        mBinding.includeRecycleview.commonRv.setHasFixedSize(true);
-        if (mBinding.includeRecycleview.commonRv.getItemDecorationCount() == 0) {
-//            mBinding.includeRecycleview.commonRv.addItemDecoration(new androidx.recyclerview.widget.DividerItemDecoration(this,RecyclerView.HORIZONTAL));
-//            mBinding.includeRecycleview.commonRv.addItemDecoration(new androidx.recyclerview.widget.DividerItemDecoration(this,RecyclerView.VERTICAL));
-            mBinding.includeRecycleview.commonRv.addItemDecoration(new CommonItemDecoration(this, 3));
+        mBinding.commonRv.setLayoutManager(new GridLayoutManager(this, 3));
+        mBinding.commonRv.setHasFixedSize(true);
+        if (mBinding.commonRv.getItemDecorationCount() == 0) {
+            GridSpaceItemDecoration gridSpaceItemDecoration = new GridSpaceItemDecoration(SizeUtils.dp2px(10), true).setNoShowSpace(0, 0);
+            mBinding.commonRv.addItemDecoration(gridSpaceItemDecoration);
         }
-
         BindingBaseCellAdapter mAdapter = new BindingBaseCellAdapter<>();
-        mBinding.includeRecycleview.commonRv.setAdapter(mAdapter);
+        mBinding.commonRv.setAdapter(mAdapter);
         mAdapter.setItems(cellList);
         mAdapter.setOnBindingCellClickListener(this);
 
@@ -139,31 +118,11 @@ public class ImageLoadTitleActivity extends CommonBindingTitleActivity<ActivityI
 
     public static List<ImagesBean> getObject(String assetsFilePath) {
         String string = ResourceUtils.readAssets2String(assetsFilePath);
-        List<ImagesBean> list = GsonUtils.fromJson(string, new TypeToken<List<ImagesBean>>() {}.getType());
+        List<ImagesBean> list = GsonUtils.fromJson(string, new TypeToken<List<ImagesBean>>() {
+        }.getType());
 
         return list;
     }
 
-    class GlidePreloadModelProvider implements ListPreloader.PreloadModelProvider<String> {
-
-
-        @NonNull
-        @Override
-        public List getPreloadItems(int position) {
-            String url = list.get(position);
-            if (TextUtils.isEmpty(url)) {
-                return Collections.emptyList();
-            }
-            return Collections.singletonList(url);
-        }
-
-        @Nullable
-        @Override
-        public RequestBuilder<?> getPreloadRequestBuilder(@NonNull String item) {
-            return GlideApp.with(mActivity)
-                    .load(item)
-                    .override(imageWidthPixels, imageHeightPixels);
-        }
-    }
 
 }

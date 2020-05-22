@@ -22,4 +22,6 @@ public abstract class CommonBindingActivity<D extends ViewDataBinding> extends C
         mBinding = DataBindingUtil.bind(mContentView);
     }
 
+
+
 }

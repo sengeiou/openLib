@@ -2,8 +2,11 @@ package com.open9527.code.common.databinding;
 
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.open9527.code.common.fragment.CommonTitleFragment;
 
@@ -15,7 +18,6 @@ import com.open9527.code.common.fragment.CommonTitleFragment;
  */
 public abstract class CommonBindingFragment<D extends ViewDataBinding> extends CommonTitleFragment {
     protected D mBinding;
-
 
     @Override
     public void bindingView() {
@@ -36,4 +38,5 @@ public abstract class CommonBindingFragment<D extends ViewDataBinding> extends C
         }
         return null;
     }
+
 }

@@ -10,10 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-            <com.open9527.code.webview.X5WebView
-                android:id="@+id/x5_web"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+<!--            <com.open9527.code.webview.X5WebView-->
+<!--                android:id="@+id/x5_web"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

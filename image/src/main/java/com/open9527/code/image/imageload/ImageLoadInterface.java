@@ -29,7 +29,7 @@ public interface ImageLoadInterface {
      *
      * @param context
      */
-    default void resumeLoad(Context context, String url) {
+    default void resumeLoad(Context context, Object url) {
     }
 
     /**
@@ -37,7 +37,7 @@ public interface ImageLoadInterface {
      *
      * @param context
      */
-    default void pauseLoad(Context context, String url) {
+    default void pauseLoad(Context context, Object url) {
     }
 
     /**
@@ -45,6 +45,6 @@ public interface ImageLoadInterface {
      *
      * @param context
      */
-    default void clearImageView(Context context, ImageView imageView, String url) {
+    default void clearImageView(Context context, ImageView imageView, Object url) {
     }
 }

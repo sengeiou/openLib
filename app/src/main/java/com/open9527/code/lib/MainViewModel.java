@@ -24,7 +24,6 @@ import io.reactivex.Single;
 public class MainViewModel extends ViewModel {
     public SingleLiveEvent<Void> closeSplashEvent = new SingleLiveEvent<>();
 
-
     DataLoadRepository<List<EntryBean>> mEntryInfoRepository = new GitHubSingleDataLoadRepository<>(new GitHubSingleDataLoader<List<EntryBean>>() {
         @Override
         public Single<GitHubResponse<List<EntryBean>>> getLoader() {
@@ -37,11 +36,5 @@ public class MainViewModel extends ViewModel {
         mEntryInfoRepository.loadData(true);
     }
 
-
-//    DataLoadRepository<List<UserBean>> mUserListRepository = new GitHubSingleDataLoadRepository<>(() -> GitHubApiClient.getApiService(GitHubApi.class).getUsers(BuildConfig.HOST_USER, BuildConfig.TOKEN));
-//
-//    void getUserList() {
-//        mUserListRepository.loadData(true);
-//    }
 
 }

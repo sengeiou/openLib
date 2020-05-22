@@ -1,48 +1,20 @@
 apply plugin: 'com.android.library'
-
+apply from: "../config.gradle"
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.1"
-
-
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        // 混淆配置
         consumerProguardFiles 'consumer-rules.pro'
     }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-    compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
-    }
-
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    annotationProcessor 'androidx.annotation:annotation:1.1.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    //glide
-    api('com.github.bumptech.glide:glide:4.9.0') {
+//    implementation project(path: ':base')
+
+    api (rootProject.ext.depend.glide) {
         exclude group: "com.android.support"
     }
-    implementation 'com.github.bumptech.glide:okhttp3-integration:4.9.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
-    api 'jp.wasabeef:glide-transformations:4.1.0'
-
-    api ("com.github.bumptech.glide:recyclerview-integration:4.9.0") {
-        // Excludes the support library because it's already included by Glide.
-        transitive = false
-    }
+    annotationProcessor rootProject.ext.depend.glide_annotationProcessor
+    implementation rootProject.ext.depend.glide_okhttp3_integration
+    implementation rootProject.ext.depend.glide_transformations
+    implementation rootProject.ext.depend.recyclerview
 }

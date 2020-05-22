@@ -40,11 +40,11 @@ public class ImageLoadManger {
      * @param config
      * @param imageLoadProcessInterface
      */
-    public static void display(Context mContext, ImageView view, String url, ImageLoadConfig config, ImageLoadProcessInterface imageLoadProcessInterface) {
+    public static void display(Context mContext, ImageView view, Object url, ImageLoadConfig config, ImageLoadProcessInterface imageLoadProcessInterface) {
         displayUrl(mContext, view, url, config, imageLoadProcessInterface);
     }
 
-    public static void display(Context mContext, ImageView view, String url, ImageLoadConfig config) {
+    public static void display(Context mContext, ImageView view, Object url, ImageLoadConfig config) {
         displayUrl(mContext, view, url, config, null);
     }
 
@@ -68,7 +68,7 @@ public class ImageLoadManger {
      * @param context
      * @param url
      */
-    public static void resumeLoad(Context context, String url) {
+    public static void resumeLoad(Context context, Object url) {
         if (imageLoad != null) {
             imageLoad.resumeLoad(context, url);
         }
@@ -81,7 +81,7 @@ public class ImageLoadManger {
      * @param imageView
      * @param url
      */
-    public static void clearImageView(Context context, ImageView imageView, String url) {
+    public static void clearImageView(Context context, ImageView imageView, Object url) {
         if (imageLoad != null) {
             imageLoad.clearImageView(context, imageView, url);
         }

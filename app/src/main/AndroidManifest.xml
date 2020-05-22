@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.open9527.code.lib">
 
-
     <!--INTERNET-->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -17,7 +16,10 @@
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <!--电池优化-->
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
-
+    <!--读取日程提醒-->
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <!--写入日程提醒-->
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
     <application
         android:name=".Application"
@@ -27,7 +29,9 @@
         android:roundIcon="@mipmap/launch"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        android:usesCleartextTraffic="true"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning,LockedOrientationActivity"
+        tools:targetApi="m">
         <activity
             android:name=".module.splash.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -89,7 +93,7 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".module.image.preview.PreviewTitleActivity"
+            android:name=".module.image.preview.PreviewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="PreviewActivity"
             android:launchMode="singleTop"
@@ -202,9 +206,31 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="KeepLiveActivity"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait"
-
-            />
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.rv.click.RecycleViewClickActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="RecycleViewClickActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.permission.PermissionActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="PermissionActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.empty.EmptyActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="EmptyActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".module.image.preview.GalleryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="自定义相册"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
     </application>
 
 

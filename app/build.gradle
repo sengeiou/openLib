@@ -1,33 +1,81 @@
 apply plugin: 'com.android.application'
-
+apply from: "../config.gradle"
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.1"
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.open9527.code.lib"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // 仅保留中文语种的资源
+        resConfig 'zh'
+
+        // 仅保留 xxhdpi 图片资源（目前主流分辨率 1920 * 1080）
+        resConfig 'xxhdpi'
+
+        // 仅保留两种架构的 so 库，根据 Bugly 统计得出
+        ndk {
+            // armeabi：万金油架构平台（占用率：0%）
+            // armeabi-v7a：曾经主流的架构平台（占用率：10%）
+            // arm64-v8a：目前主流架构平台（占用率：90%）
+            abiFilters "armeabi-v7a", "arm64-v8a"
+        }
+
+        // 开启 Dex 分包
+        //multiDexEnabled true
+
+        // 使用矢量图支持库（为了兼容 API 21 以下）
+        // 阿里巴巴矢量图库：https://www.iconfont.cn/
+        vectorDrawables.useSupportLibrary = true
+
+        // 混淆配置
+        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+        //配置一些全局参数(需要区分环境)
         buildConfigField('String', 'HOST_USER', privacy_url)
         buildConfigField('String', 'TOKEN', privacy_token)
         buildConfigField('String', 'GITHUB_URL', github_url)
         buildConfigField('String', 'GITHUB_UPLOAD', github_upload)
         buildConfigField('String', 'GITHUB_UPLOAD_TOKEN', github_upload_token)
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+    // APK 签名的那些事：https://www.jianshu.com/p/a1f8e5896aa2
+    signingConfigs {
+        config {
+            storeFile file(StoreFile)
+            storePassword StorePassword
+            keyAlias KeyAlias
+            keyPassword KeyPassword
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    dataBinding {
-        enabled true
+
+    buildTypes {
+
+        debug {
+            debuggable true
+            jniDebuggable true
+            // 移除无用的资源文件
+            shrinkResources false
+            // ZipAlign 优化
+            zipAlignEnabled false
+            // 设置混淆
+            minifyEnabled false
+            // 开发环境下的 BuglyId
+            buildConfigField "String", "BUGLY_ID", "\"请自行替换 Bugly 上面的 AppID\""
+            signingConfig signingConfigs.config
+        }
+
+        release {
+            debuggable false
+            jniDebuggable false
+            // 移除无用的资源文件
+            shrinkResources true
+            // ZipAlign 优化
+            zipAlignEnabled true
+            // 设置混淆
+            minifyEnabled true
+            // 正式环境下的 BuglyId
+            buildConfigField "String", "BUGLY_ID", "\"请自行替换 Bugly 上面的 AppID\""
+            signingConfig signingConfigs.config
+        }
     }
     sourceSets {
         //数据库概要、记录存放位置
@@ -36,39 +84,5 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':common')
-    //js bridge
-    implementation 'com.github.lzyzsd:jsbridge:1.0.4'
-    //room
-    annotationProcessor 'androidx.room:room-compiler:2.2.1'
-    implementation 'androidx.room:room-runtime:2.2.1'
-
-    //阿里推送
-    implementation('com.aliyun.ams:alicloud-android-push:3.1.6') {
-    }
-
-    //DoraemonKit
-    debugImplementation 'com.didichuxing.doraemonkit:doraemonkit:1.2.1'
-    releaseImplementation 'com.didichuxing.doraemonkit:doraemonkit-no-op:1.2.0'
-
-
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
-
-    //小红书图片选择
-    implementation 'com.ypx.yimagepicker:androidx:2.4.6.2'
-
-    //视频 这两个是必须要加的，其它的可供选择
-    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
-    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.4'
-    //其他库文件
-    //implementation 'tv.danmaku.ijk.media:ijkplayer-armv5:0.8.8'
-    //implementation 'tv.danmaku.ijk.media:ijkplayer-arm64:0.8.8'
-    //implementation 'tv.danmaku.ijk.media:ijkplayer-x86:0.8.8'
-    //implementation 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.8.8'
-
-    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.3.4'
-
-    implementation 'com.github.razerdp:BasePopup:2.2.1'
-//    implementation 'com.github.razerdp:BasePopup-compat-androidx:{2.2.1}'
 }

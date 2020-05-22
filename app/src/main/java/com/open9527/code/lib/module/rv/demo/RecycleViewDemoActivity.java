@@ -25,8 +25,8 @@ import java.util.List;
  * DESC :描述文件.
  */
 public class RecycleViewDemoActivity extends CommonBindingTitleActivity<ActivityRecycleviewBinding> {
-    List<BaseItem> baseItemList = new ArrayList<>();
-    List<RadioBean> radioBeans = new ArrayList<>();
+    private List<BaseItem> baseItemList = new ArrayList<>();
+    private List<RadioBean> radioBeans = new ArrayList<>();
     private BaseItemAdapter<BaseItem> mAdapter;
 
     @Override

@@ -40,11 +40,14 @@ public class GlideConfig extends AppGlideModule {
         //设置内存缓存大小
         builder.setMemoryCache(new LruResourceCache(memoryCacheSize));
         builder.setBitmapPool(new LruBitmapPool(memoryCacheSize));
+        builder.setDefaultRequestOptions(RequestOptions.formatOf(DecodeFormat.PREFER_RGB_565));
         //根据SD卡是否可用选择是在内部缓存还是SD卡缓存
+        //配置磁盘缓存大小
+        long diskCacheSizeBytes =  1024 * 1024 * 1024* 1L; // 1G
         if (CommonImageUtils.isSDCardEnableByEnvironment()) {
-            builder.setDiskCache(new ExternalPreferredCacheDiskCacheFactory(context, "GlideConfigCache", memoryCacheSize));
+            builder.setDiskCache(new ExternalPreferredCacheDiskCacheFactory(context, "GlideConfigCache", diskCacheSizeBytes));
         } else {
-            builder.setDiskCache(new InternalCacheDiskCacheFactory(context, "GlideConfigCache", memoryCacheSize));
+            builder.setDiskCache(new InternalCacheDiskCacheFactory(context, "GlideConfigCache", diskCacheSizeBytes));
         }
     }
 

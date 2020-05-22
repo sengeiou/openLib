@@ -58,7 +58,6 @@ public class CommonPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        LogUtils.i();
         Fragment fragment = mFragments.get(position);
         mFragmentManager.beginTransaction().hide(fragment).commitAllowingStateLoss();
     }

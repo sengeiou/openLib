@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="200pt"
+            android:layout_height="200pt"
+            android:indeterminateBehavior="repeat"
+            android:indeterminateDrawable="@drawable/common_image_loading"
+            android:padding="50pt" />
+
+
+        <TextView
+            android:id="@+id/tv_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10pt"
+            android:text="@string/empty_loading"
+            android:textColor="#333333"
+            android:textSize="40pt" />
+    </LinearLayout>
+</layout>

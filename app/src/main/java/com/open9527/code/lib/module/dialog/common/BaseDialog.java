@@ -10,6 +10,7 @@ import android.view.Window;
 import androidx.annotation.NonNull;
 
 import com.blankj.utilcode.util.ActivityUtils;
+import com.blankj.utilcode.util.ThreadUtils;
 import com.blankj.utilcode.util.Utils;
 
 /**
@@ -54,7 +55,7 @@ public abstract class BaseDialog extends Dialog {
 
     @Override
     public void show() {
-        Utils.runOnUiThread(new Runnable() {
+        ThreadUtils.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (ActivityUtils.isActivityAlive(getContext())) {
@@ -66,7 +67,7 @@ public abstract class BaseDialog extends Dialog {
 
     @Override
     public void dismiss() {
-        Utils.runOnUiThread(new Runnable() {
+        ThreadUtils.runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (ActivityUtils.isActivityAlive(getContext())) {

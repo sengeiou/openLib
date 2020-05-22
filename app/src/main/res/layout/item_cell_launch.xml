@@ -5,10 +5,14 @@
 
     <data>
 
+        <variable
+            name="cell"
+            type="com.open9527.code.lib.cell.LaunchCell" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        app:onBindViewClick="@{()->cell.onItemClick(cell)}"
         android:layout_height="@dimen/pt_150"
         android:background="@drawable/common_touch_bg">
 
@@ -20,12 +24,12 @@
             android:textSize="@dimen/pt_40"
             tools:text="测试" />
 
-        <include
-            layout="@layout/common_view_line"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/pt_1"
-            android:background="@color/color_eee"
-            app:layout_constraintBottom_toBottomOf="parent" />
+<!--        <include-->
+<!--            layout="@layout/common_view_line"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/pt_1"-->
+<!--            android:background="@color/color_eee"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

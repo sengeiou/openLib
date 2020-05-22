@@ -18,4 +18,10 @@
     <color name="color_d81b60">#d81b60</color>
     <color name="color_00_000">#00000000</color>
     <color name="color_80_000">#80000000</color>
+    <color name="color_f2f2f2">#f2f2f2</color>
+
+    <!-- 按钮按压时的颜色 -->
+    <color name="colorButtonPressed">#1976D2</color>
+    <!-- 按钮禁用时的颜色 -->
+    <color name="colorButtonDisable">#BBBBBB</color>
 </resources>

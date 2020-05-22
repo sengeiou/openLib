@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="cell"
+            type="com.open9527.code.lib.module.rv.click.ClickItemCell" />
+
+        <variable
+            name="click"
+            type="com.open9527.code.lib.module.rv.click.RecycleViewClickActivity" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/pt_200"
+        android:background="@color/color_00aaae"
+        app:onBindViewClick="@{()->click.onItemClick(cell)}"
+      >
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/pt_20"
+            android:textColor="@color/color_333"
+            android:textSize="@dimen/pt_42"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="这是一段文字" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

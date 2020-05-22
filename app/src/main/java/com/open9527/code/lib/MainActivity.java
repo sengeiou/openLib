@@ -6,21 +6,23 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.Nullable;
-import androidx.core.app.TaskStackBuilder;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.GsonUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.open9527.code.common.databinding.CommonBindingActivity;
+import com.open9527.code.lib.cell.LaunchCell;
 import com.open9527.code.lib.databinding.ActivityMainBinding;
 import com.open9527.code.lib.model.EntryBean;
+import com.open9527.code.lib.model.LaunchModel;
 import com.open9527.code.lib.module.customview.RadioRecycleViewActivity;
 import com.open9527.code.lib.module.splash.SplashFragment;
+import com.open9527.recycleview.adapter.BaseBindingCell;
+import com.open9527.recycleview.adapter.IBaseCellClick;
 
 import java.util.List;
 
@@ -42,7 +44,7 @@ public class MainActivity extends CommonBindingActivity<ActivityMainBinding> {
 
     @Override
     public void initData(@Nullable Bundle bundle) {
-        mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        mViewModel = getActivityViewModel(MainViewModel.class);
         initScheme();
     }
 
@@ -54,12 +56,6 @@ public class MainActivity extends CommonBindingActivity<ActivityMainBinding> {
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
-        mAppViewModel.openOrCloseDrawer.observe(this, new Observer<String>() {
-            @Override
-            public void onChanged(String s) {
-
-            }
-        });
         mViewModel.closeSplashEvent.observe(this, new Observer<Void>() {
             @Override
             public void onChanged(Void v) {
@@ -79,6 +75,9 @@ public class MainActivity extends CommonBindingActivity<ActivityMainBinding> {
         transaction.replace(R.id.fl_content, fragment);
         transaction.commit();
     }
+
+
+
 
     private void initScheme() {
         if (ActivityUtils.isActivityAlive(this)) {

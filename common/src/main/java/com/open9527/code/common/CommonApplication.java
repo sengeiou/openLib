@@ -1,6 +1,5 @@
 package com.open9527.code.common;
 
-
 import android.app.Activity;
 import android.app.Application;
 
@@ -9,9 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
 import androidx.lifecycle.ViewModelStoreOwner;
 
-import com.blankj.utilcode.util.CrashUtils;
 import com.open9527.code.base.BaseApplication;
-import com.open9527.code.webview.X5WebUtils;
 
 /**
  * Created by     : open9527
@@ -21,12 +18,10 @@ import com.open9527.code.webview.X5WebUtils;
  */
 public class CommonApplication extends BaseApplication implements ViewModelStoreOwner {
 
-
     /**
      * 借助 Application 来管理一个应用级 的 AppViewModel，
      * 实现全应用范围内的 生命周期安全 且 事件源可追溯的 视图控制器 事件通知。
      */
-
     private ViewModelStore mAppViewModelStore;
 
     private ViewModelProvider.Factory mFactory;
@@ -34,18 +29,8 @@ public class CommonApplication extends BaseApplication implements ViewModelStore
     @Override
     public void onCreate() {
         super.onCreate();
-        initSDK();
         mAppViewModelStore = new ViewModelStore();
     }
-
-    /**
-     * 后期根据需要可异步操作加载
-     */
-    private void initSDK() {
-        CrashUtils.init();
-        X5WebUtils.init(this, BuildConfig.DEBUG);
-    }
-
 
     @NonNull
     @Override

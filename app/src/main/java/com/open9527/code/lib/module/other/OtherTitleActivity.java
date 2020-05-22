@@ -29,18 +29,19 @@ import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.ResourceUtils;
 import com.blankj.utilcode.util.ScreenUtils;
 import com.blankj.utilcode.util.ToastUtils;
+import com.blankj.utilcode.util.UtilsTransActivity;
 import com.google.gson.reflect.TypeToken;
 import com.open9527.code.common.databinding.CommonBindingTitleActivity;
 import com.open9527.code.common.entity.Contacts;
 import com.open9527.code.common.entity.LocalMediaFolder;
 import com.open9527.code.common.interfaces.ILoadData;
 import com.open9527.code.common.utils.MediaUtils;
-import com.open9527.code.image.compression.CachePathUtils;
-import com.open9527.code.image.compression.Constants;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ActivityOtherBinding;
 import com.open9527.code.lib.model.EntryBean;
 import com.open9527.code.lib.utils.ImageLoadUtils;
+import com.open9527.compression.config.Constants;
+import com.open9527.compression.utils.CachePathUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -161,7 +162,7 @@ public class OtherTitleActivity extends CommonBindingTitleActivity<ActivityOther
      */
     private void requesPermission(int code) {
         PermissionUtils.permission(PermissionConstants.STORAGE, PermissionConstants.CONTACTS)//设置请求权限
-                .rationale(shouldRequest -> {
+                .rationale((activity, shouldRequest) -> {
                     //拒绝再次请求
                     ToastUtils.showShort("拒绝再次请求");
 //                    shouldRequest.again(true);

@@ -16,7 +16,6 @@
 
         <TextView
             android:id="@+id/tv_title"
-            bindingText="@{cell.observableField}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/pt_50"
@@ -24,6 +23,7 @@
             android:gravity="center"
             android:textColor="@color/color_333"
             android:textSize="@dimen/pt_42"
+            app:bindText="@{cell.observableField}"
             app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

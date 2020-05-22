@@ -31,7 +31,7 @@ import java.util.List;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class CoordinatorLayoutTitleActivity extends CommonBindingActivity<ActivityCoordinatorLayoutBinding> implements IBindingCellClickListener {
+public class CoordinatorLayoutTitleActivity extends CommonBindingActivity<ActivityCoordinatorLayoutBinding> implements IBindingCellClickListener, XCollapsingToolbarLayout.OnScrimsListener {
     @Override
     public void initData(@Nullable Bundle bundle) {
 
@@ -58,28 +58,29 @@ public class CoordinatorLayoutTitleActivity extends CommonBindingActivity<Activi
         BarUtils.setStatusBarColor(mBinding.viewStatusBar, ColorUtils.getColor(R.color.color_00_000));
         initAdapter();
         //144
-        mBinding.appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int offset) {
-                LogUtils.i(TAG, "offset-->" + offset);
-                LogUtils.i(TAG, "TotalScrollRange()-->" + appBarLayout.getTotalScrollRange());
-                if (offset == 0) {
-                    //展开状态
-                    mBinding.clExpand.setVisibility(View.VISIBLE);
-                    mBinding.clExpand.setAlpha(1.0f);
-                    mBinding.toolbar.setAlpha(0f);
-                } else if (Math.abs(offset) >= appBarLayout.getTotalScrollRange()) {
-                    //折叠状态
-                    mBinding.clExpand.setVisibility(View.INVISIBLE);
-                    mBinding.clExpand.setAlpha(0f);
-                    mBinding.toolbar.setAlpha(1.0f);
-                } else {
-                    //中间状态
-                    mBinding.clExpand.setAlpha(0.5f);
-                    mBinding.toolbar.setAlpha(0.5f);
-                }
-            }
-        });
+        mBinding.CollapsingToolbarLayout.setOnScrimsListener(this);
+//        mBinding.appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+//            @Override
+//            public void onOffsetChanged(AppBarLayout appBarLayout, int offset) {
+//                LogUtils.i(TAG, "offset-->" + offset);
+//                LogUtils.i(TAG, "TotalScrollRange()-->" + appBarLayout.getTotalScrollRange());
+//                if (offset == 0) {
+//                    //展开状态
+//                    mBinding.clExpand.setVisibility(View.VISIBLE);
+//                    mBinding.clExpand.setAlpha(1.0f);
+//                    mBinding.toolbar.setAlpha(0f);
+//                } else if (Math.abs(offset) >= appBarLayout.getTotalScrollRange()) {
+//                    //折叠状态
+//                    mBinding.clExpand.setVisibility(View.INVISIBLE);
+//                    mBinding.clExpand.setAlpha(0f);
+//                    mBinding.toolbar.setAlpha(1.0f);
+//                } else {
+//                    //中间状态
+//                    mBinding.clExpand.setAlpha(0.5f);
+//                    mBinding.toolbar.setAlpha(0.5f);
+//                }
+//            }
+//        });
 
 
     }
@@ -103,6 +104,21 @@ public class CoordinatorLayoutTitleActivity extends CommonBindingActivity<Activi
         if (baseCell instanceof EmptyCell) {
             EmptyCell emptyCell = (EmptyCell) baseCell;
             ToastUtils.showShort(emptyCell.descObservableField.get().getDesc());
+        }
+    }
+
+    @Override
+    public void onScrimsStateChange(XCollapsingToolbarLayout layout, boolean shown) {
+        if (!shown) {
+            //展开状态
+            mBinding.clExpand.setVisibility(View.VISIBLE);
+            mBinding.clExpand.setAlpha(1.0f);
+            mBinding.toolbar.setAlpha(0f);
+        } else {
+            //折叠状态
+            mBinding.clExpand.setVisibility(View.INVISIBLE);
+            mBinding.clExpand.setAlpha(0f);
+            mBinding.toolbar.setAlpha(1.0f);
         }
     }
 }

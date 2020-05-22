@@ -1,9 +1,13 @@
 package com.open9527.code.lib.module.image.compression;
 
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -15,18 +19,19 @@ import com.blankj.utilcode.util.IntentUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.ScreenUtils;
+import com.blankj.utilcode.util.ThreadUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.UriUtils;
 import com.open9527.code.common.databinding.CommonBindingTitleActivity;
-import com.open9527.code.image.compression.CachePathUtils;
-import com.open9527.code.image.compression.CompressConfig;
-import com.open9527.code.image.compression.CompressImage;
-import com.open9527.code.image.compression.CompressImageManager;
-import com.open9527.code.image.compression.Constants;
-import com.open9527.code.image.compression.Photo;
 import com.open9527.code.image.utils.CommonImageUtils;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ActivityCompressImageBinding;
+import com.open9527.compression.interfaces.CompressImage;
+import com.open9527.compression.CompressImageManager;
+import com.open9527.compression.config.CompressConfig;
+import com.open9527.compression.config.Constants;
+import com.open9527.compression.config.Photo;
+import com.open9527.compression.utils.CachePathUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -47,7 +52,12 @@ public class CompressImageTitleActivity extends CommonBindingTitleActivity<Activ
 
     @Override
     public void initData(@Nullable Bundle bundle) {
-
+        ThreadUtils.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                getAlbum();
+            }
+        });
     }
 
     @Override
@@ -75,8 +85,6 @@ public class CompressImageTitleActivity extends CommonBindingTitleActivity<Activ
                 .setCacheDir("/CompressCache")
                 .setShowCompressDialog(true)
                 .create();
-
-
     }
 
     @Override
@@ -168,7 +176,7 @@ public class CompressImageTitleActivity extends CommonBindingTitleActivity<Activ
      */
     private void requesPermission(int code) {
         PermissionUtils.permission(PermissionConstants.CAMERA, PermissionConstants.STORAGE, PermissionConstants.PHONE)//设置请求权限
-                .rationale(shouldRequest -> {
+                .rationale((activity, shouldRequest) -> {
                     //拒绝再次请求
                     ToastUtils.showShort("拒绝再次请求");
                 })
@@ -217,9 +225,10 @@ public class CompressImageTitleActivity extends CommonBindingTitleActivity<Activ
      */
     public void compresList() {
         ArrayList<Photo> photos = new ArrayList<>();
-        photos.add(new Photo("/storage/emulated/0/DCIM/Camera/IMG_20191008_170336.jpg"));
-        photos.add(new Photo("/storage/emulated/0/DCIM/Camera/IMG_20190903_162027.jpg"));
-        photos.add(new Photo("/storage/emulated/0/DCIM/Camera/IMG_20190903_162027.jpg"));
+        List<String> list = mAllPhoto.subList(0, 5);
+        for (int i = 0; i < list.size(); i++) {
+            photos.add(new Photo(list.get(i)));
+        }
         if (!photos.isEmpty()) compress(photos);
     }
 
@@ -235,6 +244,69 @@ public class CompressImageTitleActivity extends CommonBindingTitleActivity<Activ
             dialog = CommonImageUtils.showProgressDialog(this, "图片压缩中...");
         }
         CompressImageManager.build(this, compressConfig, photos, this).compress();
+    }
+
+
+    /**
+     * 全部图片
+     */
+    ArrayList<String> mAllPhoto = new ArrayList<>();
+
+    private void getAlbum() {
+        final Uri contentUri = MediaStore.Files.getContentUri("external");
+        final String sortOrder = MediaStore.Files.FileColumns.DATE_MODIFIED + " DESC";
+        final String selection =
+                "(" + MediaStore.Files.FileColumns.MEDIA_TYPE + "=?"
+                        + " OR "
+                        + MediaStore.Files.FileColumns.MEDIA_TYPE + "=?)"
+                        + " AND "
+                        + MediaStore.MediaColumns.SIZE + ">0";
+
+        final String[] selectionAllArgs = {String.valueOf(MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE)};
+
+        ContentResolver contentResolver = getContentResolver();
+        String[] projections;
+        projections = new String[]{MediaStore.Files.FileColumns._ID, MediaStore.MediaColumns.DATA,
+                MediaStore.MediaColumns.DISPLAY_NAME, MediaStore.MediaColumns.DATE_MODIFIED,
+                MediaStore.MediaColumns.MIME_TYPE, MediaStore.MediaColumns.WIDTH, MediaStore
+                .MediaColumns.HEIGHT, MediaStore.MediaColumns.SIZE};
+
+        Cursor cursor = contentResolver.query(contentUri, projections, selection, selectionAllArgs, sortOrder);
+        if (cursor != null && cursor.moveToFirst()) {
+
+            int pathIndex = cursor.getColumnIndex(MediaStore.MediaColumns.DATA);
+            int mimeTypeIndex = cursor.getColumnIndex(MediaStore.MediaColumns.MIME_TYPE);
+            int sizeIndex = cursor.getColumnIndex(MediaStore.MediaColumns.SIZE);
+            int widthIndex = cursor.getColumnIndex(MediaStore.MediaColumns.WIDTH);
+            int heightIndex = cursor.getColumnIndex(MediaStore.MediaColumns.HEIGHT);
+
+            do {
+                long size = cursor.getLong(sizeIndex);
+                if (size < 1) {
+                    continue;
+                }
+
+                String type = cursor.getString(mimeTypeIndex);
+                String path = cursor.getString(pathIndex);
+                if (TextUtils.isEmpty(path) || TextUtils.isEmpty(type)) {
+                    continue;
+                }
+
+                int width = cursor.getInt(widthIndex);
+                int height = cursor.getInt(heightIndex);
+                if (width < 1 || height < 1) {
+                    continue;
+                }
+
+                File file = new File(path);
+                if (!file.exists() || !file.isFile()) {
+                    continue;
+                }
+                mAllPhoto.add(path);
+
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
     }
 
 }

@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
+            <com.open9527.code.lib.module.customview.XCollapsingToolbarLayout
                 android:id="@+id/CollapsingToolbarLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -99,7 +99,7 @@
 
 
                 </androidx.appcompat.widget.Toolbar>
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.open9527.code.lib.module.customview.XCollapsingToolbarLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
         <!-- 界面布局文件 作用view （child）-->

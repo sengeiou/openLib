@@ -21,8 +21,6 @@ import com.open9527.code.lib.MainActivity;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.module.dialog.BottomDialogFragment;
 
-import razerdp.basepopup.QuickPopupBuilder;
-import razerdp.basepopup.QuickPopupConfig;
 
 /**
  * Created by     : open9527
@@ -60,12 +58,12 @@ public class SplashActivity extends CommonBindingActivity {
     protected void onResume() {
         getWindow().setBackgroundDrawable(null);
         super.onResume();
-        QuickPopupBuilder.with(SplashActivity.this)
-                .contentView(R.layout.dialog_bottom)
-                .config(new QuickPopupConfig()
-                        .gravity(Gravity.CENTER)
-                )
-                .show();
+//        QuickPopupBuilder.with(SplashActivity.this)
+//                .contentView(R.layout.dialog_bottom)
+//                .config(new QuickPopupConfig()
+//                        .gravity(Gravity.CENTER)
+//                )
+//                .show();
     }
 
 
@@ -81,8 +79,8 @@ public class SplashActivity extends CommonBindingActivity {
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
-//        ActivityUtils.startActivity(MainActivity.class);
-//        finish();
+        ActivityUtils.startActivity(MainActivity.class);
+        finish();
 //        BottomDialogFragment.create(getSupportFragmentManager())
 //                .setLayoutRes(R.layout.dialog_bottom)
 //                .setHeight(AdaptScreenUtils.pt2Px(500))

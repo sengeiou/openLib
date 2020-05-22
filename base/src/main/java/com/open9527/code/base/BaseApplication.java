@@ -3,8 +3,6 @@ package com.open9527.code.base;
 import android.app.Application;
 import android.content.Context;
 
-import androidx.multidex.MultiDex;
-
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.CrashUtils;
 import com.blankj.utilcode.util.LogUtils;
@@ -18,7 +16,7 @@ import java.util.ArrayList;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public  class BaseApplication extends Application {
+public class BaseApplication extends Application {
 
     private static BaseApplication sInstance;
 
@@ -29,11 +27,6 @@ public  class BaseApplication extends Application {
     private Boolean isDebug;
     private Boolean isMainProcess;
 
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(base);
-        MultiDex.install(this);
-    }
 
     @Override
     public void onCreate() {
@@ -83,7 +76,7 @@ public  class BaseApplication extends Application {
         CrashUtils.init(new CrashUtils.OnCrashListener() {
             @Override
             public void onCrash(String crashInfo, Throwable e) {
-                LogUtils.e(crashInfo);
+                LogUtils.e("BaseApplication--->", "crashInfo---->" + crashInfo);
                 AppUtils.relaunchApp();
             }
         });

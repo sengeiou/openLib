@@ -1,4 +1,12 @@
-include ':app', ':base', ':common', ':network', ':image', ':customview', ':shareelement', ':webview'
 rootProject.name = 'openLib'
-
-
+include ':app'
+include ':base'
+include ':common'
+include ':network'
+include ':image'
+include ':customview'
+//include ':webview'
+include ':permissions'
+include ':empty'
+include ':recycleview'
+include ':compression'

@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
+
 import com.open9527.code.common.databinding.CommonBindingFragment;
 import com.open9527.code.lib.MainViewModel;
 import com.open9527.code.lib.R;

@@ -17,12 +17,12 @@
 
         <TextView
             android:id="@+id/tv_title"
-            bindingText="@{cell.titleObservableField}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/pt_20"
             android:textColor="@color/color_333"
             android:textSize="@dimen/pt_42"
+            app:bindText="@{cell.titleObservableField}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"

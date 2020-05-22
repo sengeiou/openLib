@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="CommonAppTheme">
@@ -25,14 +25,15 @@
         <!--<item name="android:windowSoftInputMode">stateHidden</item>-->
         <!--处理默认 recycleview 等滑动空间滑动越界阴影-->
         <item name="android:overScrollMode">never</item>
-
+        <!--转场动画-->
+        <item name="android:windowContentTransitions" tools:targetApi="lollipop">true</item>
     </style>
 
     <!--启动页-->
     <style name="SplashTheme" parent="CommonAppTheme">
         <item name="android:windowFullscreen">true</item>
         <!--                <item name="android:background">@mipmap/splash</item>-->
-<!--        <item name="android:background">@android:color/transparent</item>-->
+        <!--        <item name="android:background">@android:color/transparent</item>-->
         <item name="android:windowBackground">@android:color/transparent</item>
         <!--是否禁用窗口的预览动画-->
         <item name="android:windowDisablePreview">false</item>

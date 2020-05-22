@@ -1,10 +1,7 @@
 package com.open9527.code.lib.module.browser;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -69,7 +66,7 @@ public class WebViewAndRecycleView extends CommonBindingTitleActivity<ActivityWe
             itemView = holder.itemView;
             ItemCellWebviewBinding binding = (ItemCellWebviewBinding) holder.mBinding;
             String url = "https://github.com/open9527";
-            binding.x5Web.loadUrl(url);
+//            binding.x5Web.loadUrl(url);
         }
     }
 }

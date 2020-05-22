@@ -7,15 +7,20 @@ import android.view.ViewStub;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.Group;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ColorUtils;
 import com.open9527.code.base.BaseFragment;
+import com.open9527.code.common.CommonAppViewModel;
+import com.open9527.code.common.CommonApplication;
 import com.open9527.code.common.R;
 
 /**
@@ -34,6 +39,9 @@ public abstract class CommonTitleFragment extends BaseFragment {
     protected View mViewStatus;
     protected Group mTitleGroup;
 
+    private CommonAppViewModel mCommonAppViewModel;
+    private ViewModelProvider mFragmentProvider;
+    private ViewModelProvider mActivityProvider;
 
 //    @Override
 //    public int bindLayout() {
@@ -62,6 +70,10 @@ public abstract class CommonTitleFragment extends BaseFragment {
         bindingView();
     }
 
+    @Override
+    public void initData(@Nullable Bundle bundle) {
+        mCommonAppViewModel = ((CommonApplication) mActivity.getApplicationContext()).getAppViewModelProvider(mActivity).get(CommonAppViewModel.class);
+    }
 
     /**
      * 配置app主题UI样式
@@ -88,5 +100,23 @@ public abstract class CommonTitleFragment extends BaseFragment {
                 titleBar.setTitle(bindTitle());
             }
         }
+    }
+
+    protected <T extends ViewModel> T getFragmentViewModel(@NonNull Class<T> modelClass) {
+        if (mFragmentProvider == null) {
+            mFragmentProvider = new ViewModelProvider(this);
+        }
+        return mFragmentProvider.get(modelClass);
+    }
+
+    protected <T extends ViewModel> T getActivityViewModel(@NonNull Class<T> modelClass) {
+        if (mActivityProvider == null) {
+            mActivityProvider = new ViewModelProvider(mActivity);
+        }
+        return mActivityProvider.get(modelClass);
+    }
+
+    public CommonAppViewModel getAppViewModel() {
+        return mCommonAppViewModel;
     }
 }
