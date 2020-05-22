@@ -13,7 +13,7 @@ ext {
             "room"                               : 'androidx.room:room-runtime:2.2.5',
 
             //工具类
-            "utilcode"                           : 'com.blankj:utilcodex:1.28.3',
+            "utilcode"                           : 'com.blankj:utilcodex:1.28.5',
             "multidex"                           : 'androidx.multidex:multidex:2.0.1',
             "free_proguard"                      : 'com.blankj:free-proguard:1.0.2',
 
@@ -42,6 +42,28 @@ ext {
             "smart_swipe_x"                      : 'com.billy.android:smart-swipe-x:1.1.0',
             "banner"                             : "com.youth.banner:banner:2.0.7",
             "BasePopup"                          : 'com.github.razerdp:BasePopup:2.2.2.2',
+
+            //视频播放器 https://github.com/CarGuo/GSYVideoPlayer
+            //A、完整版引入
+            "gsyvideoplayer"                     : 'com.shuyu:GSYVideoPlayer:7.1.4',
+            //B、添加java和你想要的so支持：
+            "gsyvideoplayer_java"                : 'com.shuyu:gsyVideoPlayer-java:7.1.4',
+
+            //是否需要ExoPlayer模式
+            "gsyvideoplayer_exo2"                : 'com.shuyu:GSYVideoPlayer-exo2:7.1.4',
+
+            //根据你的需求ijk模式的so
+            "gsyVideoPlayer-armv5"               : 'com.shuyu:gsyVideoPlayer-armv5:7.1.4',
+            "gsyVideoPlayer-armv7a"              : 'com.shuyu:gsyVideoPlayer-armv7a:7.1.4',
+            "gsyVideoPlayer-arm64"               : 'com.shuyu:gsyVideoPlayer-arm64:7.1.4',
+            "gsyVideoPlayer-x64"                 : 'com.shuyu:gsyVideoPlayer-x64:7.1.4',
+            "gsyVideoPlayer-x86"                 : 'com.shuyu:gsyVideoPlayer-x86:7.1.4',
+
+            //C、支持其他格式协议的（mpeg，rtsp, concat、crypto协议）
+            //A、B普通版本支持263/264/265等，对于mpeg编码会有声音无画面情况。 C 引入的so支持mpeg编码和其他补充协议，但是so包相对变大。
+            //更多ijk的编码支持
+            "gsyVideoPlayer_ex_so"               : 'com.shuyu:gsyVideoPlayer-ex_so:7.1.4',
+
 
             //sdk
             "tbssdk"                             : 'com.tencent.tbs.tbssdk:sdk:43697',

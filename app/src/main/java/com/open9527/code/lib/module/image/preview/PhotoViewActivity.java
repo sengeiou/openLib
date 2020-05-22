@@ -9,15 +9,14 @@ import androidx.recyclerview.widget.PagerSnapHelper;
 
 import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ColorUtils;
-import com.blankj.utilcode.util.ThreadUtils;
 import com.open9527.code.common.databinding.CommonBindingTitleActivity;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.cell.PhotoViewCell;
-import com.open9527.code.lib.cell.PreviewCell;
+import com.open9527.code.lib.databinding.ActivityPhotoviewBinding;
 import com.open9527.code.lib.databinding.ActivityPreviewBinding;
 import com.open9527.code.lib.model.CommonKey;
 import com.open9527.code.lib.model.GalleryBean;
-import com.open9527.recycleview.TopSmoothScroller;
+import com.open9527.code.lib.module.image.PhotoViewPagerAdapter;
 import com.open9527.recycleview.adapter.BaseBindingCell;
 import com.open9527.recycleview.adapter.BaseBindingCellAdapter;
 
@@ -30,7 +29,7 @@ import java.util.List;
  * E-Mail Address ：open_9527@163.com.
  * DESC :描述文件.
  */
-public class PreviewActivity extends CommonBindingTitleActivity<ActivityPreviewBinding> {
+public class PhotoViewActivity extends CommonBindingTitleActivity<ActivityPhotoviewBinding> {
 
     private BaseBindingCellAdapter<BaseBindingCell> mAdapter;
     private GalleryBean galleryBean;
@@ -41,13 +40,11 @@ public class PreviewActivity extends CommonBindingTitleActivity<ActivityPreviewB
         if (bundle != null) {
             galleryBean = bundle.getParcelable(CommonKey.IBundleKey.COMMON_BUNDLE_KEY);
         }
-
-
     }
 
     @Override
     public int bindLayout() {
-        return R.layout.activity_preview;
+        return R.layout.activity_photoview;
     }
 
     @Override
@@ -58,23 +55,20 @@ public class PreviewActivity extends CommonBindingTitleActivity<ActivityPreviewB
 
     @Override
     public void initView(@Nullable Bundle savedInstanceState, @Nullable View contentView) {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(mActivity, LinearLayoutManager.HORIZONTAL, false);
-        mBinding.setLayoutManager(linearLayoutManager);
-        PagerSnapHelper snapHelper = new PagerSnapHelper();
-//        An instance of OnFlingListener already set. 异常
-//        mBinding.rvList.setOnFlingListener(null);
-        snapHelper.attachToRecyclerView(mBinding.rvList);
-        mBinding.setAdapter(mAdapter = new BaseBindingCellAdapter<>());
 
         List<BaseBindingCell> cellList = new LinkedList<>();
         List<String> list = galleryBean.getList();
-        for (int i = 0; i < list.size(); i++) {
-//            cellList.add(new PreviewCell(list.get(i)));
-            cellList.add(new PhotoViewCell(list.get(i)));
+        int index = galleryBean.getIndex();
+
+        if (list != null && list.size() > 0) {
+            mBinding.viewPager.setAdapter(new PhotoViewPagerAdapter(this, list));
+            if (index != 0 && index <= list.size()) {
+                mBinding.viewPager.setCurrentItem(index);
+            }
+        } else {
+            finish();
         }
-        mAdapter.addItems(cellList, true);
-        //闪到指定位置
-        linearLayoutManager.scrollToPositionWithOffset(galleryBean.getIndex(), 0);
+
     }
 
 }

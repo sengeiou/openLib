@@ -1,17 +1,23 @@
 package com.open9527.recycleview.adapter;
 
 
-public interface IBaseCellClick {
+import android.view.View;
+
+public interface IBaseCellClick<CELL> extends View.OnClickListener {
 
     default void onItemClick() {
 
     }
 
-    default void onItemClick(BaseBindingCell cell) {
+    default void onItemClick(View view) {
 
     }
 
-    default void onItemClick(BaseBindingCell cell, int postion) {
+    default void onItemClick(CELL cell) {
+
+    }
+
+    default void onItemClick(CELL cell, int postion) {
 
     }
 }

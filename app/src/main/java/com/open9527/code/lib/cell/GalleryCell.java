@@ -1,18 +1,18 @@
 package com.open9527.code.lib.cell;
 
-import android.os.Bundle;
-import android.os.Parcelable;
+
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.LogUtils;
-import com.blankj.utilcode.util.ToastUtils;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ItemCellGalleryBinding;
 import com.open9527.code.lib.model.CommonKey;
 import com.open9527.code.lib.model.GalleryBean;
+import com.open9527.code.lib.module.image.preview.PhotoViewActivity;
 import com.open9527.code.lib.module.image.preview.PreviewActivity;
 import com.open9527.code.lib.utils.ImageLoadUtils;
 import com.open9527.recycleview.adapter.BaseBindingCell;
@@ -28,10 +28,6 @@ public class GalleryCell extends BaseBindingCell<GalleryCell> implements IBaseCe
     public ObservableField<String> stringUrl = new ObservableField<String>();
     public ObservableField<ArrayList<String>> stringUrlList = new ObservableField<ArrayList<String>>();
 
-    public GalleryCell(String url) {
-        super(R.layout.item_cell_gallery);
-        stringUrl.set(url);
-    }
 
     public GalleryCell(ArrayList<String> urlList, String url) {
         super(R.layout.item_cell_gallery);
@@ -48,9 +44,14 @@ public class GalleryCell extends BaseBindingCell<GalleryCell> implements IBaseCe
     }
 
     @Override
-    public void onItemClick(BaseBindingCell cell, int postion) {
+    public void onItemClick() {
         LogUtils.i(TAG, "onItemClick-->" + stringUrl.get());
+//        ActivityUtils.startActivity(CommonKey.createBundle(new GalleryBean(postion, stringUrlList.get())), PreviewActivity.class);
+        ActivityUtils.startActivity(CommonKey.createBundle(new GalleryBean(this.getIndex(), stringUrlList.get())), PhotoViewActivity.class);
+    }
 
-        ActivityUtils.startActivity(CommonKey.createBundle(new GalleryBean(postion, stringUrlList.get())), PreviewActivity.class);
+    @Override
+    public void onClick(View v) {
+        onItemClick();
     }
 }

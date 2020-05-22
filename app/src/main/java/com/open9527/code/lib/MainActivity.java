@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer;
 
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.GsonUtils;
+import com.blankj.utilcode.util.KeyboardUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.open9527.code.common.databinding.CommonBindingActivity;

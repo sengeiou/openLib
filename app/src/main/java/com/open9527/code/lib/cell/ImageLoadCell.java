@@ -12,6 +12,7 @@ import com.blankj.utilcode.util.SizeUtils;
 import com.open9527.code.common.databinding.BindingBaseCell;
 import com.open9527.code.common.databinding.BindingItemViewHolder;
 import com.open9527.code.common.recycleview.interfaces.ICellClickListener;
+import com.open9527.code.image.imageload.ImageLoadManger;
 import com.open9527.code.image.imageload.ImageLoadProcessInterface;
 import com.open9527.code.lib.R;
 import com.open9527.code.lib.databinding.ItemCellImageloadBinding;
@@ -51,6 +52,9 @@ public class ImageLoadCell extends BindingBaseCell<ImageLoadCell> {
                 binding.pbLoading.setVisibility(View.GONE);
             }
         });
+
+//        ImageLoadManger.clearImageView(this);
+
 
 
     }

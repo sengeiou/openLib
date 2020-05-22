@@ -231,6 +231,12 @@
             android:label="自定义相册"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
+        <activity android:name=".module.image.preview.PhotoViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="PhotoViewActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 

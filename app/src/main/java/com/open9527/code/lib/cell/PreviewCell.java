@@ -1,5 +1,7 @@
 package com.open9527.code.lib.cell;
 
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.databinding.ObservableField;
 
@@ -29,5 +31,10 @@ public class PreviewCell extends BaseBindingCell<PreviewCell> implements IBaseCe
     @Override
     public void onItemClick() {
         ToastUtils.showShort("onItemClick");
+    }
+
+    @Override
+    public void onClick(View v) {
+        onItemClick();
     }
 }
